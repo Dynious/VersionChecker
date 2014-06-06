@@ -9,7 +9,7 @@
   "updateUrl": "",
   "authorList": ["Dynious"],
   "credits": "Credits to everyone that helped with this project!",
-  "logoFile": "",
+  "logoFile": "assets/versionchecker/textures/gui/logo.png",
   "screenshots": [],
   "dependencies": []
 }
