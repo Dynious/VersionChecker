@@ -1,0 +1,8 @@
+# GUI localizations
+gui.versionchecker.update=Update
+gui.versionchecker.openWebpage=Open Webpage
+gui.versionchecker.updating=Updating...
+gui.versionchecker.isDownloaded=Update has been downloaded, restart needed to take effect
+gui.versionchecker.dlAvailable=Update available for download
+gui.versionchecker.cannotUpdate=Cannot auto-update this mod
+gui.versionchecker.noChangeLog=No Change Log available

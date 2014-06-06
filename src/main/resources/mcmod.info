@@ -1,0 +1,16 @@
+[
+{
+  "modid": "VersionChecker",
+  "name": "Version Checker",
+  "description": "Easily find updates for your installed mods!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Dynious"],
+  "credits": "Credits to everyone that helped with this project!",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
