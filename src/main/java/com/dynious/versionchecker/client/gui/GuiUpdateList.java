@@ -3,11 +3,14 @@ package com.dynious.versionchecker.client.gui;
 import com.dynious.versionchecker.handler.DownloadThread;
 import com.dynious.versionchecker.handler.Update;
 import com.dynious.versionchecker.handler.UpdateHandler;
+import com.dynious.versionchecker.lib.Resources;
 import com.dynious.versionchecker.lib.Strings;
 import cpw.mods.fml.client.GuiScrollingList;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.StatCollector;
+import org.lwjgl.opengl.GL11;
 
 public class GuiUpdateList extends GuiScrollingList
 {
@@ -57,20 +60,32 @@ public class GuiUpdateList extends GuiScrollingList
             this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(update.displayName, listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
             this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(update.oldVersion + " -> " + update.newVersion, listWidth - 10), this.left + 3, var3 + 12, 0xCCCCCC);
             String info;
+
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GUI_ICONS);
+
             if (DownloadThread.isUpdating(update))
             {
+                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 0, 0, 16, 16, 32, 32);
+
                 info = StatCollector.translateToLocal(Strings.UPDATING);
             }
             else if (update.isDownloaded())
             {
+                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 16, 0, 16, 16, 32, 32);
+
                 info = StatCollector.translateToLocal(Strings.IS_DOWNLOADED);
             }
             else if (update.isDirectLink)
             {
+                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 16, 16, 16, 16, 32, 32);
+
                 info = StatCollector.translateToLocal(Strings.DL_AVAILABLE);
             }
             else if (update.updateURL != null)
             {
+                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 0, 16, 16, 16, 32, 32);
+
                 info = StatCollector.translateToLocal(Strings.CANNOT_UPDATE);
             }
             else

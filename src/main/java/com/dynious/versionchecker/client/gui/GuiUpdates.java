@@ -3,10 +3,12 @@ package com.dynious.versionchecker.client.gui;
 import com.dynious.versionchecker.handler.DownloadThread;
 import com.dynious.versionchecker.handler.Update;
 import com.dynious.versionchecker.helper.WebHelper;
+import com.dynious.versionchecker.lib.Resources;
 import com.dynious.versionchecker.lib.Strings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.Tessellator;
@@ -63,6 +65,13 @@ public class GuiUpdates extends GuiScreen
                 drawCenteredString(fontRendererObj, StatCollector.translateToLocal(Strings.NO_CHANGE_LOG), width / 2 + listShift, height / 2 - 60, 0xCCCCCC);
             }
         }
+        if (DownloadThread.isUpdating())
+        {
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GUI_ICONS);
+            Gui.func_146110_a(width - 20, 4, 0, 0, 16, 16, 32, 32);
+        }
+
         super.drawScreen(mouseX, mouseY, par3);
     }
 
@@ -126,6 +135,7 @@ public class GuiUpdates extends GuiScreen
         if (update.isDirectLink)
         {
             updateButton.displayString = StatCollector.translateToLocal(Strings.UPDATE);
+            updateButton.enabled = !update.isDownloaded();
         }
         else
         {
