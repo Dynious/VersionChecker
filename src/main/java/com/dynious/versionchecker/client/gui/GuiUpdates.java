@@ -39,12 +39,12 @@ public class GuiUpdates extends GuiScreen
         windowEndX = width / 2 + 110 + listShift;
         windowEndY = height / 2 + 70;
 
-        buttonList.add(new GuiButton(0, width / 2 - 75, height - 30, 150, 20, StatCollector.translateToLocal("gui.done")));
+        buttonList.add(new GuiButton(0, width / 2 - 75 + listShift, height - 30, 150, 20, StatCollector.translateToLocal("gui.done")));
         buttonList.add(updateButton = new GuiButton(1, width / 2 - 100 + listShift, height / 2 + 40, 96, 20, StatCollector.translateToLocal(Strings.UPDATE)));
         updateButton.visible = false;
         buttonList.add(closeButton = new GuiButton(2, width / 2 + 4 + listShift, height / 2 + 40, 96, 20, StatCollector.translateToLocal("gui.done")));
         closeButton.visible = false;
-        updateList = new GuiUpdateList(this, 300, 180, height / 2 - 100, height / 2 + 80, width / 2 - 150 + listShift);
+        updateList = new GuiUpdateList(this, 300, 180, 20, height - 40, width / 2 - 150 + listShift);
     }
 
     @Override

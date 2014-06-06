@@ -26,11 +26,6 @@ public class GuiMainMenuHandler
         buttonList.add(button);
     }
 
-    public static void drawScreen(GuiScreen gui)
-    {
-        //NOOP
-    }
-
     public static void onActionPerformed(GuiButton gui)
     {
         if (gui.id == BUTTON_ID)

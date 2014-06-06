@@ -22,16 +22,6 @@ public class EventHandler
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
-    public void drawScreen(GuiScreenEvent.DrawScreenEvent.Post evt)
-    {
-        if (evt.gui instanceof GuiMainMenu)
-        {
-            GuiMainMenuHandler.drawScreen(evt.gui);
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
     public void onActionPerformed(GuiScreenEvent.ActionPerformedEvent evt)
     {
         if (evt.gui instanceof GuiMainMenu)
