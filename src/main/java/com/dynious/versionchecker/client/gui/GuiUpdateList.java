@@ -1,7 +1,7 @@
 package com.dynious.versionchecker.client.gui;
 
 import com.dynious.versionchecker.handler.DownloadThread;
-import com.dynious.versionchecker.handler.Update;
+import com.dynious.versionchecker.api.Update;
 import com.dynious.versionchecker.handler.UpdateHandler;
 import com.dynious.versionchecker.lib.Resources;
 import com.dynious.versionchecker.lib.Strings;

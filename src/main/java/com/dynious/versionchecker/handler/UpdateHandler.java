@@ -1,5 +1,7 @@
 package com.dynious.versionchecker.handler;
 
+import com.dynious.versionchecker.api.Update;
+
 import java.util.ArrayList;
 import java.util.List;
 

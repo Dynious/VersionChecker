@@ -1,5 +1,6 @@
 package com.dynious.versionchecker.handler;
 
+import com.dynious.versionchecker.api.Update;
 import com.dynious.versionchecker.helper.ModHelper;
 import com.dynious.versionchecker.lib.IMCOperations;
 import cpw.mods.fml.common.event.FMLInterModComms;
@@ -11,10 +12,17 @@ public class IMCHandler
     {
         for (FMLInterModComms.IMCMessage message : event.getMessages())
         {
-            if (message.key.equalsIgnoreCase(IMCOperations.ADD_UPDATE) && message.isNBTMessage())
+            if (message.key.equalsIgnoreCase(IMCOperations.ADD_UPDATE))
             {
                 LogHandler.info("Received update from mod " + message.getSender());
-                processAddUpdateMessage(message.getNBTValue(), message.getSender());
+                if (message.isNBTMessage())
+                {
+                    processAddUpdateMessage(message.getNBTValue(), message.getSender());
+                }
+                else if (message.isStringMessage())
+                {
+                    processAddUpdateMessage(message.getStringValue(), message.getSender());
+                }
             }
         }
     }
@@ -67,5 +75,22 @@ public class IMCHandler
         }
 
         UpdateHandler.addUpdate(update);
+    }
+
+    public static void processAddUpdateMessage(String string, String sender)
+    {
+        Update update = Update.createFromJson(string);
+        if (update != null)
+        {
+            if (update.displayName == null)
+            {
+                update.displayName = ModHelper.getModContainer(sender).getName();
+            }
+            if (update.oldVersion == null)
+            {
+                update.oldVersion = ModHelper.getModContainer(sender).getVersion();
+            }
+            UpdateHandler.addUpdate(update);
+        }
     }
 }
