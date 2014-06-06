@@ -24,40 +24,43 @@ public class GuiUpdates extends GuiScreen
 
     private int windowStartX, windowStartY, windowEndX, windowEndY;
 
+    private static final int listShift = 50;
+
     @Override
     @SuppressWarnings("unchecked")
     public void initGui()
     {
         super.initGui();
 
-        windowStartX = width / 2 - 110;
+        windowStartX = width / 2 - 110 + listShift;
         windowStartY = height / 2 - 90;
-        windowEndX = width / 2 + 110;
+        windowEndX = width / 2 + 110 + listShift;
         windowEndY = height / 2 + 70;
 
         buttonList.add(new GuiButton(0, width / 2 - 75, height - 30, 150, 20, StatCollector.translateToLocal("gui.done")));
-        buttonList.add(updateButton = new GuiButton(1, width / 2 - 100, height / 2 + 40, 96, 20, StatCollector.translateToLocal(Strings.UPDATE)));
+        buttonList.add(updateButton = new GuiButton(1, width / 2 - 100 + listShift, height / 2 + 40, 96, 20, StatCollector.translateToLocal(Strings.UPDATE)));
         updateButton.visible = false;
-        buttonList.add(closeButton = new GuiButton(2, width / 2 + 4, height / 2 + 40, 96, 20, StatCollector.translateToLocal("gui.done")));
+        buttonList.add(closeButton = new GuiButton(2, width / 2 + 4 + listShift, height / 2 + 40, 96, 20, StatCollector.translateToLocal("gui.done")));
         closeButton.visible = false;
-        updateList = new GuiUpdateList(this, 300, 180, height / 2 - 100, height / 2 + 80, width / 2 - 150);
+        updateList = new GuiUpdateList(this, 300, 180, height / 2 - 100, height / 2 + 80, width / 2 - 150 + listShift);
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float par3)
     {
         updateList.drawScreen(mouseX, mouseY, par3);
+        this.fontRendererObj.drawSplitString(StatCollector.translateToLocal(Strings.INFO).replace(";", "\n"), 10, height / 2 - 60, width / 2 - 150 + listShift - 20, 0xCCCCCC);
         if (openUpdate != null)
         {
             drawUpdateWindow();
-            drawCenteredString(fontRendererObj, openUpdate.displayName, width / 2, height / 2 - 80, 0xFFFFFF);
+            drawCenteredString(fontRendererObj, openUpdate.displayName, width / 2 + listShift, height / 2 - 80, 0xFFFFFF);
             if (openUpdate.changeLog != null)
             {
-                this.fontRendererObj.drawSplitString(openUpdate.changeLog, width / 2 - 100, height / 2 - 60, 200, 0xCCCCCC);
+                this.fontRendererObj.drawSplitString(openUpdate.changeLog, width / 2 - 100 + listShift, height / 2 - 60, 200, 0xCCCCCC);
             }
             else
             {
-                drawCenteredString(fontRendererObj, StatCollector.translateToLocal(Strings.NO_CHANGE_LOG), width / 2, height / 2 - 60, 0xFFFFFF);
+                drawCenteredString(fontRendererObj, StatCollector.translateToLocal(Strings.NO_CHANGE_LOG), width / 2 + listShift, height / 2 - 60, 0xCCCCCC);
             }
         }
         super.drawScreen(mouseX, mouseY, par3);
@@ -127,6 +130,7 @@ public class GuiUpdates extends GuiScreen
         else
         {
             updateButton.displayString = StatCollector.translateToLocal(Strings.OPEN_WEBPAGE);
+            updateButton.enabled = update.updateURL != null;
         }
     }
 

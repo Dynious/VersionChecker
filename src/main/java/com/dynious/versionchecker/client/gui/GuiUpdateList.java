@@ -69,6 +69,10 @@ public class GuiUpdateList extends GuiScrollingList
             {
                 info = StatCollector.translateToLocal(Strings.DL_AVAILABLE);
             }
+            else if (update.updateURL != null)
+            {
+                info = StatCollector.translateToLocal(Strings.CANNOT_UPDATE);
+            }
             else
             {
                 info = StatCollector.translateToLocal(Strings.CANNOT_UPDATE);

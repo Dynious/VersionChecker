@@ -5,7 +5,9 @@ import com.dynious.versionchecker.lib.Reference;
 import sun.misc.URLClassPath;
 import sun.net.util.URLUtil;
 
-import java.io.*;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileWriter;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.net.URLClassLoader;

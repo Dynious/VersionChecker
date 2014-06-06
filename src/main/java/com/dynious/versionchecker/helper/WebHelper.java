@@ -2,7 +2,6 @@ package com.dynious.versionchecker.helper;
 
 import com.dynious.versionchecker.handler.RemoveHandler;
 import com.dynious.versionchecker.handler.Update;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
 import org.apache.commons.io.FileUtils;
 

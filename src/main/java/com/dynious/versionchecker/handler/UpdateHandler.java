@@ -1,9 +1,6 @@
 package com.dynious.versionchecker.handler;
 
-import com.google.common.collect.ImmutableList;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class UpdateHandler

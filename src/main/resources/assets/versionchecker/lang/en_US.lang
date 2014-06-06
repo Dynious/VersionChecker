@@ -2,7 +2,9 @@
 gui.versionchecker.update=Update
 gui.versionchecker.openWebpage=Open Webpage
 gui.versionchecker.updating=Updating...
-gui.versionchecker.isDownloaded=Update has been downloaded, restart needed to take effect
+gui.versionchecker.isDownloaded=Update has been downloaded, restart needed
 gui.versionchecker.dlAvailable=Update available for download
+gui.versionchecker.linkToDL=Link to download available
 gui.versionchecker.cannotUpdate=Cannot auto-update this mod
 gui.versionchecker.noChangeLog=No Change Log available
+gui.versionchecker.info=This is a list of all outdated mods known to Version Checker.;;You can take a look at the change log of a mod (if available) and easily update the mod by double-clicking on it.

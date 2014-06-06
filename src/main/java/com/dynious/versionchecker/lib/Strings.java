@@ -9,6 +9,8 @@ public class Strings
     public static final String UPDATING = GUI_PREFIX + "updating";
     public static final String IS_DOWNLOADED = GUI_PREFIX + "isDownloaded";
     public static final String DL_AVAILABLE = GUI_PREFIX + "dlAvailable";
+    public static final String LINK_TO_DL = GUI_PREFIX + "linkToDL";
     public static final String CANNOT_UPDATE = GUI_PREFIX + "cannotUpdate";
     public static final String NO_CHANGE_LOG = GUI_PREFIX + "noChangeLog";
+    public static final String INFO = GUI_PREFIX + "info";
 }
