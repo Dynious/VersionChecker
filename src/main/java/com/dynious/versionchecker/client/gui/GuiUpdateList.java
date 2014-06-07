@@ -86,7 +86,7 @@ public class GuiUpdateList extends GuiScrollingList
             {
                 Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 0, 16, 16, 16, 32, 32);
 
-                info = StatCollector.translateToLocal(Strings.OPEN_WEBPAGE);
+                info = StatCollector.translateToLocal(Strings.LINK_TO_DL);
             }
             else
             {

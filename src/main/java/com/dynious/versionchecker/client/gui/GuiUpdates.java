@@ -2,9 +2,13 @@ package com.dynious.versionchecker.client.gui;
 
 import com.dynious.versionchecker.handler.DownloadThread;
 import com.dynious.versionchecker.api.Update;
+import com.dynious.versionchecker.helper.DesktopHelper;
+import com.dynious.versionchecker.helper.ModHelper;
 import com.dynious.versionchecker.helper.WebHelper;
+import com.dynious.versionchecker.lib.Reference;
 import com.dynious.versionchecker.lib.Resources;
 import com.dynious.versionchecker.lib.Strings;
+import cpw.mods.fml.common.Loader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
@@ -15,6 +19,9 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
+import java.io.File;
 
 public class GuiUpdates extends GuiScreen
 {
@@ -44,6 +51,7 @@ public class GuiUpdates extends GuiScreen
         updateButton.visible = false;
         buttonList.add(closeButton = new GuiButton(2, width / 2 + 4 + listShift, height / 2 + 40, 96, 20, StatCollector.translateToLocal("gui.done")));
         closeButton.visible = false;
+        buttonList.add(new GuiButton(3, 10, height - 30, 150, 20, StatCollector.translateToLocal(Strings.MOD_FOLDER)));
         updateList = new GuiUpdateList(this, 300, 180, 20, height - 40, width / 2 - 150 + listShift);
     }
 
@@ -61,7 +69,10 @@ public class GuiUpdates extends GuiScreen
 
         if (openUpdate != null)
         {
-            drawUpdateWindow();
+            GL11.glColor4f(0.6F, 0.6F, 0.6F, 1.0F);
+            Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GUI_WINDOW);
+            Gui.func_146110_a(windowStartX, windowStartY, 0, 0, 220, 160, 220, 160);
+
             drawCenteredString(fontRendererObj, openUpdate.displayName, width / 2 + listShift, height / 2 - 80, 0xFFFFFF);
             if (openUpdate.changeLog != null)
             {
@@ -104,6 +115,9 @@ public class GuiUpdates extends GuiScreen
                 break;
             case 2:
                 closeInfoScreen();
+                break;
+            case 3:
+                DesktopHelper.openFolderInExplorer(DesktopHelper.MOD_FOLDER);
                 break;
         }
     }
@@ -156,22 +170,5 @@ public class GuiUpdates extends GuiScreen
         openUpdate = null;
         updateButton.visible = false;
         closeButton.visible = false;
-    }
-
-    public void drawUpdateWindow()
-    {
-        GL11.glDisable(GL11.GL_LIGHTING);
-        GL11.glDisable(GL11.GL_FOG);
-        Tessellator tessellator = Tessellator.instance;
-        this.mc.getTextureManager().bindTexture(optionsBackground);
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        float f = 32.0F;
-        tessellator.startDrawingQuads();
-        tessellator.setColorOpaque_I(4210752);
-        tessellator.addVertexWithUV(windowStartX, windowEndY, 0.0D, 0.0D,  (windowEndY - windowStartY) / f);
-        tessellator.addVertexWithUV(windowEndX, windowEndY, 0.0D, (windowEndX - windowStartX) / f, (windowEndY - windowStartY) / f);
-        tessellator.addVertexWithUV(windowEndX, windowStartY, 0.0D, (windowEndX - windowStartX) / f, 0);
-        tessellator.addVertexWithUV(windowStartX, windowStartY, 0.0D, 0.0D, 0);
-        tessellator.draw();
     }
 }
