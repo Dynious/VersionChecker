@@ -13,5 +13,6 @@ public class Strings
     public static final String CANNOT_UPDATE = GUI_PREFIX + "cannotUpdate";
     public static final String NO_CHANGE_LOG = GUI_PREFIX + "noChangeLog";
     public static final String INFO = GUI_PREFIX + "info";
-    public static final String MOD_FOLDER = GUI_PREFIX + "modFolder";
+    public static final String MOD_FOLDER = GUI_PREFIX + "modsFolder";
+    public static final String MARK_DL = GUI_PREFIX + "markDL";
 }

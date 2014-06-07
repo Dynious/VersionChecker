@@ -8,4 +8,5 @@ gui.versionchecker.linkToDL=Link to download available
 gui.versionchecker.cannotUpdate=Cannot auto-update this mod
 gui.versionchecker.noChangeLog=No Change Log available
 gui.versionchecker.info=This is a list of all outdated mods known to Version Checker.;;You can take a look at the change log of a mod (if available) and easily update the mod by double-clicking on it.
-gui.versionchecker.modFolder=Open mod folder
+gui.versionchecker.modsFolder=Open mods folder
+gui.versionchecker.markDL=Mark as downloaded

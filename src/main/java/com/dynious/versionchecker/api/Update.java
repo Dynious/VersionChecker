@@ -28,9 +28,9 @@ public class Update
         return isDownloaded;
     }
 
-    public void setDownloaded()
+    public void setDownloaded(boolean downloaded)
     {
-        this.isDownloaded = true;
+        this.isDownloaded = downloaded;
     }
 
     public static Update createFromJson(String jsonRecipeMapping)

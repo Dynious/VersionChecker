@@ -93,6 +93,5 @@ public class WebHelper
         {
             e.printStackTrace();
         }
-        RemoveHandler.filesToDelete.add(mod.getSource());
     }
 }

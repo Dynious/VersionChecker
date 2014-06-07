@@ -1,6 +1,7 @@
 package com.dynious.versionchecker.handler;
 
 import com.dynious.versionchecker.api.Update;
+import com.dynious.versionchecker.helper.ModHelper;
 import com.dynious.versionchecker.helper.WebHelper;
 
 import java.util.ArrayList;
@@ -22,7 +23,8 @@ public class DownloadThread implements Runnable
     {
         WebHelper.downloadUpdate(update);
         downloadingUpdates.remove(update);
-        update.setDownloaded();
+        RemoveHandler.filesToDelete.add(ModHelper.getModContainer(update.MOD_ID).getSource());
+        update.setDownloaded(true);
     }
 
     public static void downloadUpdate(Update update)

@@ -11,4 +11,5 @@ public class Resources
     public static final ResourceLocation GUI_BUTTON_UPDATE = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "notify.png");
     public static final ResourceLocation GUI_LOGO = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "logo.png");
     public static final ResourceLocation GUI_WINDOW = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "window.png");
+    public static final ResourceLocation GUI_BUTTON_TICK = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "tickButton.png");
 }

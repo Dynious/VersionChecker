@@ -3,31 +3,25 @@ package com.dynious.versionchecker.client.gui;
 import com.dynious.versionchecker.handler.DownloadThread;
 import com.dynious.versionchecker.api.Update;
 import com.dynious.versionchecker.helper.DesktopHelper;
-import com.dynious.versionchecker.helper.ModHelper;
 import com.dynious.versionchecker.helper.WebHelper;
-import com.dynious.versionchecker.lib.Reference;
 import com.dynious.versionchecker.lib.Resources;
 import com.dynious.versionchecker.lib.Strings;
-import cpw.mods.fml.common.Loader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-
-import java.awt.*;
-import java.io.File;
 
 public class GuiUpdates extends GuiScreen
 {
     private GuiUpdateList updateList;
     private GuiButton updateButton;
     private GuiButton closeButton;
+    private GuiButtonDownloaded buttonDownloaded;
 
     private Update openUpdate = null;
 
@@ -47,11 +41,25 @@ public class GuiUpdates extends GuiScreen
         windowEndY = height / 2 + 70;
 
         buttonList.add(new GuiButton(0, width / 2 - 75 + listShift, height - 30, 150, 20, StatCollector.translateToLocal("gui.done")));
+
         buttonList.add(updateButton = new GuiButton(1, width / 2 - 100 + listShift, height / 2 + 40, 96, 20, StatCollector.translateToLocal(Strings.UPDATE)));
-        updateButton.visible = false;
+        updateButton.visible = openUpdate != null;
+
         buttonList.add(closeButton = new GuiButton(2, width / 2 + 4 + listShift, height / 2 + 40, 96, 20, StatCollector.translateToLocal("gui.done")));
-        closeButton.visible = false;
+        closeButton.visible = openUpdate != null;
+
         buttonList.add(new GuiButton(3, 10, height - 30, 150, 20, StatCollector.translateToLocal(Strings.MOD_FOLDER)));
+
+        buttonList.add(buttonDownloaded = new GuiButtonDownloaded(4, width / 2 - 100 + listShift, height / 2 + 15));
+        if (openUpdate != null)
+        {
+            buttonDownloaded.enable(openUpdate);
+        }
+        else
+        {
+            buttonDownloaded.disable();
+        }
+
         updateList = new GuiUpdateList(this, 300, 180, 20, height - 40, width / 2 - 150 + listShift);
     }
 
@@ -110,14 +118,17 @@ public class GuiUpdates extends GuiScreen
                 else
                 {
                     DownloadThread.downloadUpdate(openUpdate);
+                    closeInfoScreen();
                 }
-                closeInfoScreen();
                 break;
             case 2:
                 closeInfoScreen();
                 break;
             case 3:
                 DesktopHelper.openFolderInExplorer(DesktopHelper.MOD_FOLDER);
+                break;
+            case 4:
+                buttonDownloaded.onButtonClicked();
                 break;
         }
     }
@@ -152,6 +163,10 @@ public class GuiUpdates extends GuiScreen
         openUpdate = update;
         updateButton.visible = true;
         closeButton.visible = true;
+        if (!update.isDirectLink)
+        {
+            buttonDownloaded.enable(update);
+        }
         Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0F));
         if (update.isDirectLink)
         {
@@ -170,5 +185,6 @@ public class GuiUpdates extends GuiScreen
         openUpdate = null;
         updateButton.visible = false;
         closeButton.visible = false;
+        buttonDownloaded.disable();
     }
 }
