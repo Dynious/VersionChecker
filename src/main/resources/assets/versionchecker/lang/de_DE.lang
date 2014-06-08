@@ -1,0 +1,12 @@
+# GUI localizations
+gui.versionchecker.update=Update
+gui.versionchecker.openWebpage=webseite öffnen
+gui.versionchecker.updating=Update wird ausgeführt...
+gui.versionchecker.isDownloaded=Update wurde heruntergeladen, Neustart erforderlich
+gui.versionchecker.dlAvailable=Update zum Download verfügbar
+gui.versionchecker.linkToDL=Link zum Download verfügbar
+gui.versionchecker.cannotUpdate=Diese Mod kann nicht automatisch geupdated werden
+gui.versionchecker.noChangeLog=Kein Changelog verfügbar
+gui.versionchecker.info=Dies ist eine Liste aller veralteten Mods, die Version Checker bekannt sind.;;Du kannst (wenn verfügbar) den Changelog einer Mod ansehen und diese einfach per Doppelklick updaten.
+gui.versionchecker.modsFolder=Mods-Ordner öffnen
+gui.versionchecker.markDL=Als Gedownloaded markieren
