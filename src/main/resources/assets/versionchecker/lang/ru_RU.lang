@@ -1,0 +1,12 @@
+# GUI localizations
+gui.versionchecker.update=Обновить
+gui.versionchecker.openWebpage=Открыть веб-страницу
+gui.versionchecker.updating=Обновление...
+gui.versionchecker.isDownloaded=Обновление загружено, необходим перезапуск
+gui.versionchecker.dlAvailable=Обновление доступно для загрузки
+gui.versionchecker.linkToDL=Ссылка для скачивания доступна
+gui.versionchecker.cannotUpdate=Не удаётся автоматически обновить этот мод
+gui.versionchecker.noChangeLog=Список изменений не доступен
+gui.versionchecker.info=Это список всех устаревших модификаций, которые знает Version Checker.;;Вы можете взглянуть на список изменений модификации (если доступен) и легко обновить её, дважды щёлкнув по ней.
+gui.versionchecker.modsFolder=Открыть папку с модами
+gui.versionchecker.markDL=Отметить как загружено
