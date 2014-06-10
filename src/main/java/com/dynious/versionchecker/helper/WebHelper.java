@@ -78,7 +78,7 @@ public class WebHelper
                     }
                     else
                     {
-                        newFileName = newFileName.substring(0, i) + "-new" + newFileName.substring(i + 1);
+                        newFileName = newFileName.substring(0, i) + "-new" + newFileName.substring(i);
                     }
                 }
                 fileName = newFileName;
