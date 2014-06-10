@@ -8,10 +8,7 @@ import com.dynious.versionchecker.lib.Resources;
 import com.dynious.versionchecker.lib.Strings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
@@ -24,6 +21,7 @@ public class GuiUpdates extends GuiScreen
     private GuiButtonDownloaded buttonDownloaded;
 
     private Update openUpdate = null;
+    private GuiChangeLog changeLogList;
 
     private int windowStartX, windowStartY, windowEndX, windowEndY;
 
@@ -51,22 +49,32 @@ public class GuiUpdates extends GuiScreen
         buttonList.add(new GuiButton(3, 10, height - 30, 150, 20, StatCollector.translateToLocal(Strings.MOD_FOLDER)));
 
         buttonList.add(buttonDownloaded = new GuiButtonDownloaded(4, width / 2 - 100 + listShift, height / 2 + 15));
+
+        updateList = new GuiUpdateList(this, 300, 180, 20, height - 40, width / 2 - 150 + listShift);
+        changeLogList = new GuiChangeLog(this, 200, 75, height / 2 - 60, height / 2 + 15, width / 2 - 100 + listShift);
+
         if (openUpdate != null)
         {
             buttonDownloaded.enable(openUpdate);
+            if (openUpdate.changeLog != null)
+                changeLogList.setText(openUpdate.changeLog);
         }
         else
         {
             buttonDownloaded.disable();
         }
-
-        updateList = new GuiUpdateList(this, 300, 180, 20, height - 40, width / 2 - 150 + listShift);
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float par3)
     {
         updateList.drawScreen(mouseX, mouseY, par3);
+
+        if (openUpdate != null)
+        {
+            changeLogList.drawScreen(mouseX, mouseY, par3);
+        }
+
         this.fontRendererObj.drawSplitString(StatCollector.translateToLocal(Strings.INFO).replace(";", "\n"), 10, height / 2 - 60, width / 2 - 150 + listShift - 20, 0xCCCCCC);
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -77,16 +85,8 @@ public class GuiUpdates extends GuiScreen
 
         if (openUpdate != null)
         {
-            GL11.glColor4f(0.6F, 0.6F, 0.6F, 1.0F);
-            Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GUI_WINDOW);
-            Gui.func_146110_a(windowStartX, windowStartY, 0, 0, 220, 160, 220, 160);
-
             drawCenteredString(fontRendererObj, openUpdate.displayName, width / 2 + listShift, height / 2 - 80, 0xFFFFFF);
-            if (openUpdate.changeLog != null)
-            {
-                this.fontRendererObj.drawSplitString(openUpdate.changeLog, width / 2 - 100 + listShift, height / 2 - 60, 200, 0xCCCCCC);
-            }
-            else
+            if (openUpdate.changeLog == null)
             {
                 drawCenteredString(fontRendererObj, StatCollector.translateToLocal(Strings.NO_CHANGE_LOG), width / 2 + listShift, height / 2 - 60, 0xCCCCCC);
             }
@@ -99,6 +99,13 @@ public class GuiUpdates extends GuiScreen
         }
 
         super.drawScreen(mouseX, mouseY, par3);
+    }
+
+    public void drawWindow()
+    {
+        GL11.glColor4f(0.6F, 0.6F, 0.6F, 1.0F);
+        Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GUI_WINDOW);
+        Gui.func_146110_a(windowStartX, windowStartY, 0, 0, 220, 160, 220, 160);
     }
 
     @Override
@@ -178,6 +185,10 @@ public class GuiUpdates extends GuiScreen
             updateButton.displayString = StatCollector.translateToLocal(Strings.OPEN_WEBPAGE);
             updateButton.enabled = update.updateURL != null;
         }
+        if (openUpdate.changeLog != null)
+        {
+            changeLogList.setText(openUpdate.changeLog);
+        }
     }
 
     public void closeInfoScreen()
@@ -186,5 +197,6 @@ public class GuiUpdates extends GuiScreen
         updateButton.visible = false;
         closeButton.visible = false;
         buttonDownloaded.disable();
+        changeLogList.setText("");
     }
 }

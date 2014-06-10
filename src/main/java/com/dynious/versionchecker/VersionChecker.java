@@ -9,6 +9,7 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
@@ -26,6 +27,20 @@ public class VersionChecker
         MinecraftForge.EVENT_BUS.register(new EventHandler());
 
         RemoveHandler.init();
+
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setString("modDisplayName", Reference.NAME);
+        tag.setString("oldVersion", Reference.VERSION);
+        tag.setString("newVersion", "NEW!");
+        tag.setString("updateUrl", "nonono");
+        tag.setBoolean("isDirectLink", false);
+        StringBuilder s = new StringBuilder();
+        for (int i = 0; i < 50; i++)
+        {
+            s.append("bla\n");
+        }
+        tag.setString("changeLog", s.toString());
+        FMLInterModComms.sendMessage("VersionChecker", "addUpdate", tag);
     }
 
     @Mod.EventHandler
