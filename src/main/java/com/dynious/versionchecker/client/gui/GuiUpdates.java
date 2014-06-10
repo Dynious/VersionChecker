@@ -2,10 +2,13 @@ package com.dynious.versionchecker.client.gui;
 
 import com.dynious.versionchecker.handler.DownloadThread;
 import com.dynious.versionchecker.api.Update;
+import com.dynious.versionchecker.handler.IMCHandler;
 import com.dynious.versionchecker.helper.DesktopHelper;
 import com.dynious.versionchecker.helper.WebHelper;
+import com.dynious.versionchecker.lib.Reference;
 import com.dynious.versionchecker.lib.Resources;
 import com.dynious.versionchecker.lib.Strings;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.*;
@@ -35,6 +38,7 @@ public class GuiUpdates extends GuiScreen
     @SuppressWarnings("unchecked")
     public void initGui()
     {
+        IMCHandler.processMessages(FMLInterModComms.fetchRuntimeMessages(Reference.MOD_ID));
         super.initGui();
 
         windowStartX = width / 2 - 110 + listShift;

@@ -6,22 +6,27 @@ import com.dynious.versionchecker.lib.IMCOperations;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.nbt.NBTTagCompound;
 
+import java.util.List;
+
 public class IMCHandler
 {
-    public static void processMessage(FMLInterModComms.IMCEvent event)
+    public static void processMessages(List<FMLInterModComms.IMCMessage> messageList)
     {
-        for (FMLInterModComms.IMCMessage message : event.getMessages())
+        for (FMLInterModComms.IMCMessage message : messageList)
         {
-            if (message.key.equalsIgnoreCase(IMCOperations.ADD_UPDATE))
+            if (!UpdateHandler.hasMessageFrom(message.getSender()))
             {
-                LogHandler.info("Received update from mod " + message.getSender());
-                if (message.isNBTMessage())
+                if (message.key.equalsIgnoreCase(IMCOperations.ADD_UPDATE))
                 {
-                    processAddUpdateMessage(message.getNBTValue(), message.getSender());
-                }
-                else if (message.isStringMessage())
-                {
-                    processAddUpdateMessage(message.getStringValue(), message.getSender());
+                    LogHandler.info("Received update from mod " + message.getSender());
+                    if (message.isNBTMessage())
+                    {
+                        processAddUpdateMessage(message.getNBTValue(), message.getSender());
+                    }
+                    else if (message.isStringMessage())
+                    {
+                        processAddUpdateMessage(message.getStringValue(), message.getSender());
+                    }
                 }
             }
         }

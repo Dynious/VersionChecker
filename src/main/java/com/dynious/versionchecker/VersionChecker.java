@@ -46,6 +46,6 @@ public class VersionChecker
     @Mod.EventHandler
     public void handleIMCMessages(FMLInterModComms.IMCEvent event)
     {
-        IMCHandler.processMessage(event);
+        IMCHandler.processMessages(event.getMessages());
     }
 }

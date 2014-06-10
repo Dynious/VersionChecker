@@ -11,12 +11,8 @@ public class UpdateHandler
 
     public static void addUpdate(Update update)
     {
-        for (Update update1 : updateList)
-        {
-            if (update1.MOD_ID.equalsIgnoreCase(update.MOD_ID))
-                return;
-        }
-        updateList.add(update);
+        if (!hasMessageFrom(update.MOD_ID))
+            updateList.add(update);
     }
 
     public static int getListSize()
@@ -31,5 +27,15 @@ public class UpdateHandler
             return updateList.get(index);
         }
         return null;
+    }
+
+    public static boolean hasMessageFrom(String modid)
+    {
+        for (Update update1 : updateList)
+        {
+            if (update1.MOD_ID.equalsIgnoreCase(modid))
+                return true;
+        }
+        return false;
     }
 }
