@@ -43,7 +43,7 @@ public class UpdateChecker implements Runnable
 
     public static void addModToCheck(ModContainer mod, String url)
     {
-        if (mod == null || url == null || url.isEmpty())
+        if (mod == null || url == null || url.isEmpty() || modsToCheck.keySet().contains(mod))
             return;
 
         modsToCheck.put(mod, url);
@@ -143,7 +143,7 @@ public class UpdateChecker implements Runnable
     {
         NBTTagCompound tag = new NBTTagCompound();
 
-        tag.setString("modDisplayName", mod.getDisplayVersion());
+        tag.setString("modDisplayName", mod.getName());
         tag.setString("oldVersion", mod.getVersion());
         tag.setString("newVersion", version.getModVersion());
 
@@ -169,7 +169,7 @@ public class UpdateChecker implements Runnable
 
         try
         {
-            while (count < VERSION_CHECK_ATTEMPTS - 1 && !modsToCheck.isEmpty())
+            while (count < VERSION_CHECK_ATTEMPTS - 1 && (count == 0 || !modsToCheck.isEmpty()))
             {
                 IMCHandler.processMessages(FMLInterModComms.fetchRuntimeMessages(Reference.MOD_ID));
                 checkVersion();

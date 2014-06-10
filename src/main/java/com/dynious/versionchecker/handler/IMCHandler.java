@@ -32,6 +32,7 @@ public class IMCHandler
             }
             else if (message.key.equalsIgnoreCase(IMCOperations.ADD_VERSION_CHECK))
             {
+                LogHandler.info("Received version check from mod " + message.getSender());
                 if (message.isStringMessage())
                 {
                     processVersionCheckMessage(message.getSender(), message.getStringValue());

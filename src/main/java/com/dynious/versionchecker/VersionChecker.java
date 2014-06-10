@@ -11,7 +11,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
@@ -23,7 +22,7 @@ public class VersionChecker
     @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.COMMON_PROXY)
     public static CommonProxy proxy;
 
-    public static final String remoteVersionURL = "";
+    public static final String REMOTE_VERSION_URL = "https://raw.github.com/Dynious/VersionChecker/master/version.json";
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -32,7 +31,7 @@ public class VersionChecker
 
         RemoveHandler.init();
 
-        FMLInterModComms.sendRuntimeMessage(Reference.MOD_ID, "VersionChecker", "addVersionCheck", remoteVersionURL);
+        FMLInterModComms.sendRuntimeMessage(Reference.MOD_ID, "VersionChecker", "addVersionCheck", REMOTE_VERSION_URL);
     }
 
     @Mod.EventHandler

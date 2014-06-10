@@ -1,6 +1,5 @@
 package com.dynious.versionchecker.client.gui;
 
-import cpw.mods.fml.client.GuiScrollingList;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 
