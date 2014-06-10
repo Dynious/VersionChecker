@@ -3,6 +3,7 @@ package com.dynious.versionchecker.lib;
 public class IMCOperations
 {
     public static final String ADD_UPDATE = "addUpdate";
+    public static final String ADD_VERSION_CHECK = "addVersionCheck";
 
     public static final String MOD_DISPLAY_NAME = "modDisplayName";
     public static final String OLD_VERSION = "oldVersion";

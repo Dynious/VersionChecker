@@ -1,5 +1,6 @@
 package com.dynious.versionchecker;
 
+import com.dynious.versionchecker.checker.UpdateChecker;
 import com.dynious.versionchecker.event.EventHandler;
 import com.dynious.versionchecker.handler.IMCHandler;
 import com.dynious.versionchecker.handler.RemoveHandler;
@@ -7,6 +8,7 @@ import com.dynious.versionchecker.lib.Reference;
 import com.dynious.versionchecker.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,6 +23,8 @@ public class VersionChecker
     @SidedProxy(clientSide = Reference.CLIENT_PROXY, serverSide = Reference.COMMON_PROXY)
     public static CommonProxy proxy;
 
+    public static final String remoteVersionURL = "";
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
@@ -28,19 +32,13 @@ public class VersionChecker
 
         RemoveHandler.init();
 
-        NBTTagCompound tag = new NBTTagCompound();
-        tag.setString("modDisplayName", Reference.NAME);
-        tag.setString("oldVersion", Reference.VERSION);
-        tag.setString("newVersion", "NEW!");
-        tag.setString("updateUrl", "nonono");
-        tag.setBoolean("isDirectLink", false);
-        StringBuilder s = new StringBuilder();
-        for (int i = 0; i < 50; i++)
-        {
-            s.append("bla\n");
-        }
-        tag.setString("changeLog", s.toString());
-        FMLInterModComms.sendMessage("VersionChecker", "addUpdate", tag);
+        FMLInterModComms.sendRuntimeMessage(Reference.MOD_ID, "VersionChecker", "addVersionCheck", remoteVersionURL);
+    }
+
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        UpdateChecker.execute();
     }
 
     @Mod.EventHandler

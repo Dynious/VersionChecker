@@ -1,0 +1,18 @@
+{
+	"versionList": [
+		{
+			"mcVersion":"Minecraft 1.7.2",
+			"modVersion":"1.0.1",
+			"changeLog": [
+				"Added change log scroll list",
+				"Added link tooltips",
+				"Deleting mods now fails less",
+				"Added support for RuntimeMessages",
+				"Added version checker (I'm a derp)"
+			],
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2203922/download",
+			"isDirectLink":"true",
+			"newFileName":"VersionChecker-1.0.1"
+		}
+	]
+}
