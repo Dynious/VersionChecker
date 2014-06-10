@@ -8,6 +8,15 @@ public class Deleter
     {
         if (args.length >= 1)
         {
+            try
+            {
+                Thread.sleep(100);
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+
             String path = args[0];
             try
             {

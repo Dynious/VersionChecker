@@ -15,4 +15,5 @@ public class Strings
     public static final String INFO = GUI_PREFIX + "info";
     public static final String MOD_FOLDER = GUI_PREFIX + "modsFolder";
     public static final String MARK_DL = GUI_PREFIX + "markDL";
+    public static final String DL_MARKED_INFO = GUI_PREFIX + "DLMarkedInfo";
 }

@@ -13,6 +13,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class GuiUpdates extends GuiScreen
 {
     private GuiUpdateList updateList;
@@ -99,6 +103,8 @@ public class GuiUpdates extends GuiScreen
         }
 
         super.drawScreen(mouseX, mouseY, par3);
+
+        drawToolTip(mouseX, mouseY);
     }
 
     public void drawWindow()
@@ -106,6 +112,33 @@ public class GuiUpdates extends GuiScreen
         GL11.glColor4f(0.6F, 0.6F, 0.6F, 1.0F);
         Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GUI_WINDOW);
         Gui.func_146110_a(windowStartX, windowStartY, 0, 0, 220, 160, 220, 160);
+    }
+
+    public void drawToolTip(int mouseX, int mouseY)
+    {
+        if (updateButton.mousePressed(mc, mouseX, mouseY))
+        {
+            List<String> list = new ArrayList<String>();
+            String left = openUpdate.updateURL;
+            while(true)
+            {
+                String s = fontRendererObj.trimStringToWidth(left, 200);
+                list.add(s);
+                if (s.length() == left.length())
+                {
+                    break;
+                }
+                else
+                {
+                    left = fontRendererObj.trimStringToWidth(left, 200, true);
+                }
+            }
+            this.drawHoveringText(list, mouseX, mouseY, fontRendererObj);
+        }
+        else if (buttonDownloaded.mousePressed(mc, mouseX, mouseY))
+        {
+            this.drawHoveringText(Arrays.asList(StatCollector.translateToLocal(Strings.DL_MARKED_INFO).split(";")), mouseX, mouseY, fontRendererObj);
+        }
     }
 
     @Override
