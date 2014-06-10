@@ -2,7 +2,7 @@
 	"versionList": [
 		{
 			"mcVersion":"Minecraft 1.7.2",
-			"modVersion":"1.0.1",
+			"modVersion":"1.1.0",
 			"changeLog": [
 				"Added change log scroll list",
 				"Added link tooltips",

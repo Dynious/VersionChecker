@@ -85,7 +85,7 @@ public class RemoveHandler
                     FileWriter writer = new FileWriter(new File(path), false);
                     for (File file : RemoveHandler.filesToDelete)
                     {
-                        writer.write(file.getAbsolutePath());
+                        writer.write(file.getAbsolutePath() + System.getProperty("line.separator"));
                     }
                     writer.close();
 

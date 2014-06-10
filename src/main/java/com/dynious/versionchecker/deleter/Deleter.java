@@ -26,7 +26,6 @@ public class Deleter
                 String line;
                 while((line = reader.readLine()) != null)
                 {
-                    System.out.println(line);
                     File file = new File(line);
                     if (!file.delete())
                     {
