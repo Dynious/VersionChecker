@@ -61,14 +61,27 @@ public class WebHelper
         if (mod != null)
         {
             String fileName = "";
-            if (update.newFileName != null)
+            if (update.newFileName != null && !update.newFileName.isEmpty())
             {
                 fileName = update.newFileName;
             }
             else
             {
                 fileName = mod.getSource().getAbsolutePath();
-                fileName = fileName.replaceAll(update.oldVersion, update.newVersion);
+                String newFileName = fileName.replaceAll(update.oldVersion, update.newVersion);
+                if (fileName.equalsIgnoreCase(newFileName))
+                {
+                    int i = newFileName.lastIndexOf(".");
+                    if (i == -1)
+                    {
+                        newFileName += "-new";
+                    }
+                    else
+                    {
+                        newFileName = newFileName.substring(0, i) + "-new" + newFileName.substring(i + 1);
+                    }
+                }
+                fileName = newFileName;
             }
             try
             {

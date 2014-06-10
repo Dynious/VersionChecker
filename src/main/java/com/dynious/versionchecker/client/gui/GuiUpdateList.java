@@ -3,6 +3,7 @@ package com.dynious.versionchecker.client.gui;
 import com.dynious.versionchecker.handler.DownloadThread;
 import com.dynious.versionchecker.api.Update;
 import com.dynious.versionchecker.handler.UpdateHandler;
+import com.dynious.versionchecker.lib.Reference;
 import com.dynious.versionchecker.lib.Resources;
 import com.dynious.versionchecker.lib.Strings;
 import cpw.mods.fml.client.GuiScrollingList;
@@ -74,7 +75,14 @@ public class GuiUpdateList extends GuiScrollingList
             {
                 Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 16, 0, 16, 16, 32, 32);
 
-                info = StatCollector.translateToLocal(Strings.IS_DOWNLOADED);
+                if (!update.MOD_ID.equalsIgnoreCase(Reference.MOD_ID))
+                {
+                    info = StatCollector.translateToLocal(Strings.IS_DOWNLOADED);
+                }
+                else
+                {
+                    info = StatCollector.translateToLocal(Strings.UNABLE_TO_REMOVE_SELF);
+                }
             }
             else if (update.isDirectLink)
             {
