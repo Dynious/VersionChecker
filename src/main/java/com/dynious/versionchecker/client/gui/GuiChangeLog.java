@@ -10,7 +10,6 @@ public class GuiChangeLog extends GuiScroll
 {
     private GuiUpdates parent;
     private List<String> changeLogLines;
-    private int ticker;
 
     public GuiChangeLog(GuiUpdates parent, int width, int height, int top, int bottom, int left)
     {
@@ -21,7 +20,6 @@ public class GuiChangeLog extends GuiScroll
     @Override
     public void drawScreen(int mouseX, int mouseY, float p_22243_3_)
     {
-        ticker++;
         super.drawScreen(mouseX, mouseY, p_22243_3_);
     }
 
@@ -80,6 +78,4 @@ public class GuiChangeLog extends GuiScroll
             this.parent.getFontRenderer().drawString(changeLogLines.get(index), this.left + 3, y + 2, 0xFFFFFF);
         }
     }
-
-
 }
