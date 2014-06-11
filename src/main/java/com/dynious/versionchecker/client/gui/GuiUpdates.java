@@ -134,7 +134,7 @@ public class GuiUpdates extends GuiScreen
                 }
                 else
                 {
-                    left = fontRendererObj.trimStringToWidth(left, 200, true);
+                    left = left.substring(s.length());
                 }
             }
             this.drawHoveringText(list, mouseX, mouseY, fontRendererObj);

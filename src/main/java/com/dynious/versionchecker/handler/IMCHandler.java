@@ -85,7 +85,7 @@ public class IMCHandler
 
         if (tag.hasKey(IMCOperations.NEW_FILE_NAME))
         {
-            update.changeLog = tag.getString(IMCOperations.NEW_FILE_NAME);
+            update.newFileName = tag.getString(IMCOperations.NEW_FILE_NAME);
         }
 
         UpdateHandler.addUpdate(update);

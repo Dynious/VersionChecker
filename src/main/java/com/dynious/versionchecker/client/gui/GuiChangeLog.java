@@ -3,10 +3,13 @@ package com.dynious.versionchecker.client.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GuiChangeLog extends GuiScroll
 {
     private GuiUpdates parent;
-    private String[] textArray;
+    private List<String> changeLogLines;
     private int ticker;
 
     public GuiChangeLog(GuiUpdates parent, int width, int height, int top, int bottom, int left)
@@ -24,13 +27,32 @@ public class GuiChangeLog extends GuiScroll
 
     public void setText(String string)
     {
-        textArray = string.split("\\n");
+        String[] textArray = string.split("\\n");
+        changeLogLines = new ArrayList<String>();
+        for (String line : textArray)
+        {
+            while(true)
+            {
+                String s = this.parent.getFontRenderer().trimStringToWidth(line, listWidth - 10);
+                changeLogLines.add(s);
+                if (s.length() == line.length())
+                {
+                    break;
+                }
+                else
+                {
+                    line = line.substring(s.length());
+                }
+            }
+            changeLogLines.add("");
+        }
+        changeLogLines.remove(changeLogLines.size() - 1);
     }
 
     @Override
     protected int getSize()
     {
-        return textArray != null ? textArray.length : 0;
+        return changeLogLines != null ? changeLogLines.size() : 0;
     }
 
     @Override
@@ -53,20 +75,9 @@ public class GuiChangeLog extends GuiScroll
     @Override
     protected void drawSlot(int index, int x, int y, int var4, Tessellator var5)
     {
-        if (index < textArray.length)
+        if (index < changeLogLines.size())
         {
-            int trimmedLength = textArray[index].length() - this.parent.getFontRenderer().trimStringToWidth(textArray[index], listWidth - 10).length();
-            if (trimmedLength == 0)
-            {
-                this.parent.getFontRenderer().drawString(textArray[index], this.left + 3, y + 2, 0xFFFFFF);
-            }
-            else
-            {
-                String spaces = "                                               ";
-                trimmedLength += 35 + spaces.length();
-                String string = this.parent.getFontRenderer().trimStringToWidth((spaces + textArray[index]).substring(ticker / 5 % trimmedLength), listWidth - 10);
-                this.parent.getFontRenderer().drawString(string, this.left + 3, y + 2, 0xFFFFFF);
-            }
+            this.parent.getFontRenderer().drawString(changeLogLines.get(index), this.left + 3, y + 2, 0xFFFFFF);
         }
     }
 
