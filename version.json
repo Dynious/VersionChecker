@@ -2,15 +2,13 @@
 	"versionList": [
 		{
 			"mcVersion":"Minecraft 1.7.2",
-			"modVersion":"1.1.1",
+			"modVersion":"1.1.0",
 			"changeLog": [
-				"This probably is your first update!",
-				"Updated change log screen to not scroll, this is chaotic :/",
-				"Fixed a few bugs with file names"
+				"Temp, rollback!"
 			],
-			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2204362/download",
+			"updateURL":"",
 			"isDirectLink":"true",
-			"newFileName":"VersionChecker-1.1.1.jar"
+			"newFileName":"VersionChecker-1.1.0.jar"
 		}
 	]
 }
