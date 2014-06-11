@@ -1,8 +1,10 @@
 package com.dynious.versionchecker.checker;
 
+import com.dynious.versionchecker.api.Update;
 import com.dynious.versionchecker.api.VersionContainer;
 import com.dynious.versionchecker.handler.IMCHandler;
 import com.dynious.versionchecker.handler.LogHandler;
+import com.dynious.versionchecker.handler.UpdateHandler;
 import com.dynious.versionchecker.helper.ModHelper;
 import com.dynious.versionchecker.lib.Reference;
 import com.google.gson.Gson;
@@ -77,7 +79,7 @@ public class UpdateChecker implements Runnable
                     else
                     {
                         result = CheckState.OUTDATED;
-                        sendIMCOutdatedMessage(entry.getKey(), latest);
+                        addUpdateToList(entry.getKey(), latest);
                         iterator.remove();
                     }
                 }
@@ -139,27 +141,35 @@ public class UpdateChecker implements Runnable
         }
     }
 
-    public static void sendIMCOutdatedMessage(ModContainer mod, VersionContainer.Version version)
+    public static void addUpdateToList(ModContainer mod, VersionContainer.Version version)
     {
-        NBTTagCompound tag = new NBTTagCompound();
+        Update update = new Update(mod.getModId());
+        update.displayName = mod.getName();
+        update.oldVersion = mod.getVersion();
+        update.newVersion = version.getModVersion();
 
-        tag.setString("modDisplayName", mod.getName());
-        tag.setString("oldVersion", mod.getVersion());
-        tag.setString("newVersion", version.getModVersion());
-
-        tag.setString("updateUrl", version.getUpdateURL());
-        tag.setBoolean("isDirectLink", version.isDirectLink());
-
-        StringBuilder builder = new StringBuilder();
-        for (String changeLogLine : version.getChangeLog())
+        if (version.getUpdateURL() != null && !version.getUpdateURL().isEmpty())
         {
-            builder.append(changeLogLine).append("\n");
+            update.updateURL = version.getUpdateURL();
+        }
+        update.isDirectLink = version.isDirectLink();
+
+        if (!version.getChangeLog().isEmpty())
+        {
+            StringBuilder builder = new StringBuilder();
+            for (String changeLogLine : version.getChangeLog())
+            {
+                builder.append(changeLogLine).append("\n");
+            }
+            update.changeLog = builder.toString();
         }
 
-        tag.setString("changeLog", builder.toString());
-        tag.setString("newFileName", version.getNewFileName());
+        if (version.getNewFileName() != null && !version.getNewFileName().isEmpty())
+        {
+            update.newFileName = version.getNewFileName();
+        }
 
-        FMLInterModComms.sendRuntimeMessage(mod.getModId(), "VersionChecker", "addUpdate", tag);
+        UpdateHandler.addUpdate(update);
     }
 
     @Override
