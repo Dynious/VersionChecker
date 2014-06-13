@@ -1,9 +1,11 @@
 package com.dynious.versionchecker;
 
+import com.dynious.versionchecker.api.Update;
 import com.dynious.versionchecker.checker.UpdateChecker;
 import com.dynious.versionchecker.event.EventHandler;
 import com.dynious.versionchecker.handler.IMCHandler;
 import com.dynious.versionchecker.handler.RemoveHandler;
+import com.dynious.versionchecker.handler.UpdateHandler;
 import com.dynious.versionchecker.lib.Reference;
 import com.dynious.versionchecker.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
@@ -11,6 +13,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
@@ -32,6 +35,8 @@ public class VersionChecker
         RemoveHandler.init();
 
         FMLInterModComms.sendRuntimeMessage(Reference.MOD_ID, "VersionChecker", "addVersionCheck", REMOTE_VERSION_URL);
+
+        //sendABunchOfDerpyMessages();
     }
 
     @Mod.EventHandler
@@ -44,5 +49,28 @@ public class VersionChecker
     public void handleIMCMessages(FMLInterModComms.IMCEvent event)
     {
         IMCHandler.processMessages(event.getMessages());
+    }
+    
+    public void sendABunchOfDerpyMessages()
+    {
+        for (int i = 0; i < 50; i++)
+        {
+            Update update = new Update("Test" + i);
+            update.displayName = "Test" + i;
+            update.oldVersion = "0.0.0.0.0.0.0";
+            update.newVersion = "9.9.9.9.9.9.9";
+            StringBuilder s = new StringBuilder();
+            for (int a = 0; a < 50; a++)
+            {
+                s.append("bla");
+                for (int o = 0; o < a; o++)
+                {
+                    s.append("a");
+                }
+                s.append("\n");
+            }
+            update.changeLog = s.toString();
+            UpdateHandler.addUpdate(update);
+        }
     }
 }

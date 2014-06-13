@@ -28,7 +28,7 @@ public class GuiUpdates extends GuiScreen
     private GuiButtonDownloaded buttonDownloaded;
 
     private Update openUpdate = null;
-    private GuiChangeLog changeLogList;
+    private GuiChangeLogList changeLogList;
 
     private int windowStartX, windowStartY, windowEndX, windowEndY;
 
@@ -49,27 +49,23 @@ public class GuiUpdates extends GuiScreen
         buttonList.add(new GuiButton(0, width / 2 - 75 + listShift, height - 30, 150, 20, StatCollector.translateToLocal("gui.done")));
 
         buttonList.add(updateButton = new GuiButton(1, width / 2 - 100 + listShift, height / 2 + 40, 96, 20, StatCollector.translateToLocal(Strings.UPDATE)));
-        updateButton.visible = openUpdate != null;
 
         buttonList.add(closeButton = new GuiButton(2, width / 2 + 4 + listShift, height / 2 + 40, 96, 20, StatCollector.translateToLocal("gui.done")));
-        closeButton.visible = openUpdate != null;
 
         buttonList.add(new GuiButton(3, 10, height - 30, 150, 20, StatCollector.translateToLocal(Strings.MOD_FOLDER)));
 
         buttonList.add(buttonDownloaded = new GuiButtonDownloaded(4, width / 2 - 100 + listShift, height / 2 + 15));
 
         updateList = new GuiUpdateList(this, 300, 180, 20, height - 40, width / 2 - 150 + listShift);
-        changeLogList = new GuiChangeLog(this, 200, 75, height / 2 - 60, height / 2 + 15, width / 2 - 100 + listShift);
+        changeLogList = new GuiChangeLogList(this, 200, 75, height / 2 - 60, height / 2 + 15, width / 2 - 100 + listShift);
 
         if (openUpdate != null)
         {
-            buttonDownloaded.enable(openUpdate);
-            if (openUpdate.changeLog != null)
-                changeLogList.setText(openUpdate.changeLog);
+            openInfoScreen(openUpdate);
         }
         else
         {
-            buttonDownloaded.disable();
+            closeInfoScreen();
         }
     }
 
@@ -207,6 +203,8 @@ public class GuiUpdates extends GuiScreen
         openUpdate = update;
         updateButton.visible = true;
         closeButton.visible = true;
+        changeLogList.disableInput = false;
+        updateList.disableInput = true;
         if (!update.isDirectLink)
         {
             buttonDownloaded.enable(update);
@@ -233,6 +231,8 @@ public class GuiUpdates extends GuiScreen
         openUpdate = null;
         updateButton.visible = false;
         closeButton.visible = false;
+        changeLogList.disableInput = true;
+        updateList.disableInput = false;
         buttonDownloaded.disable();
         changeLogList.setText("");
     }

@@ -1,17 +1,20 @@
 package com.dynious.versionchecker.client.gui;
 
+import com.dynious.versionchecker.lib.Resources;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.Tessellator;
+import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuiChangeLog extends GuiScroll
+public class GuiChangeLogList extends GuiScroll
 {
     private GuiUpdates parent;
     private List<String> changeLogLines;
 
-    public GuiChangeLog(GuiUpdates parent, int width, int height, int top, int bottom, int left)
+    public GuiChangeLogList(GuiUpdates parent, int width, int height, int top, int bottom, int left)
     {
         super(Minecraft.getMinecraft(), width, height, top, bottom, left, 12);
         this.parent = parent;
@@ -77,5 +80,14 @@ public class GuiChangeLog extends GuiScroll
         {
             this.parent.getFontRenderer().drawString(changeLogLines.get(index), this.left + 3, y + 2, 0xFFFFFF);
         }
+    }
+
+    @Override
+    public void overlayBackground()
+    {
+        this.client.renderEngine.bindTexture(Resources.GUI_WINDOW);
+        GL11.glColor4f(0.6F, 0.6F, 0.6F, 1.0F);
+        Gui.func_146110_a(left - 10, top - slotHeight, 0, 30, listWidth + 20, slotHeight, 220, 160);
+        Gui.func_146110_a(left - 10, top + listHeight, 0, listHeight + slotHeight, listWidth + 20, slotHeight, 220, 160);
     }
 }

@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
-public class GuiUpdateList extends GuiScrollingList
+public class GuiUpdateList extends GuiScroll
 {
     private GuiUpdates parent;
     private int selectedIndex = -1;
@@ -102,5 +102,14 @@ public class GuiUpdateList extends GuiScrollingList
             }
             this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(info, listWidth - 10), this.left + 3, var3 + 22, 0xCCCCCC);
         }
+    }
+
+    @Override
+    public void overlayBackground()
+    {
+        this.client.renderEngine.bindTexture(Gui.optionsBackground);
+        GL11.glColor4f(0.3F, 0.3F, 0.3F, 1.0F);
+        Gui.func_146110_a(left - 10, top - slotHeight, 0, 0, listWidth + 20, slotHeight, 32, 32);
+        Gui.func_146110_a(left - 10, top + listHeight, 0, listHeight + slotHeight, listWidth + 20, slotHeight, 32, 32);
     }
 }

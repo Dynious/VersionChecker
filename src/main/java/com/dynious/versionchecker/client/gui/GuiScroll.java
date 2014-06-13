@@ -13,7 +13,7 @@ import java.util.List;
 
 public abstract class GuiScroll
 {
-    private final Minecraft client;
+    protected final Minecraft client;
     protected final int listWidth;
     protected final int listHeight;
     protected final int top;
@@ -33,6 +33,7 @@ public abstract class GuiScroll
     private boolean field_25123_p = true;
     private boolean field_27262_q;
     private int field_27261_r;
+    public boolean disableInput = false;
 
     public GuiScroll(Minecraft client, int width, int height, int top, int bottom, int left, int entryHeight)
     {
@@ -153,101 +154,111 @@ public abstract class GuiScroll
         int var13;
         int var19;
 
-        if (Mouse.isButtonDown(0))
+        if (!disableInput)
         {
-            if (this.initialMouseClickY == -1.0F)
+            if (Mouse.isButtonDown(0))
             {
-                boolean var7 = true;
-
-                if (mouseY >= this.top && mouseY <= this.bottom)
+                if (this.initialMouseClickY == -1.0F)
                 {
-                    var10 = mouseY - this.top - this.field_27261_r + (int)this.scrollDistance - 4;
-                    var11 = var10 / this.slotHeight;
+                    boolean var7 = true;
 
-                    if (mouseX >= boxLeft && mouseX <= boxRight && var11 >= 0 && var10 >= 0 && var11 < listLength)
+                    if (mouseY >= this.top && mouseY <= this.bottom)
                     {
-                        boolean var12 = var11 == this.selectedIndex && System.currentTimeMillis() - this.lastClickTime < 250L;
-                        this.elementClicked(var11, var12);
-                        this.selectedIndex = var11;
-                        this.lastClickTime = System.currentTimeMillis();
-                    }
-                    else if (mouseX >= boxLeft && mouseX <= boxRight && var10 < 0)
-                    {
-                        this.func_27255_a(mouseX - boxLeft, mouseY - this.top + (int)this.scrollDistance - 4);
-                        var7 = false;
-                    }
+                        var10 = mouseY - this.top - this.field_27261_r + (int) this.scrollDistance - 4;
+                        var11 = var10 / this.slotHeight;
 
-                    if (mouseX >= scrollBarXStart && mouseX <= scrollBarXEnd)
-                    {
-                        this.scrollFactor = -1.0F;
-                        var19 = this.getContentHeight() - (this.bottom - this.top - 4);
-
-                        if (var19 < 1)
+                        if (mouseX >= boxLeft && mouseX <= boxRight && var11 >= 0 && var10 >= 0 && var11 < listLength)
                         {
-                            var19 = 1;
+                            boolean var12 = var11 == this.selectedIndex && System.currentTimeMillis() - this.lastClickTime < 250L;
+                            this.elementClicked(var11, var12);
+                            this.selectedIndex = var11;
+                            this.lastClickTime = System.currentTimeMillis();
+                        }
+                        else if (mouseX >= boxLeft && mouseX <= boxRight && var10 < 0)
+                        {
+                            this.func_27255_a(mouseX - boxLeft, mouseY - this.top + (int) this.scrollDistance - 4);
+                            var7 = false;
                         }
 
-                        var13 = (int)((float)((this.bottom - this.top) * (this.bottom - this.top)) / (float)this.getContentHeight());
-
-                        if (var13 < 32)
+                        if (mouseX >= scrollBarXStart && mouseX <= scrollBarXEnd)
                         {
-                            var13 = 32;
+                            this.scrollFactor = -1.0F;
+                            var19 = this.getContentHeight() - (this.bottom - this.top - 4);
+
+                            if (var19 < 1)
+                            {
+                                var19 = 1;
+                            }
+
+                            var13 = (int) ((float) ((this.bottom - this.top) * (this.bottom - this.top)) / (float) this.getContentHeight());
+
+                            if (var13 < 32)
+                            {
+                                var13 = 32;
+                            }
+
+                            if (var13 > this.bottom - this.top - 8)
+                            {
+                                var13 = this.bottom - this.top - 8;
+                            }
+
+                            this.scrollFactor /= (float) (this.bottom - this.top - var13) / (float) var19;
+                        }
+                        else
+                        {
+                            this.scrollFactor = 1.0F;
                         }
 
-                        if (var13 > this.bottom - this.top - 8)
+                        if (var7)
                         {
-                            var13 = this.bottom - this.top - 8;
+                            this.initialMouseClickY = (float) mouseY;
                         }
-
-                        this.scrollFactor /= (float)(this.bottom - this.top - var13) / (float)var19;
-                    }
-                    else
-                    {
-                        this.scrollFactor = 1.0F;
-                    }
-
-                    if (var7)
-                    {
-                        this.initialMouseClickY = (float)mouseY;
+                        else
+                        {
+                            this.initialMouseClickY = -2.0F;
+                        }
                     }
                     else
                     {
                         this.initialMouseClickY = -2.0F;
                     }
                 }
-                else
+                else if (this.initialMouseClickY >= 0.0F)
                 {
-                    this.initialMouseClickY = -2.0F;
+                    this.scrollDistance -= ((float) mouseY - this.initialMouseClickY) * this.scrollFactor;
+                    this.initialMouseClickY = (float) mouseY;
                 }
             }
-            else if (this.initialMouseClickY >= 0.0F)
+            else
             {
-                this.scrollDistance -= ((float)mouseY - this.initialMouseClickY) * this.scrollFactor;
-                this.initialMouseClickY = (float)mouseY;
-            }
-        }
-        else
-        {
-            while (Mouse.next())
-            {
-                int var16 = Mouse.getEventDWheel();
-
-                if (var16 != 0)
+                while (Mouse.next())
                 {
-                    if (var16 > 0)
-                    {
-                        var16 = -1;
-                    }
-                    else if (var16 < 0)
-                    {
-                        var16 = 1;
-                    }
+                    int var16 = Mouse.getEventDWheel();
 
-                    this.scrollDistance += (float)(var16 * this.slotHeight / 2);
+                    if (var16 != 0)
+                    {
+                        if (var16 > 0)
+                        {
+                            var16 = -1;
+                        }
+                        else if (var16 < 0)
+                        {
+                            var16 = 1;
+                        }
+
+                        if (getSize() < 20)
+                        {
+                            this.scrollDistance += (float) (var16 * this.slotHeight * 2);
+                        }
+                        else
+                        {
+                            this.scrollDistance += (float) var16 * this.getContentHeight() / 20;
+                        }
+                    }
                 }
-            }
 
-            this.initialMouseClickY = -1.0F;
+                this.initialMouseClickY = -1.0F;
+            }
         }
 
         this.applyScrollLimits();
@@ -393,12 +404,12 @@ public abstract class GuiScroll
         GL11.glDisable(GL11.GL_BLEND);
     }
 
-    private void overlayBackground()
+    public void overlayBackground()
     {
         this.client.renderEngine.bindTexture(Resources.GUI_WINDOW);
         GL11.glColor4f(0.6F, 0.6F, 0.6F, 1.0F);
-        Gui.func_146110_a(left - 10, top - 30, 0, 0, 220, 30, 220, 160);
-        Gui.func_146110_a(left - 10, top + listHeight, 0, listHeight + 30, 220, 30, 220, 160);
+        Gui.func_146110_a(left - 10, top - slotHeight, 0, 0, listWidth + 20, slotHeight, 220, 160);
+        Gui.func_146110_a(left - 10, top + listHeight, 0, listHeight + slotHeight, listWidth + 20, slotHeight, 220, 160);
     }
 
     protected void drawGradientRect(int par1, int par2, int par3, int par4, int par5, int par6)
