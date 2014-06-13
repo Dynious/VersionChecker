@@ -9,4 +9,6 @@ gui.versionchecker.cannotUpdate=Non posso auto-aggiornare questa mod
 gui.versionchecker.noChangeLog=Nessun Change Log avviabile
 gui.versionchecker.info=Questa è una lista di tutte le outdated mods scoperte da Version Checker.;;Puoi guerdare il change log di una mod (se avviabile) e facilemnte aggiornare la mod facenndo doppio click su di essa.
 gui.versionchecker.modsFolder=Apri cartella con le mod
-gui.versionchecker.markDL=Segna come scaricato
+gui.versionchecker.markDL=Segna come scaricata
+gui.versionchecker.DLMarkedInfo=Questo segnerà questa mod come scaricata; ed eliminerà il file originale della mod quando uscirai
+gui.versionchecker.unableToRemoveSelf=É probabilmente impossibile rimuoverlo, prova a rimuoverlo manualmente!
