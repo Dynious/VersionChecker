@@ -63,7 +63,9 @@ public class WebHelper
             String fileName = "";
             if (update.newFileName != null && !update.newFileName.isEmpty())
             {
-                fileName = mod.getSource().getParentFile().getAbsolutePath() + update.newFileName;
+                System.out.println(mod.getSource());
+                fileName = mod.getSource().getParent() + File.separator + update.newFileName;
+                System.out.println(fileName);
             }
             else
             {

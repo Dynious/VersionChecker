@@ -17,12 +17,12 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.1.1"
+version = "1.1.2"
 group= "com.dynious.versionchecker" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "VersionChecker"
 
 minecraft {
-    version = "1.7.2-10.12.1.1112"
+    version = "1.7.2-10.12.2.1124"
     assetDir = "eclipse/assets"
 	
 	replaceIn "lib/Reference.java"
