@@ -2,15 +2,14 @@
 	"versionList": [
 		{
 			"mcVersion":"Minecraft 1.7.2",
-			"modVersion":"1.1.1",
+			"modVersion":"1.1.2",
 			"changeLog": [
-				"This probably is your first update!",
-				"Updated change log screen to not scroll, this is chaotic :/",
-				"Fixed a few bugs with file names"
+				"Fixed downloading in wrong path",
+				"Fixed background scroll list working when window is open"
 			],
-			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2204362/download",
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2204644/download",
 			"isDirectLink":"true",
-			"newFileName":"VersionChecker-1.1.1.jar"
+			"newFileName":""
 		}
 	]
 }
