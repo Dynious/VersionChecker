@@ -1,6 +1,17 @@
 {
 	"versionList": [
 		{
+			"mcVersion":"Minecraft 1.7.10",
+			"modVersion":"1.1.2",
+			"changeLog": [
+				"Fixed downloading in wrong path",
+				"Fixed background scroll list working when window is open"
+			],
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2204644/download",
+			"isDirectLink":"true",
+			"newFileName":""
+		},
+		{
 			"mcVersion":"Minecraft 1.7.2",
 			"modVersion":"1.1.2",
 			"changeLog": [
