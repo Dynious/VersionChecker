@@ -99,7 +99,7 @@ public class GuiUpdates extends GuiScreen
         {
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GUI_ICONS);
-            Gui.func_146110_a(width - 20, 4, 0, 0, 16, 16, 32, 32);
+            Gui.func_146110_a(width - 20, 4, 0, 0, 16, 16, 48, 32);
         }
 
         super.drawScreen(mouseX, mouseY, par3);

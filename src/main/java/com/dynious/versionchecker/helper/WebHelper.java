@@ -55,7 +55,7 @@ public class WebHelper
         }
     }
 
-    public static void downloadUpdate(Update update)
+    public static boolean downloadUpdate(Update update)
     {
         ModContainer mod = ModHelper.getModContainer(update.MOD_ID);
         if (mod != null)
@@ -86,25 +86,22 @@ public class WebHelper
             try
             {
                 URL url = new URL(update.updateURL);
-                downloadFileFromURL(url, update, mod, fileName);
+                File file = downloadFileFromURL(url, update, mod, fileName);
+                if (file != null && file.exists() && file.length() > 0)
+                    return true;
             }
-            catch (MalformedURLException e)
+            catch (Exception e)
             {
                 e.printStackTrace();
             }
         }
+        return false;
     }
 
-    public static void downloadFileFromURL(URL url, Update update, ModContainer mod, String fileName)
+    public static File downloadFileFromURL(URL url, Update update, ModContainer mod, String fileName) throws IOException
     {
         File newFile = new File(fileName);
-        try
-        {
-            FileUtils.copyURLToFile(url, newFile);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        FileUtils.copyURLToFile(url, newFile);
+        return newFile;
     }
 }

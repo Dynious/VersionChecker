@@ -11,4 +11,5 @@ gui.versionchecker.info=This is a list of all outdated mods known to Version Che
 gui.versionchecker.modsFolder=Open mods folder
 gui.versionchecker.markDL=Mark as downloaded
 gui.versionchecker.DLMarkedInfo=This will mark this mod as downloaded;and delete the original mod file when exited
-gui.versionchecker.unableToRemoveSelf=Probably be unable to remove, please remove manually!
+gui.versionchecker.unableToRemoveSelf=Probably unable to remove, please remove manually!
+gui.versionchecker.errored=There was an error updating this mod

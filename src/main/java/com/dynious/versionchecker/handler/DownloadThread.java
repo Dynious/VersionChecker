@@ -21,10 +21,17 @@ public class DownloadThread implements Runnable
     @Override
     public void run()
     {
-        WebHelper.downloadUpdate(update);
+        boolean success = WebHelper.downloadUpdate(update);
         downloadingUpdates.remove(update);
-        RemoveHandler.filesToDelete.add(ModHelper.getModContainer(update.MOD_ID).getSource());
-        update.setDownloaded(true);
+        if (success)
+        {
+            RemoveHandler.filesToDelete.add(ModHelper.getModContainer(update.MOD_ID).getSource());
+            update.setDownloaded(true);
+        }
+        else
+        {
+            update.setErrored();
+        }
     }
 
     public static void downloadUpdate(Update update)

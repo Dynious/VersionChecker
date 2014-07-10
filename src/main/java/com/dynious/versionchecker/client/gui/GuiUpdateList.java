@@ -67,13 +67,13 @@ public class GuiUpdateList extends GuiScroll
 
             if (DownloadThread.isUpdating(update))
             {
-                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 0, 0, 16, 16, 32, 32);
+                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 0, 0, 16, 16, 48, 32);
 
                 info = StatCollector.translateToLocal(Strings.UPDATING);
             }
             else if (update.isDownloaded())
             {
-                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 16, 0, 16, 16, 32, 32);
+                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 16, 0, 16, 16, 48, 32);
 
                 if (!update.MOD_ID.equalsIgnoreCase(Reference.MOD_ID))
                 {
@@ -84,15 +84,21 @@ public class GuiUpdateList extends GuiScroll
                     info = StatCollector.translateToLocal(Strings.UNABLE_TO_REMOVE_SELF);
                 }
             }
+            else if (update.isErrored())
+            {
+                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 32, 0, 16, 16, 48, 32);
+
+                info = StatCollector.translateToLocal(Strings.ERRORED);
+            }
             else if (update.isDirectLink)
             {
-                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 16, 16, 16, 16, 32, 32);
+                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 16, 16, 16, 16, 48, 32);
 
                 info = StatCollector.translateToLocal(Strings.DL_AVAILABLE);
             }
             else if (update.updateURL != null)
             {
-                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 0, 16, 16, 16, 32, 32);
+                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 0, 16, 16, 16, 48, 32);
 
                 info = StatCollector.translateToLocal(Strings.LINK_TO_DL);
             }

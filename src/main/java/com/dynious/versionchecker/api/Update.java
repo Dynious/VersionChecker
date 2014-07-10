@@ -17,6 +17,7 @@ public class Update
     public String changeLog;
 
     private boolean isDownloaded;
+    private boolean isErrored;
 
     public Update(String modId)
     {
@@ -28,9 +29,19 @@ public class Update
         return isDownloaded;
     }
 
+    public boolean isErrored()
+    {
+        return isErrored;
+    }
+
     public void setDownloaded(boolean downloaded)
     {
         this.isDownloaded = downloaded;
+    }
+
+    public void setErrored()
+    {
+        isErrored = true;
     }
 
     public static Update createFromJson(String jsonRecipeMapping)
