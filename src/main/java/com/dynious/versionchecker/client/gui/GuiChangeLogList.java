@@ -26,28 +26,44 @@ public class GuiChangeLogList extends GuiScroll
         super.drawScreen(mouseX, mouseY, p_22243_3_);
     }
 
-    public void setText(String string)
+    public void setText(String lines)
     {
-        String[] textArray = string.split("\\n");
         changeLogLines = new ArrayList<String>();
-        for (String line : textArray)
+        final int MAX_LINE_LENGTH = listWidth - 10;
+
+        String currentLine = "";
+        for (String line : lines.split("\\n")) // Split string into lines
         {
-            while(true)
+            for (String word : line.split("\\s+")) // Split each line into words by space
             {
-                String s = this.parent.getFontRenderer().trimStringToWidth(line, listWidth - 10);
-                changeLogLines.add(s);
-                if (s.length() == line.length())
+                if (this.parent.getFontRenderer().getStringWidth(currentLine + word) < MAX_LINE_LENGTH)
                 {
-                    break;
+                    currentLine += word + " ";
                 }
                 else
                 {
-                    line = line.substring(s.length());
+                    changeLogLines.add(currentLine);
+                    if (this.parent.getFontRenderer().getStringWidth(word) < MAX_LINE_LENGTH)
+                    {
+                        currentLine = word + " ";
+                    }
+                    else
+                    {
+                        while (this.parent.getFontRenderer().getStringWidth(word) >= MAX_LINE_LENGTH)
+                        {
+                            String cutWord = this.parent.getFontRenderer().trimStringToWidth(word, MAX_LINE_LENGTH);
+                            changeLogLines.add(cutWord);
+                            word = word.substring(cutWord.length());
+                        }
+
+                        if (word.length() > 0) // If we still have left over characters in the word
+                            changeLogLines.add(word);
+                    }
                 }
             }
-            changeLogLines.add("");
+            changeLogLines.add(currentLine);
+            currentLine = "";
         }
-        changeLogLines.remove(changeLogLines.size() - 1);
     }
 
     @Override
