@@ -28,7 +28,7 @@ public class GuiChangeLogList extends GuiScroll
 
     public void setText(String string)
     {
-        String[] textArray = (string + "\n\n\n").split("\\n");
+        String[] textArray = string.split("\\n");
         if (textArray.length > 0)
         {
             changeLogLines = new ArrayList<String>();
