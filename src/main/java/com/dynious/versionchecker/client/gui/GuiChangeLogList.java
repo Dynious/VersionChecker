@@ -28,26 +28,29 @@ public class GuiChangeLogList extends GuiScroll
 
     public void setText(String string)
     {
-        String[] textArray = string.split("\\n");
-        changeLogLines = new ArrayList<String>();
-        for (String line : textArray)
+        String[] textArray = (string + "\n\n\n").split("\\n");
+        if (textArray.length > 0)
         {
-            while(true)
+            changeLogLines = new ArrayList<String>();
+            for (String line : textArray)
             {
-                String s = this.parent.getFontRenderer().trimStringToWidth(line, listWidth - 10);
-                changeLogLines.add(s);
-                if (s.length() == line.length())
+                while (true)
                 {
-                    break;
+                    String s = this.parent.getFontRenderer().trimStringToWidth(line, listWidth - 10);
+                    changeLogLines.add(s);
+                    if (s.length() == line.length())
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        line = line.substring(s.length());
+                    }
                 }
-                else
-                {
-                    line = line.substring(s.length());
-                }
+                changeLogLines.add("");
             }
-            changeLogLines.add("");
+            changeLogLines.remove(changeLogLines.size() - 1);
         }
-        changeLogLines.remove(changeLogLines.size() - 1);
     }
 
     @Override
