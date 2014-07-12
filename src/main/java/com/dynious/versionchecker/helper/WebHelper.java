@@ -1,5 +1,6 @@
 package com.dynious.versionchecker.helper;
 
+import com.dynious.versionchecker.handler.LogHandler;
 import com.dynious.versionchecker.handler.RemoveHandler;
 import com.dynious.versionchecker.api.Update;
 import cpw.mods.fml.common.ModContainer;
@@ -8,10 +9,7 @@ import org.apache.commons.io.FileUtils;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.net.*;
 
 public class WebHelper
 {
@@ -103,5 +101,32 @@ public class WebHelper
         File newFile = new File(fileName);
         FileUtils.copyURLToFile(url, newFile);
         return newFile;
+    }
+
+    public static String getLatestFilenameFromCurse(String urlString)
+    {
+        try
+        {
+            while (urlString != null && !urlString.isEmpty())
+            {
+                URL url = new URL(urlString);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setInstanceFollowRedirects(false);
+                urlString = connection.getHeaderField("Location");
+
+                if (urlString != null && (urlString.endsWith(".jar") || urlString.endsWith(".zip")))
+                {
+                    return urlString.substring(urlString.lastIndexOf("/") + 1);
+                }
+            }
+        }
+        catch (MalformedURLException e)
+        {
+            LogHandler.error("Malformed URL was given when searching in Curse database!");
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -3,6 +3,7 @@ package com.dynious.versionchecker.handler;
 import com.dynious.versionchecker.api.Update;
 import com.dynious.versionchecker.checker.UpdateChecker;
 import com.dynious.versionchecker.helper.ModHelper;
+import com.dynious.versionchecker.helper.WebHelper;
 import com.dynious.versionchecker.lib.IMCOperations;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,6 +37,14 @@ public class IMCHandler
                 if (message.isStringMessage())
                 {
                     processVersionCheckMessage(message.getSender(), message.getStringValue());
+                }
+            }
+            else if (message.key.equalsIgnoreCase(IMCOperations.ADD_CURSE_CHECK))
+            {
+                LogHandler.info("Received curse check from mod " + message.getSender());
+                if (message.isNBTMessage())
+                {
+                    processCurseCheckMessage(message.getSender(), message.getNBTValue());
                 }
             }
         }
@@ -111,5 +120,54 @@ public class IMCHandler
     public static void processVersionCheckMessage(String sender, String url)
     {
         UpdateChecker.addModToCheck(sender, url);
+    }
+
+    public static void processCurseCheckMessage(String sender, NBTTagCompound tag)
+    {
+        if (tag.hasKey(IMCOperations.CURSE_PROJECT_NAME) && tag.hasKey(IMCOperations.CURSE_FILENAME_PARSER))
+        {
+            String curseProjectName = tag.getString(IMCOperations.CURSE_PROJECT_NAME);
+            String latestFilename = WebHelper.getLatestFilenameFromCurse("http://minecraft.curseforge.com/mc-mods/" + curseProjectName + "/files/latest");
+            if (latestFilename != null)
+            {
+                String fileNameParser = tag.getString(IMCOperations.CURSE_FILENAME_PARSER);
+                int i = fileNameParser.indexOf('[');
+                int o = fileNameParser.indexOf(']');
+                if (i != -1 && o != -1)
+                {
+                    String version = latestFilename.replace(fileNameParser.substring(0, i), "").replace(fileNameParser.substring(o + 1, fileNameParser.length()), "");
+
+                    Update update = new Update(sender);
+
+                    update.newVersion = version;
+                    update.updateURL = "http://minecraft.curseforge.com/mc-mods/" + curseProjectName + "/files/latest";
+                    update.isDirectLink = true;
+                    update.newFileName = latestFilename;
+                    update.changeLog = "Update fetched from Curse, this might not work 100% correctly";
+
+                    if (tag.hasKey(IMCOperations.MOD_DISPLAY_NAME))
+                    {
+                        update.displayName = tag.getString(IMCOperations.MOD_DISPLAY_NAME);
+                    }
+                    else
+                    {
+                        update.displayName = ModHelper.getModContainer(sender).getName();
+                    }
+
+                    if (tag.hasKey(IMCOperations.OLD_VERSION))
+                    {
+                        update.oldVersion = tag.getString(IMCOperations.OLD_VERSION);
+                    }
+                    else
+                    {
+                        update.oldVersion = ModHelper.getModContainer(sender).getVersion();
+                    }
+
+                    UpdateHandler.addUpdate(update);
+                    return;
+                }
+            }
+        }
+        LogHandler.error(String.format("An error was encountered when fetching latest version from Curse for %s!", sender));
     }
 }
