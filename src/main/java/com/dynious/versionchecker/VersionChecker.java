@@ -4,7 +4,6 @@ import com.dynious.versionchecker.api.Update;
 import com.dynious.versionchecker.checker.UpdateChecker;
 import com.dynious.versionchecker.event.EventHandler;
 import com.dynious.versionchecker.handler.IMCHandler;
-import com.dynious.versionchecker.handler.LogHandler;
 import com.dynious.versionchecker.handler.RemoveHandler;
 import com.dynious.versionchecker.handler.UpdateHandler;
 import com.dynious.versionchecker.lib.Reference;
@@ -15,11 +14,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.MinecraftForge;
-
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
 public class VersionChecker

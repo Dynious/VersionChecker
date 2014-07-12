@@ -1,7 +1,7 @@
 package com.dynious.versionchecker.client.gui;
 
-import com.dynious.versionchecker.handler.DownloadThread;
 import com.dynious.versionchecker.api.Update;
+import com.dynious.versionchecker.handler.DownloadThread;
 import com.dynious.versionchecker.handler.IMCHandler;
 import com.dynious.versionchecker.helper.DesktopHelper;
 import com.dynious.versionchecker.helper.WebHelper;
@@ -11,7 +11,10 @@ import com.dynious.versionchecker.lib.Strings;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;

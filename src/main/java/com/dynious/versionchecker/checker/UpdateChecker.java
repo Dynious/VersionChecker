@@ -11,7 +11,6 @@ import com.google.gson.Gson;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.event.FMLInterModComms;
-import net.minecraft.nbt.NBTTagCompound;
 import org.apache.commons.io.IOUtils;
 
 import java.net.URL;

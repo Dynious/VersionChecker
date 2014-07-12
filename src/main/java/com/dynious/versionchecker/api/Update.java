@@ -1,7 +1,9 @@
 package com.dynious.versionchecker.api;
 
 import com.dynious.versionchecker.handler.LogHandler;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
 
 public class Update
 {
