@@ -1,6 +1,6 @@
 package com.dynious.versionchecker.helper;
 
-import com.dynious.versionchecker.lib.Reference;
+import org.lwjgl.Sys;
 
 import java.awt.*;
 import java.io.File;
@@ -12,18 +12,17 @@ public class DesktopHelper
 
     static
     {
-        File file = ModHelper.getModContainer(Reference.MOD_ID).getSource();
-        MOD_FOLDER = file.getParentFile();
+        MOD_FOLDER = new File("mods");
     }
     public static void openFolderInExplorer(File file)
     {
         try
         {
-            Desktop.getDesktop().open(file);
+            Desktop.getDesktop().browse(file.toURI());
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            Sys.openURL("file://" + file.getAbsolutePath());
         }
     }
 }
