@@ -113,7 +113,7 @@ public class GuiUpdateList extends GuiScroll
     public void overlayBackground()
     {
         this.client.renderEngine.bindTexture(Gui.optionsBackground);
-        GL11.glColor4f(0.3F, 0.3F, 0.3F, 1.0F);
+        GL11.glColor4f(0.25F, 0.25F, 0.25F, 1.0F);
         Gui.func_146110_a(left - 10, top - slotHeight, 0, 0, listWidth + 20, slotHeight, 32, 32);
         Gui.func_146110_a(left - 10, top + listHeight, 0, listHeight + slotHeight, listWidth + 20, slotHeight, 32, 32);
     }

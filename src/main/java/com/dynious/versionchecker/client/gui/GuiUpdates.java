@@ -59,7 +59,7 @@ public class GuiUpdates extends GuiScreen
 
         buttonList.add(buttonDownloaded = new GuiButtonDownloaded(4, width / 2 - 100 + listShift, height / 2 + 15));
 
-        updateList = new GuiUpdateList(this, 300, 180, 20, height - 40, width / 2 - 150 + listShift);
+        updateList = new GuiUpdateList(this, 300, height - 60, 20, height - 40, width / 2 - 150 + listShift);
         changeLogList = new GuiChangeLogList(this, 200, 75, height / 2 - 60, height / 2 + 15, width / 2 - 100 + listShift);
 
         if (openUpdate != null)

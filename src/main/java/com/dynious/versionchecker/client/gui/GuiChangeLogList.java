@@ -34,6 +34,7 @@ public class GuiChangeLogList extends GuiScroll
         String currentLine = "";
         for (String line : lines.split("\\n")) // Split string into lines
         {
+            line = "* " + line;
             for (String word : line.split("\\s+")) // Split each line into words by space
             {
                 if (this.parent.getFontRenderer().getStringWidth(currentLine + word) < MAX_LINE_LENGTH)
