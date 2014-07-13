@@ -21,6 +21,7 @@ public class GuiUpdateList extends GuiScroll
     {
         super(Minecraft.getMinecraft(), width, height, top, bottom, left, 35);
         this.parent = parent;
+        setPadding(4, 4);
     }
 
     @Override
@@ -52,13 +53,13 @@ public class GuiUpdateList extends GuiScroll
     }
 
     @Override
-    protected void drawSlot(int index, int var2, int var3, int var4, Tessellator tessellator)
+    protected void drawSlot(int slotIndex, int minX, int maxX, int minY, int maxY, Tessellator tesselator)
     {
-        Update update = UpdateHandler.getElement(index);
+        Update update = UpdateHandler.getElement(slotIndex);
         if (update != null)
         {
-            this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(update.displayName, listWidth - 10), this.left + 3, var3 + 2, 0xFFFFFF);
-            this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(update.oldVersion + " -> " + update.newVersion, listWidth - 10), this.left + 3, var3 + 12, 0xCCCCCC);
+            this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(update.displayName, listWidth - 10), minX + 5, minY + 4, 0xFFFFFF);
+            this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(update.oldVersion + " -> " + update.newVersion, listWidth - 10), minX + 5, minY + 15, 0xCCCCCC);
             String info;
 
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -66,13 +67,13 @@ public class GuiUpdateList extends GuiScroll
 
             if (DownloadThread.isUpdating(update))
             {
-                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 0, 0, 16, 16, 48, 32);
+                Gui.func_146110_a(maxX - 30, minY + 8, 0, 0, 16, 16, 48, 32);
 
                 info = StatCollector.translateToLocal(Strings.UPDATING);
             }
             else if (update.isDownloaded())
             {
-                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 16, 0, 16, 16, 48, 32);
+                Gui.func_146110_a(maxX - 30, minY + 8, 16, 0, 16, 16, 48, 32);
 
                 if (!update.MOD_ID.equalsIgnoreCase(Reference.MOD_ID))
                 {
@@ -85,19 +86,19 @@ public class GuiUpdateList extends GuiScroll
             }
             else if (update.isErrored())
             {
-                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 32, 0, 16, 16, 48, 32);
+                Gui.func_146110_a(maxX - 30, minY + 8, 32, 0, 16, 16, 48, 32);
 
                 info = StatCollector.translateToLocal(Strings.ERRORED);
             }
             else if (update.isDirectLink)
             {
-                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 16, 16, 16, 16, 48, 32);
+                Gui.func_146110_a(maxX - 30, minY + 8, 16, 16, 16, 16, 48, 32);
 
                 info = StatCollector.translateToLocal(Strings.DL_AVAILABLE);
             }
             else if (update.updateURL != null)
             {
-                Gui.func_146110_a(this.left + listWidth - 30, var3 + 8, 0, 16, 16, 16, 48, 32);
+                Gui.func_146110_a(maxX - 30, minY + 8, 0, 16, 16, 16, 48, 32);
 
                 info = StatCollector.translateToLocal(Strings.LINK_TO_DL);
             }
@@ -105,7 +106,7 @@ public class GuiUpdateList extends GuiScroll
             {
                 info = StatCollector.translateToLocal(Strings.CANNOT_UPDATE);
             }
-            this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(info, listWidth - 10), this.left + 3, var3 + 22, 0xCCCCCC);
+            this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(info, listWidth - 10), minX + 5, minY + 24, 0xCCCCCC);
         }
     }
 
