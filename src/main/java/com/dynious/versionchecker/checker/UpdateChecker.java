@@ -116,27 +116,27 @@ public class UpdateChecker implements Runnable
     {
         if (result == CheckState.UNINITIALIZED)
         {
-            return String.format("Version Checker Status for %s: UNINITIALIZED", version);
+            return String.format("Version Checker Status for %s: UNINITIALIZED", mod.getName());
         }
         else if (result == CheckState.CURRENT)
         {
-            return String.format("Version Checker Status for %s: CURRENT", version);
+            return String.format("Version Checker Status for %s: CURRENT", mod.getName());
         }
         else if (result == CheckState.OUTDATED && version != null)
         {
-            return String.format("Version Checker Status for %s: OUTDATED! Using %s, latest %s", version, mod.getVersion(), version.getModVersion());
+            return String.format("Version Checker Status for %s: OUTDATED! Using %s, latest %s", mod.getName(), mod.getVersion(), version.getModVersion());
         }
         else if (result == CheckState.ERROR)
         {
-            return String.format("Version Checker Status for %s: ERROR", version);
+            return String.format("Version Checker Status for %s: ERROR", mod.getName());
         }
         else if (result == CheckState.MC_VERSION_NOT_FOUND)
         {
-            return String.format("Version Checker Status for %s: MC VERSION NOT SUPPORTED", version);
+            return String.format("Version Checker Status for %s: MC VERSION NOT SUPPORTED", mod.getName());
         }
         else
         {
-            return String.format("Version Checker Status for %s: ERROR", version);
+            return String.format("Version Checker Status for %s: ERROR", mod.getName());
         }
     }
 
