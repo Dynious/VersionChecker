@@ -13,11 +13,14 @@ public class GuiChangeLogList extends GuiScroll
 {
     private GuiUpdates parent;
     private List<String> changeLogLines;
+    protected int emptyLineHeight = 4;
 
     public GuiChangeLogList(GuiUpdates parent, int width, int height, int top, int bottom, int left)
     {
-        super(Minecraft.getMinecraft(), width, height, top, bottom, left, 12);
+        super(Minecraft.getMinecraft(), width, height, top, bottom, left, parent.getFontRenderer().FONT_HEIGHT);
         this.parent = parent;
+        this.emptyLineHeight = (int) (parent.getFontRenderer().FONT_HEIGHT / 2f);
+        setPadding(1, 4);
     }
 
     @Override
@@ -31,46 +34,64 @@ public class GuiChangeLogList extends GuiScroll
         changeLogLines = new ArrayList<String>();
         final int MAX_LINE_LENGTH = listWidth - 10;
 
-        String currentLine = "";
         for (String line : lines.split("\\n")) // Split string into lines
         {
-            line = "* " + line;
-            for (String word : line.split("\\s+")) // Split each line into words by space
+            if (line.isEmpty())
+                changeLogLines.add(line);
+            else
             {
-                if (this.parent.getFontRenderer().getStringWidth(currentLine + word) < MAX_LINE_LENGTH)
+                String currentLine = "";
+
+                for (String word : line.split(" ")) // Split each line into words by space
                 {
-                    currentLine += word + " ";
-                }
-                else
-                {
-                    changeLogLines.add(currentLine);
-                    if (this.parent.getFontRenderer().getStringWidth(word) < MAX_LINE_LENGTH)
+                    if (this.parent.getFontRenderer().getStringWidth(currentLine + word) < MAX_LINE_LENGTH)
                     {
-                        currentLine = word + " ";
+                        currentLine += word + " ";
                     }
                     else
                     {
-                        while (this.parent.getFontRenderer().getStringWidth(word) >= MAX_LINE_LENGTH)
+                        if (this.parent.getFontRenderer().getStringWidth(word) < MAX_LINE_LENGTH)
                         {
-                            String cutWord = this.parent.getFontRenderer().trimStringToWidth(word, MAX_LINE_LENGTH);
-                            changeLogLines.add(cutWord);
-                            word = word.substring(cutWord.length());
+                            changeLogLines.add(currentLine);
+                            currentLine = word + " ";
                         }
+                        else
+                        {
+                            while (this.parent.getFontRenderer().getStringWidth(word) >= MAX_LINE_LENGTH)
+                            {
+                                String cutWord = this.parent.getFontRenderer().trimStringToWidth(word, MAX_LINE_LENGTH);
+                                changeLogLines.add(cutWord);
+                                word = word.substring(cutWord.length());
+                            }
 
-                        if (word.length() > 0) // If we still have left over characters in the word
-                            changeLogLines.add(word);
+                            currentLine = word + " ";
+                        }
                     }
                 }
+                if (!currentLine.isEmpty())
+                    changeLogLines.add(currentLine);
             }
-            changeLogLines.add(currentLine);
-            currentLine = "";
+            // add a gap between each line
+            changeLogLines.add("");
         }
+        // remove trailing gap
+        if (!changeLogLines.isEmpty() && changeLogLines.get(changeLogLines.size() - 1).isEmpty())
+            changeLogLines.remove(changeLogLines.size() - 1);
     }
 
     @Override
     protected int getSize()
     {
         return changeLogLines != null ? changeLogLines.size() : 0;
+    }
+
+    @Override
+    protected int getSlotHeight(int slotIndex)
+    {
+        if (slotIndex >= 0 && slotIndex < changeLogLines.size() && changeLogLines.get(slotIndex).isEmpty())
+            return emptyLineHeight;
+        else
+            return super.getSlotHeight(slotIndex);
     }
 
     @Override
@@ -91,11 +112,11 @@ public class GuiChangeLogList extends GuiScroll
     }
 
     @Override
-    protected void drawSlot(int index, int x, int y, int var4, Tessellator var5)
+    protected void drawSlot(int slotIndex, int minX, int maxX, int minY, int maxY, Tessellator tesselator)
     {
-        if (index < changeLogLines.size())
+        if (slotIndex < changeLogLines.size())
         {
-            this.parent.getFontRenderer().drawString(changeLogLines.get(index), this.left + 3, y + 2, 0xFFFFFF);
+            this.parent.getFontRenderer().drawString(changeLogLines.get(slotIndex), minX + 3, minY, 0xFFFFFF);
         }
     }
 
