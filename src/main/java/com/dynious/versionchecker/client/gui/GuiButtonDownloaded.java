@@ -23,16 +23,10 @@ public class GuiButtonDownloaded extends GuiButton
         super(id, x, y, 20, 20, "");
     }
 
-    public void enable(Update update)
+    public void setUpdate(Update update)
     {
-        this.visible = true;
+        this.visible = update != null && !update.isDirectLink;
         this.update = update;
-    }
-
-    public void disable()
-    {
-        this.visible = false;
-        this.update = null;
     }
 
     public void onButtonClicked()

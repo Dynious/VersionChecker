@@ -208,10 +208,7 @@ public class GuiUpdates extends GuiScreen
         closeButton.visible = true;
         changeLogList.disableInput = false;
         updateList.disableInput = true;
-        if (!update.isDirectLink)
-        {
-            buttonDownloaded.enable(update);
-        }
+        buttonDownloaded.setUpdate(update);
         Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0F));
         if (update.isDirectLink)
         {
@@ -236,7 +233,7 @@ public class GuiUpdates extends GuiScreen
         closeButton.visible = false;
         changeLogList.disableInput = true;
         updateList.disableInput = false;
-        buttonDownloaded.disable();
+        buttonDownloaded.setUpdate(null);
         changeLogList.setText("");
     }
 }
