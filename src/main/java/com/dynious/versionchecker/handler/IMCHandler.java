@@ -5,8 +5,10 @@ import com.dynious.versionchecker.checker.UpdateChecker;
 import com.dynious.versionchecker.helper.ModHelper;
 import com.dynious.versionchecker.helper.WebHelper;
 import com.dynious.versionchecker.lib.IMCOperations;
+import com.dynious.versionchecker.lib.Strings;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
@@ -143,7 +145,7 @@ public class IMCHandler
                     update.updateURL = "http://minecraft.curseforge.com/mc-mods/" + curseProjectName + "/files/latest";
                     update.isDirectLink = true;
                     update.newFileName = latestFilename;
-                    update.changeLog = "Update fetched from Curse, this might not work 100% correctly";
+                    update.changeLog = StatCollector.translateToLocal(Strings.CURSE_UPDATE);
 
                     if (tag.hasKey(IMCOperations.MOD_DISPLAY_NAME))
                     {

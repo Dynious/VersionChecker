@@ -18,4 +18,5 @@ public class Strings
     public static final String DL_MARKED_INFO = GUI_PREFIX + "DLMarkedInfo";
     public static final String UNABLE_TO_REMOVE_SELF = GUI_PREFIX + "unableToRemoveSelf";
     public static final String ERRORED = GUI_PREFIX + "errored";
+    public static final String CURSE_UPDATE = GUI_PREFIX + "curseUpdate";
 }

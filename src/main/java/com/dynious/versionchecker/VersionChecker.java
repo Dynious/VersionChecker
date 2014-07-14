@@ -13,6 +13,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
@@ -34,6 +35,14 @@ public class VersionChecker
         RemoveHandler.init();
 
         FMLInterModComms.sendRuntimeMessage(Reference.MOD_ID, "VersionChecker", "addVersionCheck", REMOTE_VERSION_URL);
+
+        /*
+        NBTTagCompound compound = new NBTTagCompound();
+        compound.setString("curseProjectName", "221140-version-checker");
+        compound.setString("curseFilenameParser", "VersionChecker-[].jar");
+
+        FMLInterModComms.sendRuntimeMessage(Reference.MOD_ID, "VersionChecker", "addCurseCheck", compound);
+        */
 
         //sendABunchOfDerpyMessages();
     }
