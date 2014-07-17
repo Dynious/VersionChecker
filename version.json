@@ -2,23 +2,29 @@
 	"versionList": [
 		{
 			"mcVersion":"Minecraft 1.7.10",
-			"modVersion":"1.1.3",
+			"modVersion":"1.1.4",
 			"changeLog": [
-				"Now shows error message and doesn't delete old file when an error has been encountered",
-				"Fixed small wording mistake"
+					"Added update check using CurseForge",
+					"Improved word wrapping, thanks Micky!",
+					"Improved scroll GUI, gaps should be less big,thanks Squeek!",
+					"Added wildcard MC version matcher to json file checking",
+					"Fixed some bugs and a crash"
 			],
-			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2207741/download",
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2208706/download",
 			"isDirectLink":"true",
 			"newFileName":""
 		},
 		{
 			"mcVersion":"Minecraft 1.7.2",
-			"modVersion":"1.1.3",
+			"modVersion":"1.1.4",
 			"changeLog": [
-				"Now shows error message and doesn't delete old file when an error has been encountered",
-				"Fixed small wording mistake"
+					"Added update check using CurseForge",
+					"Improved word wrapping, thanks Micky!",
+					"Improved scroll GUI, gaps should be less big,thanks Squeek!",
+					"Added wildcard MC version matcher to json file checking",
+					"Fixed some bugs and a crash"
 			],
-			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2207741/download",
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2208706/download",
 			"isDirectLink":"true",
 			"newFileName":""
 		}
