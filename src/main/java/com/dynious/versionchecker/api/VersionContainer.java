@@ -1,5 +1,7 @@
 package com.dynious.versionchecker.api;
 
+import com.dynious.versionchecker.helper.MatchHelper;
+
 import java.util.List;
 
 public class VersionContainer
@@ -15,7 +17,7 @@ public class VersionContainer
     {
         for (Version version : versionList)
         {
-            if (version.getMcVersion().equalsIgnoreCase(McVersion))
+            if (MatchHelper.doStringsMatch(McVersion, version.getMcVersion()))
             {
                 return version;
             }
