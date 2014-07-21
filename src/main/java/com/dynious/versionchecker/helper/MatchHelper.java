@@ -2,47 +2,31 @@ package com.dynious.versionchecker.helper;
 
 public class MatchHelper
 {
-
-    public static boolean doStringsMatch(String fullString, String stringToMatch)
+    public static boolean doStringsMatch(String first, String second)
     {
-        if (fullString.isEmpty())
+        if (first.equals(second))
+            return true;
+
+        String[] firstTokens = first.split("\\.");
+        String[] secondTokens = second.split("\\.");
+
+        String[] mostTokens = firstTokens.length > secondTokens.length ? firstTokens : secondTokens;
+        String[] leastTokens = mostTokens == firstTokens ? secondTokens : firstTokens;
+
+        if (firstTokens.length != secondTokens.length && !isVersionWildcardPattern(leastTokens[leastTokens.length - 1]))
+            return false;
+
+        for (int i = 0; i < leastTokens.length; i++)
         {
-            return stringToMatch.isEmpty() || stringToMatch.equals("*");
+            if (!leastTokens[i].equals(mostTokens[i]) && !(isVersionWildcardPattern(leastTokens[i]) || isVersionWildcardPattern(mostTokens[i])))
+                return false;
         }
 
-        int place = 0;
-        char[] fullStringArr = fullString.toCharArray();
-        char[] matchStringArr = stringToMatch.toCharArray();
-        for (int i = 0; i < matchStringArr.length; i++)
-        {
-            char c = matchStringArr[i];
-            if (c == '*')
-            {
-                if (i + 1 >= matchStringArr.length)
-                    return true;
+        return true;
+    }
 
-                char nextChar = matchStringArr[i + 1];
-                boolean found = false;
-                for (int j = place; j < fullStringArr.length; j++)
-                {
-                    if (fullStringArr[j] == nextChar)
-                    {
-                        place = j;
-                        i++;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found)
-                    return false;
-            }
-            else
-            {
-                if (c != fullStringArr[place])
-                    return false;
-            }
-            place++;
-        }
-        return place == (fullStringArr.length - 1);
+    public static boolean isVersionWildcardPattern(String str)
+    {
+        return str.equals("*") || str.equals("x");
     }
 }
