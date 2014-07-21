@@ -26,6 +26,7 @@ public class GuiButtonDownloaded extends GuiButton
     public void setUpdate(Update update)
     {
         this.visible = update != null && !update.isDirectLink;
+        ticked = update != null && RemoveHandler.filesToDelete.contains( ModHelper.getModContainer(update.MOD_ID).getSource());
         this.update = update;
     }
 
