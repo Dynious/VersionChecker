@@ -1,5 +1,6 @@
 package com.dynious.versionchecker.handler;
 
+import com.dynious.versionchecker.helper.DesktopHelper;
 import com.dynious.versionchecker.helper.ModHelper;
 import com.dynious.versionchecker.lib.Reference;
 import sun.misc.URLClassPath;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 public class RemoveHandler
 {
+    public static final File DELETE_FILE = new File(DesktopHelper.MOD_FOLDER, "filesToDelete.txt");
     public static List<File> filesToDelete = new ArrayList<File>();
 
     public static void init()
@@ -78,11 +80,7 @@ public class RemoveHandler
             {
                 try
                 {
-                    String path = filesToDelete.get(0).getAbsolutePath();
-                    path = path.substring(0, path.lastIndexOf(File.separator) + 1);
-                    path = path + "filesToDelete.txt";
-
-                    FileWriter writer = new FileWriter(new File(path), false);
+                    FileWriter writer = new FileWriter(DELETE_FILE, false);
                     for (File file : RemoveHandler.filesToDelete)
                     {
                         writer.write(file.getAbsolutePath() + System.getProperty("line.separator"));
@@ -90,7 +88,7 @@ public class RemoveHandler
                     writer.close();
 
                     String jvm = new File(new File(System.getProperty("java.home"), "bin"), "java").getAbsolutePath();
-                    String s = "\"" + jvm + "\"" + " -jar " + "\"" + ModHelper.getModContainer(Reference.MOD_ID).getSource().getAbsolutePath() + "\"" + " " + "\"" + path + "\"";
+                    String s = "\"" + jvm + "\"" + " -jar " + "\"" + ModHelper.getModContainer(Reference.MOD_ID).getSource().getAbsolutePath() + "\"" + " " + "\"" + DELETE_FILE.getAbsolutePath() + "\"";
                     Runtime.getRuntime().exec(s);
                 }
                 catch (Exception e)

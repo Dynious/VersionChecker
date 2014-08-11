@@ -18,35 +18,40 @@ public class Deleter
             }
 
             String path = args[0];
-            try
-            {
-                File deleteFile = new File(path);
-                BufferedReader reader = new BufferedReader(new FileReader(deleteFile));
-
-                String line;
-                while((line = reader.readLine()) != null)
-                {
-                    File file = new File(line);
-                    if (!file.delete())
-                    {
-                        file.deleteOnExit();
-                    }
-                }
-                reader.close();
-                if (!deleteFile.delete())
-                {
-                    deleteFile.deleteOnExit();
-                }
-            }
-            catch (FileNotFoundException e)
-            {
-                e.printStackTrace();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+            deleteModsFromFile(path);
         }
         System.exit(0);
+    }
+
+    public static void deleteModsFromFile(String path)
+    {
+        try
+        {
+            File deleteFile = new File(path);
+            BufferedReader reader = new BufferedReader(new FileReader(deleteFile));
+
+            String line;
+            while((line = reader.readLine()) != null)
+            {
+                File file = new File(line);
+                if (!file.delete())
+                {
+                    file.deleteOnExit();
+                }
+            }
+            reader.close();
+            if (!deleteFile.delete())
+            {
+                deleteFile.deleteOnExit();
+            }
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
