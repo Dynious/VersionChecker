@@ -123,7 +123,7 @@ public class GuiUpdates extends GuiScreen
         {
             List<String> list = new ArrayList<String>();
             String left = openUpdate.updateURL;
-            while(true)
+            while(left != null)
             {
                 String s = fontRendererObj.trimStringToWidth(left, 200);
                 list.add(s);
@@ -213,7 +213,7 @@ public class GuiUpdates extends GuiScreen
         if (update.isDirectLink)
         {
             updateButton.displayString = StatCollector.translateToLocal(Strings.UPDATE);
-            updateButton.enabled = !update.isDownloaded();
+            updateButton.enabled = update.updateURL != null && !update.isDownloaded();
         }
         else
         {
