@@ -1,0 +1,16 @@
+# GUI localizations
+gui.versionchecker.update=Mettre à jour
+gui.versionchecker.openWebpage=Ouvrir la page Web
+gui.versionchecker.updating=Mise à jour...
+gui.versionchecker.isDownloaded=La mise à jour a été téléchargée, redémarrage nécessaire
+gui.versionchecker.dlAvailable=Mise à jour disponible au téléchargement
+gui.versionchecker.linkToDL=Lien pour le téléchargement disponible
+gui.versionchecker.cannotUpdate=Ne peut pas mettre à jour ce mod automatique
+gui.versionchecker.noChangeLog=Pas de liste de changements disponible
+gui.versionchecker.info=Ceci est une liste de tous les mods obselètes connus par Version Checker.;;Vous pouvez jeter une coup d'œil à la liste des changements d'un mod (si disponible) et aisément mettre à jour le mod en le double-cliquant..
+gui.versionchecker.modsFolder=Ouvrir le dossier des mods
+gui.versionchecker.markDL=Marquer comme téléchargé
+gui.versionchecker.DLMarkedInfo=Ceci marquera le mod comme téléchargé, et supprimera le fichier orginal du mod une fois le jeu quitté
+gui.versionchecker.unableToRemoveSelf=Probablement incapable de supprimer, veuillez supprimer manuellement
+gui.versionchecker.errored=Il y a eu une erreur durant la mise à jour du mod
+gui.versionchecker.curseUpdate=Mise à jour récupérée depuis Curse, peut ne pas marcher correctement à 100%
