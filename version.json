@@ -1,13 +1,13 @@
 {
 	"versionList": [
 		{
-			"mcVersion":"*",
-			"modVersion":"1.1.5",
+			"mcVersion":"1.7.*",
+			"modVersion":"1.1.6",
 			"changeLog": [
-                "Fixed Minecraft version not matching properly",
-                "Fixed mark as downloaded not setting when opening update window"
+                "Added checking the Not Enough Mods database for updates of the installed mods",
+                "Fixed a crash when update url is null (thank squeek!)"
 			],
-			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2209140/download",
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2214206/download",
 			"isDirectLink":"true",
 			"newFileName":""
 		}
