@@ -3,6 +3,7 @@ package com.dynious.versionchecker.handler;
 import com.dynious.versionchecker.api.Update;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class UpdateHandler
@@ -11,7 +12,7 @@ public class UpdateHandler
 
     public static void addUpdate(Update update)
     {
-        if (!hasMessageFrom(update.MOD_ID))
+        if (isUpdateBetter(update))
             updateList.add(update);
     }
 
@@ -29,13 +30,31 @@ public class UpdateHandler
         return null;
     }
 
-    public static boolean hasMessageFrom(String modid)
+    public static boolean isUpdateBetter(Update update)
     {
-        for (Update update1 : updateList)
+        for (Iterator<Update> iterator = updateList.iterator(); iterator.hasNext(); )
         {
-            if (update1.MOD_ID.equalsIgnoreCase(modid))
-                return true;
+            Update update1 = iterator.next();
+            if (update1.MOD_ID.equalsIgnoreCase(update.MOD_ID))
+            {
+                if (update.updateURL != null && !update.updateURL.isEmpty())
+                {
+                    if (update1.updateURL == null || !update1.updateURL.isEmpty())
+                    {
+                        iterator.remove();
+                        return true;
+                    }
+                    if (!update1.isDirectLink && update.isDirectLink)
+                    {
+                        iterator.remove();
+                        return true;
+                    }
+                    if ((update1.changeLog == null || update1.changeLog.isEmpty()) && (update.changeLog != null && !update.changeLog.isEmpty()) && update.newVersion.equalsIgnoreCase(update1.newVersion))
+                        update1.changeLog = update.changeLog;
+                }
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 }

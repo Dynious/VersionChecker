@@ -14,3 +14,4 @@ gui.versionchecker.DLMarkedInfo=This will mark this mod as downloaded;and delete
 gui.versionchecker.unableToRemoveSelf=Probably unable to remove, please remove manually!
 gui.versionchecker.errored=There was an error updating this mod
 gui.versionchecker.curseUpdate=Update fetched from Curse, this might not work 100% correctly
+gui.versionchecker.NEMUpdate=Update fetched from Not Enough Mods, this might not work 100% correctly

@@ -19,4 +19,5 @@ public class Strings
     public static final String UNABLE_TO_REMOVE_SELF = GUI_PREFIX + "unableToRemoveSelf";
     public static final String ERRORED = GUI_PREFIX + "errored";
     public static final String CURSE_UPDATE = GUI_PREFIX + "curseUpdate";
+    public static final String NEM_UPDATE = GUI_PREFIX + "NEMUpdate";
 }

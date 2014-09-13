@@ -20,17 +20,14 @@ public class IMCHandler
         {
             if (message.key.equalsIgnoreCase(IMCOperations.ADD_UPDATE))
             {
-                if (!UpdateHandler.hasMessageFrom(message.getSender()))
+                LogHandler.info("Received update from mod " + message.getSender());
+                if (message.isNBTMessage())
                 {
-                    LogHandler.info("Received update from mod " + message.getSender());
-                    if (message.isNBTMessage())
-                    {
-                        processAddUpdateMessage(message.getNBTValue(), message.getSender());
-                    }
-                    else if (message.isStringMessage())
-                    {
-                        processAddUpdateMessage(message.getStringValue(), message.getSender());
-                    }
+                    processAddUpdateMessage(message.getNBTValue(), message.getSender());
+                }
+                else if (message.isStringMessage())
+                {
+                    processAddUpdateMessage(message.getStringValue(), message.getSender());
                 }
             }
             else if (message.key.equalsIgnoreCase(IMCOperations.ADD_VERSION_CHECK))

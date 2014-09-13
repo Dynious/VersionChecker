@@ -1,6 +1,7 @@
 package com.dynious.versionchecker;
 
 import com.dynious.versionchecker.api.Update;
+import com.dynious.versionchecker.checker.NEMChecker;
 import com.dynious.versionchecker.checker.UpdateChecker;
 import com.dynious.versionchecker.event.EventHandler;
 import com.dynious.versionchecker.handler.IMCHandler;
@@ -34,6 +35,8 @@ public class VersionChecker
         RemoveHandler.init();
 
         FMLInterModComms.sendRuntimeMessage(Reference.MOD_ID, "VersionChecker", "addVersionCheck", REMOTE_VERSION_URL);
+
+        NEMChecker.execute();
 
         /*
         NBTTagCompound compound = new NBTTagCompound();
