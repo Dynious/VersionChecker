@@ -2,12 +2,12 @@
 	"versionList": [
 		{
 			"mcVersion":"1.7.*",
-			"modVersion":"1.1.6",
+			"modVersion":"1.1.6a",
 			"changeLog": [
-                "Added checking the Not Enough Mods database for updates of the installed mods",
-                "Fixed a crash when update url is null (thank squeek!)"
+                "Fixed a lot of false-positives with NEM database checking",
+                "Added config option to disable NEM database checking"
 			],
-			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2214206/download",
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2214320/download",
 			"isDirectLink":"true",
 			"newFileName":""
 		}
