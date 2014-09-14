@@ -1,5 +1,7 @@
 package com.dynious.versionchecker.checker;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -72,8 +74,23 @@ public class NEMUtils
         modVersion = modVersion.replaceAll("[\\)\\]]", "").replaceAll("[\\(\\[]", ".");
         modVersion = modVersion.replaceAll(Pattern.quote("_" + NEMChecker.getNemMcVersion()), "");
         modVersion = modVersion.replaceAll(Pattern.quote(NEMChecker.getNemMcVersion() + "_"), "");
+        modVersion = modVersion.replaceAll(Pattern.quote(NEMChecker.getNemMcVersion() + "-"), "");
         modVersion = modVersion.replaceAll("^v", "").replaceAll("^V", "");
         modVersion = modVersion.replaceAll(" build ", ".").replaceAll("\\s","");
+
+        int index = modVersion.lastIndexOf('-');
+        if (index != -1)
+        {
+            String lastPart = modVersion.substring(index + 1);
+            if (StringUtils.isAlpha(lastPart))
+                modVersion = modVersion.substring(0, index);
+        }
+
         return modVersion;
+    }
+
+    public static boolean isDevVersion(String version)
+    {
+        return version.equals("dev-only") || version.equals("alpha-only") || version.equals("beta-only");
     }
 }

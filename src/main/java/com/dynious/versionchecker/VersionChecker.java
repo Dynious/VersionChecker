@@ -3,12 +3,14 @@ package com.dynious.versionchecker;
 import com.dynious.versionchecker.api.Update;
 import com.dynious.versionchecker.checker.NEMChecker;
 import com.dynious.versionchecker.checker.UpdateChecker;
+import com.dynious.versionchecker.config.ConfigHandler;
 import com.dynious.versionchecker.event.EventHandler;
 import com.dynious.versionchecker.handler.IMCHandler;
 import com.dynious.versionchecker.handler.RemoveHandler;
 import com.dynious.versionchecker.handler.UpdateHandler;
 import com.dynious.versionchecker.lib.Reference;
 import com.dynious.versionchecker.proxy.CommonProxy;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -16,7 +18,7 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.CONFIG_GUI_FACTORY)
 public class VersionChecker
 {
     @Mod.Instance(Reference.MOD_ID)
@@ -26,17 +28,24 @@ public class VersionChecker
     public static CommonProxy proxy;
 
     public static final String REMOTE_VERSION_URL = "https://raw.github.com/Dynious/VersionChecker/master/version.json";
+    public static final boolean DISABLE_NEM_CHECK_DEFAULT = false;
+    public static boolean disableNEMCheck;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         MinecraftForge.EVENT_BUS.register(new EventHandler());
 
+        FMLCommonHandler.instance().bus().register(new ConfigHandler());
+
+        ConfigHandler.init(event);
+
         RemoveHandler.init();
 
         FMLInterModComms.sendRuntimeMessage(Reference.MOD_ID, "VersionChecker", "addVersionCheck", REMOTE_VERSION_URL);
 
-        NEMChecker.execute();
+        if (!disableNEMCheck)
+            NEMChecker.execute();
 
         /*
         NBTTagCompound compound = new NBTTagCompound();

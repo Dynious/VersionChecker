@@ -7,4 +7,5 @@ public class Reference
     public static final String VERSION = "@VERSION@";
     public static final String COMMON_PROXY = "com.dynious.versionchecker.proxy.CommonProxy";
     public static final String CLIENT_PROXY = "com.dynious.versionchecker.proxy.ClientProxy";
+    public static final String CONFIG_GUI_FACTORY = "com.dynious.versionchecker.config.GuiFactory";
 }

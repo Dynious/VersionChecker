@@ -50,7 +50,7 @@ public class NEMChecker implements Runnable
                     {
                         Update update = new Update(container.getModId());
                         update.displayName = container.getName();
-                        update.oldVersion = container.getVersion();
+                        update.oldVersion = mod.getActualModVersion() != null ? mod.getActualModVersion() : NEMUtils.patchVersion(mod.getVersion());
                         update.newVersion = mod.getVersion();
                         update.changeLog = StatCollector.translateToLocal(Strings.NEM_UPDATE);
 

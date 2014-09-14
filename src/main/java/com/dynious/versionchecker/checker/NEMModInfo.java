@@ -5,7 +5,6 @@ import java.util.regex.Pattern;
 
 public class NEMModInfo
 {
-
     private String name;
     private String version;
     private String longurl;
@@ -13,16 +12,22 @@ public class NEMModInfo
     private String[] aliases;
     private String comment;
     private String modid;
-
-    private Boolean upToDate = null;
+    private String dev;
+    private String actualModVersion;
 
     public boolean isUpToDate(String modVersion, String displayVersion)
     {
-        if (getUpToDate() != null) return getUpToDate();
         if (modVersion.equals("%VERSION%") || displayVersion.equals("%VERSION%"))
         {
-            setUpToDate(false);
             return false;
+        }
+
+        if (NEMUtils.isDevVersion(version))
+        {
+            if (dev == null || dev.isEmpty())
+                return true;
+
+            version = dev;
         }
 
         modVersion = NEMUtils.patchVersion(modVersion);
@@ -30,7 +35,6 @@ public class NEMModInfo
 
         Pattern versionPattern = Pattern.compile(NEMUtils.allVersionRegex);
         Matcher matcher;
-        String actualModVersion;
         boolean modVersionValid;
         if (modVersion.equals(displayVersion))
         {
@@ -64,14 +68,7 @@ public class NEMModInfo
             }
         }
 
-        if (modVersionValid)
-        {
-            boolean result = isUpToDate(actualModVersion);
-            setUpToDate(result);
-            return result;
-        }
-        setUpToDate(false);
-        return false;
+        return modVersionValid && isUpToDate(actualModVersion);
     }
 
     private boolean isUpToDate(String modVersion)
@@ -80,21 +77,8 @@ public class NEMModInfo
         Matcher matcher;
         matcher = versionPattern.matcher(modVersion);
         boolean modVersionValid = matcher.matches();
-        if (modVersionValid)
-        {
-            return !NEMUtils.isNewer(version, modVersion);
-        }
-        return false;
-    }
 
-    private void setUpToDate(Boolean utd)
-    {
-        this.upToDate = utd;
-    }
-
-    private Boolean getUpToDate()
-    {
-        return upToDate;
+        return modVersionValid && !NEMUtils.isNewer(version, modVersion);
     }
 
     public String getName()
@@ -130,5 +114,10 @@ public class NEMModInfo
     public String getModid()
     {
         return modid;
+    }
+
+    public String getActualModVersion()
+    {
+        return actualModVersion;
     }
 }
