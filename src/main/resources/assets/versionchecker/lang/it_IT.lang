@@ -12,6 +12,6 @@ gui.versionchecker.modsFolder=Apri cartella con le mod
 gui.versionchecker.markDL=Segna come scaricata
 gui.versionchecker.DLMarkedInfo=Questo segnerà questa mod come scaricata; ed eliminerà il file originale della mod quando uscirai
 gui.versionchecker.unableToRemoveSelf=É probabilmente impossibile rimuoverlo, prova a rimuoverlo manualmente!
-gui.versionchecker.errored=C'è stato un errore aggiornando questa mod
-gui.versionchecker.curseUpdate=Aggiornamento preso da Curse, questo potrebbe non funzionare correttamente
+gui.versionchecker.errored=C'è stato un errore duranre l'aggiornamento di questa mod
+gui.versionchecker.curseUpdate=Aggiornamento preso da Curse, questo potrebbe non funzionare al 100%
 gui.versionchecker.NEMUpdate==Aggiornamento preso da Not Enough Mods, questo potrebbe non funzionare correttamente
