@@ -24,10 +24,18 @@ public class NEMUtils
     }
 
     public static boolean isNewer(String version, String compareVersion) {
+        if (version.equals(compareVersion))
+            return false;
+
         boolean numericalCompare = isNumericalVersion(version) && isNumericalVersion(compareVersion);
 
         String[] versionParts = versionSplitting(version, versionDelimiters);
         String[] compareVersionParts = versionSplitting(compareVersion, versionDelimiters);
+
+        // ignore versions with different numbers of tokens
+        // because they are false positives more often than not
+        if (versionParts.length != compareVersionParts.length)
+            return false;
 
         if(numericalCompare) {
             for(int i = 0; i < Math.min(versionParts.length, compareVersionParts.length); i++) {
