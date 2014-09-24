@@ -4,6 +4,12 @@ public class MatchHelper
 {
     public static boolean doStringsMatch(String first, String second)
     {
+        if (first.startsWith("Minecraft "))
+            first = first.substring("Minecraft ".length());
+
+        if (second.startsWith("Minecraft "))
+            second = second.substring("Minecraft ".length());
+
         if (first.equals(second))
             return true;
 
