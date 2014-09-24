@@ -55,7 +55,7 @@ public class WebHelper
     public static boolean downloadUpdate(Update update)
     {
         ModContainer mod = ModHelper.getModContainer(update.MOD_ID);
-        if (mod != null)
+        if (mod != null && mod.getSource() != null && mod.getSource().isFile())
         {
             String fileName = "";
             if (update.newFileName != null && !update.newFileName.isEmpty())
@@ -65,7 +65,7 @@ public class WebHelper
             else
             {
                 fileName = mod.getSource().getAbsolutePath();
-                String newFileName = fileName.replaceAll(update.oldVersion, update.newVersion);
+                String newFileName = fileName.replace(update.oldVersion, update.newVersion);
                 if (fileName.equalsIgnoreCase(newFileName))
                 {
                     int i = newFileName.lastIndexOf(".");
