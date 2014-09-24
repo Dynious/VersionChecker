@@ -1,7 +1,7 @@
 {
 	"versionList": [
 		{
-			"mcVersion":"1.7.*",
+			"mcVersion":"Minecraft 1.7.*",
 			"modVersion":"1.1.6a",
 			"changeLog": [
                 "Fixed a lot of false-positives with NEM database checking",
