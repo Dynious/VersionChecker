@@ -17,6 +17,7 @@ public class Update
     public boolean isDirectLink = true;
     public String newFileName;
     public String changeLog;
+    public UpdateType updateType = UpdateType.NORMAL;
 
     private boolean isDownloaded;
     private boolean isErrored;
@@ -67,5 +68,12 @@ public class Update
     public String toJson()
     {
         return gsonSerializer.toJson(this);
+    }
+
+    public static enum UpdateType
+    {
+        NORMAL,
+        CURSE,
+        NOT_ENOUGH_MODS
     }
 }

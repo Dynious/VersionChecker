@@ -48,9 +48,6 @@ public class NEMUtils
                     return false;
                 }
             }
-            if(versionParts.length > compareVersionParts.length) {
-                return true;
-            }
             return false;
         } else {
             for(int i = 0; i < Math.min(versionParts.length, compareVersionParts.length); i++) {
@@ -68,9 +65,6 @@ public class NEMUtils
                 } else if(currentVersionPart.length() < currentComparePart.length()) {
                     return false;
                 }
-            }
-            if(versionParts.length > compareVersionParts.length) {
-                return true;
             }
             return false;
         }

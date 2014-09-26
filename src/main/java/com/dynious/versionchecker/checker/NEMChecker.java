@@ -59,6 +59,7 @@ public class NEMChecker implements Runnable
                         {
                             update.updateURL = mod.getLongurl();
                         }
+                        update.updateType = Update.UpdateType.NOT_ENOUGH_MODS;
                         UpdateHandler.addUpdate(update);
                     }
                 }

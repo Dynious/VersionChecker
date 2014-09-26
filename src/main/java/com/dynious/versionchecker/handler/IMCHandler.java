@@ -162,6 +162,8 @@ public class IMCHandler
                         update.oldVersion = ModHelper.getModContainer(sender).getVersion();
                     }
 
+                    update.updateType = Update.UpdateType.CURSE;
+
                     UpdateHandler.addUpdate(update);
                     return;
                 }
