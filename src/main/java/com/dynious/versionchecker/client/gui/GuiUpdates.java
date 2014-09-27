@@ -26,9 +26,12 @@ import java.util.List;
 public class GuiUpdates extends GuiScreen
 {
     private GuiUpdateList updateList;
+    private UpdateListProperties updateListProperties = new UpdateListProperties(this);
     private GuiButton updateButton;
     private GuiButton closeButton;
     private GuiButtonDownloaded buttonDownloaded;
+    private GuiButtonNEM NEMButton;
+    private GuiButtonCurse curseButton;
 
     private Update openUpdate = null;
     private GuiChangeLogList changeLogList;
@@ -58,6 +61,9 @@ public class GuiUpdates extends GuiScreen
         buttonList.add(new GuiButton(3, 10, height - 30, 150, 20, StatCollector.translateToLocal(Strings.MOD_FOLDER)));
 
         buttonList.add(buttonDownloaded = new GuiButtonDownloaded(4, width / 2 - 100 + listShift, height / 2 + 15));
+
+        buttonList.add(NEMButton = new GuiButtonNEM(getUpdateListProperties(), 5, width / 2 + 90 + listShift, height - 30));
+        buttonList.add(curseButton = new GuiButtonCurse(getUpdateListProperties(), 6, width / 2 + 125 + listShift, height - 30));
 
         updateList = new GuiUpdateList(this, 300, height - 60, 20, height - 40, width / 2 - 150 + listShift);
         changeLogList = new GuiChangeLogList(this, 200, 75, height / 2 - 60, height / 2 + 15, width / 2 - 100 + listShift);
@@ -110,6 +116,12 @@ public class GuiUpdates extends GuiScreen
         drawToolTip(mouseX, mouseY);
     }
 
+    public void updateList()
+    {
+        if (updateList != null)
+            updateList.makeList();
+    }
+
     public void drawWindow()
     {
         GL11.glColor4f(0.6F, 0.6F, 0.6F, 1.0F);
@@ -142,6 +154,14 @@ public class GuiUpdates extends GuiScreen
         {
             this.drawHoveringText(Arrays.asList(StatCollector.translateToLocal(Strings.DL_MARKED_INFO).split(";")), mouseX, mouseY, fontRendererObj);
         }
+        else if (NEMButton.mousePressed(mc, mouseX, mouseY))
+        {
+            this.drawHoveringText(Arrays.asList(StatCollector.translateToLocal(Strings.TOGGLE_NEM_UPDATE).split(";")), mouseX, mouseY, fontRendererObj);
+        }
+        else if (curseButton.mousePressed(mc, mouseX, mouseY))
+        {
+            this.drawHoveringText(Arrays.asList(StatCollector.translateToLocal(Strings.TOGGLE_CURSE_UPDATE).split(";")), mouseX, mouseY, fontRendererObj);
+        }
     }
 
     @Override
@@ -172,6 +192,12 @@ public class GuiUpdates extends GuiScreen
                 break;
             case 4:
                 buttonDownloaded.onButtonClicked();
+                break;
+            case 5:
+                NEMButton.onButtonClicked();
+                break;
+            case 6:
+                curseButton.onButtonClicked();
                 break;
         }
     }
@@ -235,5 +261,10 @@ public class GuiUpdates extends GuiScreen
         updateList.disableInput = false;
         buttonDownloaded.setUpdate(null);
         changeLogList.setText("");
+    }
+
+    public UpdateListProperties getUpdateListProperties()
+    {
+        return updateListProperties;
     }
 }

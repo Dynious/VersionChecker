@@ -12,9 +12,13 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GuiUpdateList extends GuiScroll
 {
     private GuiUpdates parent;
+    private List<Update> updateList = new ArrayList<Update>();
     private int selectedIndex = -1;
 
     public GuiUpdateList(GuiUpdates parent, int width, int height, int top, int bottom, int left)
@@ -22,21 +26,36 @@ public class GuiUpdateList extends GuiScroll
         super(Minecraft.getMinecraft(), width, height, top, bottom, left, 35);
         this.parent = parent;
         setPadding(4, 4);
+        makeList();
+    }
+
+    public void makeList()
+    {
+        updateList.clear();
+
+        for (int index = 0; index < UpdateHandler.getListSize(); index++)
+        {
+            Update update = UpdateHandler.getElement(index);
+            if (update != null && parent.getUpdateListProperties().shouldBeInList(update))
+            {
+                updateList.add(update);
+            }
+        }
     }
 
     @Override
     protected int getSize()
     {
-        return UpdateHandler.getListSize();
+        return updateList.size();
     }
 
     @Override
     protected void elementClicked(int index, boolean doubleClick)
     {
         selectedIndex = index;
-        if (doubleClick && UpdateHandler.getElement(index) != null)
+        if (doubleClick && updateList.get(index) != null)
         {
-            parent.openInfoScreen(UpdateHandler.getElement(index));
+            parent.openInfoScreen(updateList.get(index));
         }
     }
 
@@ -55,7 +74,7 @@ public class GuiUpdateList extends GuiScroll
     @Override
     protected void drawSlot(int slotIndex, int minX, int maxX, int minY, int maxY, Tessellator tesselator)
     {
-        Update update = UpdateHandler.getElement(slotIndex);
+        Update update = updateList.get(slotIndex);
         if (update != null)
         {
             this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(update.displayName, listWidth - 10), minX + 5, minY + 4, 0xFFFFFF);
