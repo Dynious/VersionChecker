@@ -15,5 +15,5 @@ gui.versionchecker.unableToRemoveSelf=Probably unable to remove, please remove m
 gui.versionchecker.errored=There was an error updating this mod
 gui.versionchecker.curseUpdate=Update fetched from Curse, this might not work 100% correctly
 gui.versionchecker.NEMUpdate=Update fetched from Not Enough Mods, this might not work 100% correctly
-gui.versionchecker.toggleCurseUpdate=Toggle showing updates fetched from Curse
-gui.versionchecker.toggleNEMUpdate=Toggle showing updates fetched from Not Enough Mods
+gui.versionchecker.toggleCurseUpdate=Show/Hide updates fetched from Curse
+gui.versionchecker.toggleNEMUpdate=Show/Hide updates fetched from Not Enough Mods

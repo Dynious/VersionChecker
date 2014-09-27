@@ -2,12 +2,14 @@
 	"versionList": [
 		{
 			"mcVersion":"Minecraft 1.7.*",
-			"modVersion":"1.1.6a",
+			"modVersion":"1.1.7",
 			"changeLog": [
-                "Fixed a lot of false-positives with NEM database checking",
-                "Added config option to disable NEM database checking"
+                "Reduced the amount of false-positives (thanks squeek502!)",
+                "Fixed a few small bugs",
+                "Made NEM & Curse updates more easy to distinguish",
+                "Show/Hide NEM & Curse updates in update list"
 			],
-			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2214320/download",
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2215308/download",
 			"isDirectLink":"true",
 			"newFileName":""
 		}
