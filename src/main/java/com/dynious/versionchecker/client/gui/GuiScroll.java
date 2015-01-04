@@ -6,6 +6,7 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
@@ -240,7 +241,8 @@ public abstract class GuiScroll
         }
 
         this.applyScrollLimits();
-        Tessellator tesselator = Tessellator.instance;
+        Tessellator tess = Tessellator.getInstance();
+        WorldRenderer worldr = tess.getWorldRenderer();
         if (this.client.theWorld != null)
         {
             this.drawGradientRect(this.left, this.top, this.right, this.bottom, -1072689136, -804253680);
@@ -252,20 +254,20 @@ public abstract class GuiScroll
             this.client.renderEngine.bindTexture(Gui.optionsBackground);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             float var17 = 32.0F;
-            tesselator.startDrawingQuads();
-            tesselator.setColorOpaque_I(2105376);
-            tesselator.addVertexWithUV((double) this.left, (double) this.bottom, 0.0D, (double) ((float) this.left / var17), (double) ((float) (this.bottom + (int) this.scrollDistance) / var17));
-            tesselator.addVertexWithUV((double) this.right, (double) this.bottom, 0.0D, (double) ((float) this.right / var17), (double) ((float) (this.bottom + (int) this.scrollDistance) / var17));
-            tesselator.addVertexWithUV((double) this.right, (double) this.top, 0.0D, (double) ((float) this.right / var17), (double) ((float) (this.top + (int) this.scrollDistance) / var17));
-            tesselator.addVertexWithUV((double) this.left, (double) this.top, 0.0D, (double) ((float) this.left / var17), (double) ((float) (this.top + (int) this.scrollDistance) / var17));
-            tesselator.draw();
+            worldr.startDrawingQuads();
+            worldr.setColorOpaque_I(2105376);
+            worldr.addVertexWithUV((double) this.left, (double) this.bottom, 0.0D, (double) ((float) this.left / var17), (double) ((float) (this.bottom + (int) this.scrollDistance) / var17));
+            worldr.addVertexWithUV((double) this.right, (double) this.bottom, 0.0D, (double) ((float) this.right / var17), (double) ((float) (this.bottom + (int) this.scrollDistance) / var17));
+            worldr.addVertexWithUV((double) this.right, (double) this.top, 0.0D, (double) ((float) this.right / var17), (double) ((float) (this.top + (int) this.scrollDistance) / var17));
+            worldr.addVertexWithUV((double) this.left, (double) this.top, 0.0D, (double) ((float) this.left / var17), (double) ((float) (this.top + (int) this.scrollDistance) / var17));
+            tess.draw();
         }
         //        boxRight = this.listWidth / 2 - 92 - 16;
         int topOffsetByScrollDistance = this.top - (int) this.scrollDistance;
 
         if (this.hasCustomHeader)
         {
-            this.drawCustomHeader(boxRight, topOffsetByScrollDistance, tesselator);
+            this.drawCustomHeader(boxRight, topOffsetByScrollDistance, tess);
         }
 
         int drawY = topOffsetByScrollDistance + customHeaderHeight + verticalPadding;
@@ -279,22 +281,22 @@ public abstract class GuiScroll
                 {
                     GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
                     GL11.glDisable(GL11.GL_TEXTURE_2D);
-                    tesselator.startDrawingQuads();
-                    tesselator.setColorOpaque_I(8421504);
-                    tesselator.addVertexWithUV((double) boxLeft, (double) (drawY + curSlotHeight + 2), 0.0D, 0.0D, 1.0D);
-                    tesselator.addVertexWithUV((double) boxRight, (double) (drawY + curSlotHeight + 2), 0.0D, 1.0D, 1.0D);
-                    tesselator.addVertexWithUV((double) boxRight, (double) (drawY - 2), 0.0D, 1.0D, 0.0D);
-                    tesselator.addVertexWithUV((double) boxLeft, (double) (drawY - 2), 0.0D, 0.0D, 0.0D);
-                    tesselator.setColorOpaque_I(0);
-                    tesselator.addVertexWithUV((double) (boxLeft + 1), (double) (drawY + curSlotHeight + 1), 0.0D, 0.0D, 1.0D);
-                    tesselator.addVertexWithUV((double) (boxRight - 1), (double) (drawY + curSlotHeight + 1), 0.0D, 1.0D, 1.0D);
-                    tesselator.addVertexWithUV((double) (boxRight - 1), (double) (drawY - 1), 0.0D, 1.0D, 0.0D);
-                    tesselator.addVertexWithUV((double) (boxLeft + 1), (double) (drawY - 1), 0.0D, 0.0D, 0.0D);
-                    tesselator.draw();
+                    worldr.startDrawingQuads();
+                    worldr.setColorOpaque_I(8421504);
+                    worldr.addVertexWithUV((double) boxLeft, (double) (drawY + curSlotHeight + 2), 0.0D, 0.0D, 1.0D);
+                    worldr.addVertexWithUV((double) boxRight, (double) (drawY + curSlotHeight + 2), 0.0D, 1.0D, 1.0D);
+                    worldr.addVertexWithUV((double) boxRight, (double) (drawY - 2), 0.0D, 1.0D, 0.0D);
+                    worldr.addVertexWithUV((double) boxLeft, (double) (drawY - 2), 0.0D, 0.0D, 0.0D);
+                    worldr.setColorOpaque_I(0);
+                    worldr.addVertexWithUV((double) (boxLeft + 1), (double) (drawY + curSlotHeight + 1), 0.0D, 0.0D, 1.0D);
+                    worldr.addVertexWithUV((double) (boxRight - 1), (double) (drawY + curSlotHeight + 1), 0.0D, 1.0D, 1.0D);
+                    worldr.addVertexWithUV((double) (boxRight - 1), (double) (drawY - 1), 0.0D, 1.0D, 0.0D);
+                    worldr.addVertexWithUV((double) (boxLeft + 1), (double) (drawY - 1), 0.0D, 0.0D, 0.0D);
+                    tess.draw();
                     GL11.glEnable(GL11.GL_TEXTURE_2D);
                 }
 
-                this.drawSlot(slotIndex, boxLeft, boxRight, drawY, drawY + curSlotHeight, tesselator);
+                this.drawSlot(slotIndex, boxLeft, boxRight, drawY, drawY + curSlotHeight, tess);
             }
 
             drawY += curSlotHeight;
@@ -311,22 +313,22 @@ public abstract class GuiScroll
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         GL11.glShadeModel(GL11.GL_SMOOTH);
         GL11.glDisable(GL11.GL_TEXTURE_2D);
-        tesselator.startDrawingQuads();
-        tesselator.setColorRGBA_I(0, 0);
-        tesselator.addVertexWithUV((double) this.left, (double) (this.top + fadeGradientHeight), 0.0D, 0.0D, 1.0D);
-        tesselator.addVertexWithUV((double) this.right, (double) (this.top + fadeGradientHeight), 0.0D, 1.0D, 1.0D);
-        tesselator.setColorRGBA_I(0, 255);
-        tesselator.addVertexWithUV((double) this.right, (double) this.top, 0.0D, 1.0D, 0.0D);
-        tesselator.addVertexWithUV((double) this.left, (double) this.top, 0.0D, 0.0D, 0.0D);
-        tesselator.draw();
-        tesselator.startDrawingQuads();
-        tesselator.setColorRGBA_I(0, 255);
-        tesselator.addVertexWithUV((double) this.left, (double) this.bottom, 0.0D, 0.0D, 1.0D);
-        tesselator.addVertexWithUV((double) this.right, (double) this.bottom, 0.0D, 1.0D, 1.0D);
-        tesselator.setColorRGBA_I(0, 0);
-        tesselator.addVertexWithUV((double) this.right, (double) (this.bottom - fadeGradientHeight), 0.0D, 1.0D, 0.0D);
-        tesselator.addVertexWithUV((double) this.left, (double) (this.bottom - fadeGradientHeight), 0.0D, 0.0D, 0.0D);
-        tesselator.draw();
+        worldr.startDrawingQuads();
+        worldr.setColorRGBA_I(0, 0);
+        worldr.addVertexWithUV((double) this.left, (double) (this.top + fadeGradientHeight), 0.0D, 0.0D, 1.0D);
+        worldr.addVertexWithUV((double) this.right, (double) (this.top + fadeGradientHeight), 0.0D, 1.0D, 1.0D);
+        worldr.setColorRGBA_I(0, 255);
+        worldr.addVertexWithUV((double) this.right, (double) this.top, 0.0D, 1.0D, 0.0D);
+        worldr.addVertexWithUV((double) this.left, (double) this.top, 0.0D, 0.0D, 0.0D);
+        tess.draw();
+        worldr.startDrawingQuads();
+        worldr.setColorRGBA_I(0, 255);
+        worldr.addVertexWithUV((double) this.left, (double) this.bottom, 0.0D, 0.0D, 1.0D);
+        worldr.addVertexWithUV((double) this.right, (double) this.bottom, 0.0D, 1.0D, 1.0D);
+        worldr.setColorRGBA_I(0, 0);
+        worldr.addVertexWithUV((double) this.right, (double) (this.bottom - fadeGradientHeight), 0.0D, 1.0D, 0.0D);
+        worldr.addVertexWithUV((double) this.left, (double) (this.bottom - fadeGradientHeight), 0.0D, 0.0D, 0.0D);
+        tess.draw();
 
         float maxScrollDistance = getMaxScrollDistance();
         if (maxScrollDistance > 0)
@@ -335,27 +337,27 @@ public abstract class GuiScroll
             int scrollBarTop = (int) (this.scrollDistance * (getVisibleHeight() - scrollBarHeight) / maxScrollDistance + this.top);
             scrollBarTop = Math.max(top, scrollBarTop);
 
-            tesselator.startDrawingQuads();
-            tesselator.setColorRGBA_I(0, 255);
-            tesselator.addVertexWithUV((double) scrollBarXStart, (double) this.bottom, 0.0D, 0.0D, 1.0D);
-            tesselator.addVertexWithUV((double) scrollBarXEnd, (double) this.bottom, 0.0D, 1.0D, 1.0D);
-            tesselator.addVertexWithUV((double) scrollBarXEnd, (double) this.top, 0.0D, 1.0D, 0.0D);
-            tesselator.addVertexWithUV((double) scrollBarXStart, (double) this.top, 0.0D, 0.0D, 0.0D);
-            tesselator.draw();
-            tesselator.startDrawingQuads();
-            tesselator.setColorRGBA_I(8421504, 255);
-            tesselator.addVertexWithUV((double) scrollBarXStart, (double) (scrollBarTop + scrollBarHeight), 0.0D, 0.0D, 1.0D);
-            tesselator.addVertexWithUV((double) scrollBarXEnd, (double) (scrollBarTop + scrollBarHeight), 0.0D, 1.0D, 1.0D);
-            tesselator.addVertexWithUV((double) scrollBarXEnd, (double) scrollBarTop, 0.0D, 1.0D, 0.0D);
-            tesselator.addVertexWithUV((double) scrollBarXStart, (double) scrollBarTop, 0.0D, 0.0D, 0.0D);
-            tesselator.draw();
-            tesselator.startDrawingQuads();
-            tesselator.setColorRGBA_I(12632256, 255);
-            tesselator.addVertexWithUV((double) scrollBarXStart, (double) (scrollBarTop + scrollBarHeight - 1), 0.0D, 0.0D, 1.0D);
-            tesselator.addVertexWithUV((double) (scrollBarXEnd - 1), (double) (scrollBarTop + scrollBarHeight - 1), 0.0D, 1.0D, 1.0D);
-            tesselator.addVertexWithUV((double) (scrollBarXEnd - 1), (double) scrollBarTop, 0.0D, 1.0D, 0.0D);
-            tesselator.addVertexWithUV((double) scrollBarXStart, (double) scrollBarTop, 0.0D, 0.0D, 0.0D);
-            tesselator.draw();
+            worldr.startDrawingQuads();
+            worldr.setColorRGBA_I(0, 255);
+            worldr.addVertexWithUV((double) scrollBarXStart, (double) this.bottom, 0.0D, 0.0D, 1.0D);
+            worldr.addVertexWithUV((double) scrollBarXEnd, (double) this.bottom, 0.0D, 1.0D, 1.0D);
+            worldr.addVertexWithUV((double) scrollBarXEnd, (double) this.top, 0.0D, 1.0D, 0.0D);
+            worldr.addVertexWithUV((double) scrollBarXStart, (double) this.top, 0.0D, 0.0D, 0.0D);
+            tess.draw();
+            worldr.startDrawingQuads();
+            worldr.setColorRGBA_I(8421504, 255);
+            worldr.addVertexWithUV((double) scrollBarXStart, (double) (scrollBarTop + scrollBarHeight), 0.0D, 0.0D, 1.0D);
+            worldr.addVertexWithUV((double) scrollBarXEnd, (double) (scrollBarTop + scrollBarHeight), 0.0D, 1.0D, 1.0D);
+            worldr.addVertexWithUV((double) scrollBarXEnd, (double) scrollBarTop, 0.0D, 1.0D, 0.0D);
+            worldr.addVertexWithUV((double) scrollBarXStart, (double) scrollBarTop, 0.0D, 0.0D, 0.0D);
+            tess.draw();
+            worldr.startDrawingQuads();
+            worldr.setColorRGBA_I(12632256, 255);
+            worldr.addVertexWithUV((double) scrollBarXStart, (double) (scrollBarTop + scrollBarHeight - 1), 0.0D, 0.0D, 1.0D);
+            worldr.addVertexWithUV((double) (scrollBarXEnd - 1), (double) (scrollBarTop + scrollBarHeight - 1), 0.0D, 1.0D, 1.0D);
+            worldr.addVertexWithUV((double) (scrollBarXEnd - 1), (double) scrollBarTop, 0.0D, 1.0D, 0.0D);
+            worldr.addVertexWithUV((double) scrollBarXStart, (double) scrollBarTop, 0.0D, 0.0D, 0.0D);
+            tess.draw();
         }
 
         this.drawForeground(mouseX, mouseY);
@@ -369,33 +371,34 @@ public abstract class GuiScroll
     {
         this.client.renderEngine.bindTexture(Resources.GUI_WINDOW);
         GL11.glColor4f(0.6F, 0.6F, 0.6F, 1.0F);
-        Gui.func_146110_a(left - 10, top - slotHeight, 0, 0, listWidth + 20, slotHeight, 220, 160);
-        Gui.func_146110_a(left - 10, top + listHeight, 0, listHeight + slotHeight, listWidth + 20, slotHeight, 220, 160);
+        Gui.drawModalRectWithCustomSizedTexture(left - 10, top - slotHeight, 0, 0, listWidth + 20, slotHeight, 220, 160);
+        Gui.drawModalRectWithCustomSizedTexture(left - 10, top + listHeight, 0, listHeight + slotHeight, listWidth + 20, slotHeight, 220, 160);
     }
 
     protected void drawGradientRect(int par1, int par2, int par3, int par4, int par5, int par6)
     {
-        float f = (float) (par5 >> 24 & 255) / 255.0F;
-        float f1 = (float) (par5 >> 16 & 255) / 255.0F;
-        float f2 = (float) (par5 >> 8 & 255) / 255.0F;
-        float f3 = (float) (par5 & 255) / 255.0F;
-        float f4 = (float) (par6 >> 24 & 255) / 255.0F;
-        float f5 = (float) (par6 >> 16 & 255) / 255.0F;
-        float f6 = (float) (par6 >> 8 & 255) / 255.0F;
-        float f7 = (float) (par6 & 255) / 255.0F;
+        float f = (float)(par5 >> 24 & 255) / 255.0F;
+        float f1 = (float)(par5 >> 16 & 255) / 255.0F;
+        float f2 = (float)(par5 >> 8 & 255) / 255.0F;
+        float f3 = (float)(par5 & 255) / 255.0F;
+        float f4 = (float)(par6 >> 24 & 255) / 255.0F;
+        float f5 = (float)(par6 >> 16 & 255) / 255.0F;
+        float f6 = (float)(par6 >> 8 & 255) / 255.0F;
+        float f7 = (float)(par6 & 255) / 255.0F;
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_ALPHA_TEST);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glShadeModel(GL11.GL_SMOOTH);
-        Tessellator tessellator = Tessellator.instance;
-        tessellator.startDrawingQuads();
-        tessellator.setColorRGBA_F(f1, f2, f3, f);
-        tessellator.addVertex((double) par3, (double) par2, 0.0D);
-        tessellator.addVertex((double) par1, (double) par2, 0.0D);
-        tessellator.setColorRGBA_F(f5, f6, f7, f4);
-        tessellator.addVertex((double) par1, (double) par4, 0.0D);
-        tessellator.addVertex((double) par3, (double) par4, 0.0D);
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        worldrenderer.startDrawingQuads();
+        worldrenderer.setColorRGBA_F(f1, f2, f3, f);
+        worldrenderer.addVertex((double)par3, (double)par2, 0.0D);
+        worldrenderer.addVertex((double)par1, (double)par2, 0.0D);
+        worldrenderer.setColorRGBA_F(f5, f6, f7, f4);
+        worldrenderer.addVertex((double)par1, (double)par4, 0.0D);
+        worldrenderer.addVertex((double)par3, (double)par4, 0.0D);
         tessellator.draw();
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glDisable(GL11.GL_BLEND);

@@ -63,8 +63,8 @@ public class GuiButtonDownloaded extends GuiButton
             {
                 j += this.width;
             }
-            Gui.func_146110_a(this.xPosition, this.yPosition, j, k, this.width, this.height, 40, 40);
-            this.drawString(Minecraft.getMinecraft().fontRenderer, StatCollector.translateToLocal(Strings.MARK_DL), this.xPosition + this.width + 5, this.yPosition + this.height / 2 - 4, 0xFFFFFF);
+            Gui.drawModalRectWithCustomSizedTexture(this.xPosition, this.yPosition, j, k, this.width, this.height, 40, 40);
+            this.drawString(Minecraft.getMinecraft().fontRendererObj, StatCollector.translateToLocal(Strings.MARK_DL), this.xPosition + this.width + 5, this.yPosition + this.height / 2 - 4, 0xFFFFFF);
         }
     }
 }

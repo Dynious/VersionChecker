@@ -71,12 +71,12 @@ public class NEMUtils
     }
 
     public static String patchVersion(String modVersion) {
-        modVersion = modVersion.replaceAll(Pattern.quote("(" + NEMChecker.getNemMcVersion() + ")"), "");
-        modVersion = modVersion.replaceAll(Pattern.quote("[" + NEMChecker.getNemMcVersion() + "]"), "");
+        modVersion = modVersion.replaceAll(Pattern.quote("(" + NEMChecker.getMcVersion() + ")"), "");
+        modVersion = modVersion.replaceAll(Pattern.quote("[" + NEMChecker.getMcVersion() + "]"), "");
         modVersion = modVersion.replaceAll("[\\)\\]]", "").replaceAll("[\\(\\[]", ".");
-        modVersion = modVersion.replaceAll(Pattern.quote("_" + NEMChecker.getNemMcVersion()), "");
-        modVersion = modVersion.replaceAll(Pattern.quote(NEMChecker.getNemMcVersion() + "_"), "");
-        modVersion = modVersion.replaceAll(Pattern.quote(NEMChecker.getNemMcVersion() + "-"), "");
+        modVersion = modVersion.replaceAll(Pattern.quote("_" + NEMChecker.getMcVersion()), "");
+        modVersion = modVersion.replaceAll(Pattern.quote(NEMChecker.getMcVersion() + "_"), "");
+        modVersion = modVersion.replaceAll(Pattern.quote(NEMChecker.getMcVersion() + "-"), "");
         modVersion = modVersion.replaceAll("^v", "").replaceAll("^V", "");
         modVersion = modVersion.replaceAll(" build ", ".").replaceAll("\\s","");
 

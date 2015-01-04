@@ -8,7 +8,7 @@ import com.dynious.versionchecker.helper.WebHelper;
 import com.dynious.versionchecker.lib.Reference;
 import com.dynious.versionchecker.lib.Resources;
 import com.dynious.versionchecker.lib.Strings;
-import cpw.mods.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
@@ -19,6 +19,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -94,7 +95,7 @@ public class GuiUpdates extends GuiScreen
         Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GUI_LOGO);
 
         int i = width / 2 - 150 + listShift - 10;
-        Gui.func_146110_a(5, 5, 0, 0, i, (int) (i * 0.4), i, (int) (i * 0.4));
+        Gui.drawModalRectWithCustomSizedTexture(5, 5, 0, 0, i, (int) (i * 0.4), i, (int) (i * 0.4));
 
         if (openUpdate != null)
         {
@@ -108,7 +109,7 @@ public class GuiUpdates extends GuiScreen
         {
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GUI_ICONS);
-            Gui.func_146110_a(width - 20, 4, 0, 0, 16, 16, 64, 32);
+            Gui.drawModalRectWithCustomSizedTexture(width - 20, 4, 0, 0, 16, 16, 64, 32);
         }
 
         super.drawScreen(mouseX, mouseY, par3);
@@ -126,7 +127,7 @@ public class GuiUpdates extends GuiScreen
     {
         GL11.glColor4f(0.6F, 0.6F, 0.6F, 1.0F);
         Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GUI_WINDOW);
-        Gui.func_146110_a(windowStartX, windowStartY, 0, 0, 220, 160, 220, 160);
+        Gui.drawModalRectWithCustomSizedTexture(windowStartX, windowStartY, 0, 0, 220, 160, 220, 160);
     }
 
     public void drawToolTip(int mouseX, int mouseY)
@@ -165,7 +166,7 @@ public class GuiUpdates extends GuiScreen
     }
 
     @Override
-    protected void actionPerformed(GuiButton button)
+    protected void actionPerformed(GuiButton button) throws IOException
     {
         super.actionPerformed(button);
         switch (button.id)
@@ -203,7 +204,7 @@ public class GuiUpdates extends GuiScreen
     }
 
     @Override
-    protected void mouseClicked(int x, int y, int par3)
+    protected void mouseClicked(int x, int y, int par3) throws IOException
     {
         if (openUpdate == null)
         {
@@ -235,7 +236,7 @@ public class GuiUpdates extends GuiScreen
         changeLogList.disableInput = false;
         updateList.disableInput = true;
         buttonDownloaded.setUpdate(update);
-        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0F));
+        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
         if (update.isDirectLink)
         {
             updateButton.displayString = StatCollector.translateToLocal(Strings.UPDATE);

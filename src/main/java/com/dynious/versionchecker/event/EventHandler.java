@@ -2,11 +2,12 @@ package com.dynious.versionchecker.event;
 
 import com.dynious.versionchecker.client.gui.GuiMainMenuHandler;
 import com.dynious.versionchecker.handler.IMCHandler;
+import com.dynious.versionchecker.handler.UpdateHandler;
 import com.dynious.versionchecker.lib.Reference;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraftforge.client.event.GuiScreenEvent;
 

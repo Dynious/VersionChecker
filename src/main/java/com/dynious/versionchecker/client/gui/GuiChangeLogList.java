@@ -125,7 +125,7 @@ public class GuiChangeLogList extends GuiScroll
     {
         this.client.renderEngine.bindTexture(Resources.GUI_WINDOW);
         GL11.glColor4f(0.6F, 0.6F, 0.6F, 1.0F);
-        Gui.func_146110_a(left - 10, top - slotHeight, 0, 30, listWidth + 20, slotHeight, 220, 160);
-        Gui.func_146110_a(left - 10, top + listHeight, 0, listHeight + slotHeight, listWidth + 20, slotHeight, 220, 160);
+        Gui.drawModalRectWithCustomSizedTexture(left - 10, top - slotHeight, 0, 30, listWidth + 20, slotHeight, 220, 160);
+        Gui.drawModalRectWithCustomSizedTexture(left - 10, top + listHeight, 0, listHeight + slotHeight, listWidth + 20, slotHeight, 220, 160);
     }
 }

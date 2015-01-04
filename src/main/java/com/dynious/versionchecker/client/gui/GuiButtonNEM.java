@@ -42,7 +42,7 @@ public class GuiButtonNEM extends GuiButton
             {
                 j += this.width;
             }
-            Gui.func_146110_a(this.xPosition, this.yPosition, j, k, this.width, this.height, 40, 40);
+            Gui.drawModalRectWithCustomSizedTexture(this.xPosition, this.yPosition, j, k, this.width, this.height, 40, 40);
         }
     }
 }

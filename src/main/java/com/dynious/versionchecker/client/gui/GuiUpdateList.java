@@ -86,13 +86,13 @@ public class GuiUpdateList extends GuiScroll
 
             if (DownloadThread.isUpdating(update))
             {
-                Gui.func_146110_a(maxX - 30, minY + 8, 0, 0, 16, 16, 64, 32);
+                Gui.drawModalRectWithCustomSizedTexture(maxX - 30, minY + 8, 0, 0, 16, 16, 64, 32);
 
                 info = StatCollector.translateToLocal(Strings.UPDATING);
             }
             else if (update.isDownloaded())
             {
-                Gui.func_146110_a(maxX - 30, minY + 8, 16, 0, 16, 16, 64, 32);
+                Gui.drawModalRectWithCustomSizedTexture(maxX - 30, minY + 8, 16, 0, 16, 16, 64, 32);
 
                 if (!update.MOD_ID.equalsIgnoreCase(Reference.MOD_ID))
                 {
@@ -105,19 +105,19 @@ public class GuiUpdateList extends GuiScroll
             }
             else if (update.isErrored())
             {
-                Gui.func_146110_a(maxX - 30, minY + 8, 32, 0, 16, 16, 64, 32);
+                Gui.drawModalRectWithCustomSizedTexture(maxX - 30, minY + 8, 32, 0, 16, 16, 64, 32);
 
                 info = StatCollector.translateToLocal(Strings.ERRORED);
             }
             else if (update.isDirectLink)
             {
-                Gui.func_146110_a(maxX - 30, minY + 8, 16, 16, 16, 16, 64, 32);
+                Gui.drawModalRectWithCustomSizedTexture(maxX - 30, minY + 8, 16, 16, 16, 16, 64, 32);
 
                 info = StatCollector.translateToLocal(Strings.DL_AVAILABLE);
             }
             else if (update.updateURL != null)
             {
-                Gui.func_146110_a(maxX - 30, minY + 8, 0, 16, 16, 16, 64, 32);
+                Gui.drawModalRectWithCustomSizedTexture(maxX - 30, minY + 8, 0, 16, 16, 16, 64, 32);
 
                 info = StatCollector.translateToLocal(Strings.LINK_TO_DL);
             }
@@ -128,11 +128,11 @@ public class GuiUpdateList extends GuiScroll
 
             if (update.updateType == Update.UpdateType.NOT_ENOUGH_MODS)
             {
-                Gui.func_146110_a(maxX - 30, minY + 8, 32, 16, 16, 16, 64, 32);
+                Gui.drawModalRectWithCustomSizedTexture(maxX - 30, minY + 8, 32, 16, 16, 16, 64, 32);
             }
             else if (update.updateType == Update.UpdateType.CURSE)
             {
-                Gui.func_146110_a(maxX - 30, minY + 8, 48, 0, 16, 16, 64, 32);
+                Gui.drawModalRectWithCustomSizedTexture(maxX - 30, minY + 8, 48, 0, 16, 16, 64, 32);
             }
 
             this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(info, listWidth - 10), minX + 5, minY + 24, 0xCCCCCC);
@@ -144,7 +144,7 @@ public class GuiUpdateList extends GuiScroll
     {
         this.client.renderEngine.bindTexture(Gui.optionsBackground);
         GL11.glColor4f(0.25F, 0.25F, 0.25F, 1.0F);
-        Gui.func_146110_a(left - 10, top - slotHeight, 0, 0, listWidth + 20, slotHeight, 32, 32);
-        Gui.func_146110_a(left - 10, top + listHeight, 0, listHeight + slotHeight, listWidth + 20, slotHeight, 32, 32);
+        Gui.drawModalRectWithCustomSizedTexture(left - 10, top - slotHeight, 0, 0, listWidth + 20, slotHeight, 32, 32);
+        Gui.drawModalRectWithCustomSizedTexture(left - 10, top + listHeight, 0, listHeight + slotHeight, listWidth + 20, slotHeight, 32, 32);
     }
 }

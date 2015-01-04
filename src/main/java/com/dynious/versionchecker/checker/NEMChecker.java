@@ -5,8 +5,8 @@ import com.dynious.versionchecker.handler.UpdateHandler;
 import com.dynious.versionchecker.helper.ModHelper;
 import com.dynious.versionchecker.lib.Strings;
 import com.google.gson.Gson;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModContainer;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
 import net.minecraft.util.StatCollector;
 
 import java.io.IOException;
@@ -22,9 +22,9 @@ public class NEMChecker implements Runnable
 
     private final Gson gson = new Gson();
 
-    public static String getNemMcVersion()
+    public static String getMcVersion()
     {
-        return Loader.instance().getMCVersionString().substring(10);
+        return Loader.MC_VERSION;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class NEMChecker implements Runnable
         Scanner s = null;
         try
         {
-            URL url = new URL("http://bot.notenoughmods.com/" + getNemMcVersion() + ".json");
+            URL url = new URL("http://bot.notenoughmods.com/" + getMcVersion() + ".json");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             inputStream = (InputStream) conn.getContent();
             s = new Scanner(inputStream).useDelimiter("\\A");

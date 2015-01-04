@@ -6,7 +6,7 @@ import com.dynious.versionchecker.helper.ModHelper;
 import com.dynious.versionchecker.helper.WebHelper;
 import com.dynious.versionchecker.lib.IMCOperations;
 import com.dynious.versionchecker.lib.Strings;
-import cpw.mods.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
 

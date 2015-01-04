@@ -8,9 +8,9 @@ import com.dynious.versionchecker.handler.UpdateHandler;
 import com.dynious.versionchecker.helper.ModHelper;
 import com.dynious.versionchecker.lib.Reference;
 import com.google.gson.Gson;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModContainer;
-import cpw.mods.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import org.apache.commons.io.IOUtils;
 
 import java.net.URL;

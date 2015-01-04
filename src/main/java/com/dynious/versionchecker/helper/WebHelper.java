@@ -2,7 +2,7 @@ package com.dynious.versionchecker.helper;
 
 import com.dynious.versionchecker.api.Update;
 import com.dynious.versionchecker.handler.LogHandler;
-import cpw.mods.fml.common.ModContainer;
+import net.minecraftforge.fml.common.ModContainer;
 import org.apache.commons.io.FileUtils;
 
 import java.awt.*;
