@@ -1,0 +1,19 @@
+# GUI localizations
+gui.versionchecker.update=업데이트
+gui.versionchecker.openWebpage=웹페이지 실행
+gui.versionchecker.updating=업데이트 중...
+gui.versionchecker.isDownloaded=다운로드 및 업데이트가 완료되었습니다. 마인크래프트를 재시작 해주세요.
+gui.versionchecker.dlAvailable=새로운 업데이트가 존재합니다.
+gui.versionchecker.linkToDL=모드 다운로드 링크
+gui.versionchecker.cannotUpdate=자동업데이트가 불가능한 모드입니다.
+gui.versionchecker.noChangeLog=변경사항이 없습니다.
+gui.versionchecker.info=이 Version Checker가 인식하고있는 모든 구버전 모드들의 목록입니다.; 당신은 더블 클릭해서 쉽게 모드를 업데이트하며 Changelog를 살펴볼수있습니다.(가능한 경우)
+gui.versionchecker.modsFolder=모드폴더 열기
+gui.versionchecker.markDL=다운로드 표시
+gui.versionchecker.DLMarkedInfo=현재 다운로드중인 모드들을 표시합니다. 마인크래프트가 종료되면 구버전모드는 삭제됩니다.
+gui.versionchecker.unableToRemoveSelf=자동제거가 불가능합니다! 수동으로 제거해주세요!
+gui.versionchecker.errored=업데이트중 오류가 생겼습니다.
+gui.versionchecker.curseUpdate=Curse에서 버전을 체크한 모드로 정상적으로 작동하지 않을수도 있습니다ㅊ
+gui.versionchecker.NEMUpdate=Not Enough Mods에서 버전을 체크한 모드로 정상적으로 작동하지 않을수도 있습니다
+gui.versionchecker.toggleCurseUpdate=Curse에서 불러온 업데이트 목록 표시/비표시
+gui.versionchecker.toggleNEMUpdate=Not Enough Mods에서 불러온 업데이트 목록 표시/비표시
