@@ -4,12 +4,22 @@
 			"mcVersion":"Minecraft 1.7.*",
 			"modVersion":"1.1.7",
 			"changeLog": [
-                "Reduced the amount of false-positives (thanks squeek502!)",
-                "Fixed a few small bugs",
-                "Made NEM & Curse updates more easy to distinguish",
-                "Show/Hide NEM & Curse updates in update list"
+				"Reduced the amount of false-positives (thanks squeek502!)",
+				"Fixed a few small bugs",
+				"Made NEM & Curse updates more easy to distinguish",
+				"Show/Hide NEM & Curse updates in update list"
 			],
 			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2215308/download",
+			"isDirectLink":"true",
+			"newFileName":""
+		},
+		{
+			"mcVersion":"Minecraft 1.8",
+			"modVersion":"1.2.0",
+			"changeLog": [
+				"Updated to 1.8"
+			],
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2223655/download",
 			"isDirectLink":"true",
 			"newFileName":""
 		}
