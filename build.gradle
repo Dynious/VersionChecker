@@ -22,7 +22,7 @@ group= "com.dynious.versionchecker" // http://maven.apache.org/guides/mini/guide
 archivesBaseName = "VersionChecker"
 
 minecraft {
-    version = "1.7.10-10.13.1.1216-new"
+    version = "1.7.10-10.13.2.1307-1.7.10"
 	
 	replaceIn "lib/Reference.java"
     replace "@VERSION@", project.version

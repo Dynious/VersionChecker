@@ -37,9 +37,15 @@ public class UpdateHandler
             Update update1 = iterator.next();
             if (update1.MOD_ID.equalsIgnoreCase(update.MOD_ID))
             {
+                if (update.updateType.ordinal() < update1.updateType.ordinal())
+                {
+                    iterator.remove();
+                    return true;
+                }
+                
                 if (update.updateURL != null && !update.updateURL.isEmpty())
                 {
-                    if (update1.updateURL == null || !update1.updateURL.isEmpty())
+                    if (update1.updateURL == null || update1.updateURL.isEmpty())
                     {
                         iterator.remove();
                         return true;

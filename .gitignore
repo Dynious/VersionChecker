@@ -6,5 +6,6 @@
 # Gradle #
 /.gradle/
 /eclipse/
+/run/
 /build/
 /out/
