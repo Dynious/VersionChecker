@@ -39,6 +39,7 @@ public class GuiUpdates extends GuiScreen
     private int windowStartX, windowStartY, windowEndX, windowEndY;
 
     private static final int listShift = 50;
+    private byte tempDisableButtonPress = 0;
 
     @Override
     @SuppressWarnings("unchecked")
@@ -114,6 +115,8 @@ public class GuiUpdates extends GuiScreen
         super.drawScreen(mouseX, mouseY, par3);
 
         drawToolTip(mouseX, mouseY);
+        if (tempDisableButtonPress > 0)
+            tempDisableButtonPress--;
     }
 
     public void updateList()
@@ -167,6 +170,9 @@ public class GuiUpdates extends GuiScreen
     @Override
     protected void actionPerformed(GuiButton button)
     {
+        if (tempDisableButtonPress > 0)
+            return;
+
         super.actionPerformed(button);
         switch (button.id)
         {
@@ -250,6 +256,7 @@ public class GuiUpdates extends GuiScreen
         {
             changeLogList.setText(openUpdate.changeLog);
         }
+        tempDisableButtonPress = 5;
     }
 
     public void closeInfoScreen()
