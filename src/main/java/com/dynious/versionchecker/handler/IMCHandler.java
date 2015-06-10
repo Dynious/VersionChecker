@@ -136,6 +136,9 @@ public class IMCHandler
                 {
                     String version = latestFilename.replace(fileNameParser.substring(0, i), "").replace(fileNameParser.substring(o + 1, fileNameParser.length()), "");
 
+                    if (version.equals(tag.hasKey(IMCOperations.OLD_VERSION) ? tag.getString(IMCOperations.OLD_VERSION) : ModHelper.getModContainer(sender).getVersion()))
+                        return;
+
                     Update update = new Update(sender);
 
                     update.newVersion = version;
