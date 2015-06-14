@@ -2,22 +2,23 @@
 	"versionList": [
 		{
 			"mcVersion":"Minecraft 1.7.*",
-			"modVersion":"1.1.8",
+			"modVersion":"1.1.9",
 			"changeLog": [
-				"Prioritize mod sent updates",
-				"Fix compatibility with Forge 1291"
+                "Fixed some Linux distribution explorer & webpage opening (thanks Keridos!)",
+                "Fixed Curse update checker always assuming Curse version is newer."
 			],
-			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2228490/download",
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2242814/download",
 			"isDirectLink":"true",
 			"newFileName":""
 		},
 		{
 			"mcVersion":"Minecraft 1.8",
-			"modVersion":"1.2.1",
+			"modVersion":"1.2.2",
 			"changeLog": [
-				"Prioritize mod sent updates"
+                "Fixed some Linux distribution explorer & webpage opening (thanks Keridos!)",
+                "Fixed Curse update checker always assuming Curse version is newer."
 			],
-			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2228493/download",
+			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2242815/download",
 			"isDirectLink":"true",
 			"newFileName":""
 		}
