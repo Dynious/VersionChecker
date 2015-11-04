@@ -13,10 +13,10 @@
 		},
 		{
 			"mcVersion":"Minecraft 1.8",
-			"modVersion":"1.2.2",
+			"modVersion":"1.2.3",
 			"changeLog": [
-                "Fixed some Linux distribution explorer & webpage opening (thanks Keridos!)",
-                "Fixed Curse update checker always assuming Curse version is newer."
+                "Fixed VersionChecker occasionally showing duplicate updates.",
+                "Fixed new version name being drawn outside of the VersionChecker update GUI."
 			],
 			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2242815/download",
 			"isDirectLink":"true",
