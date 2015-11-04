@@ -10,13 +10,14 @@ import com.dynious.versionchecker.handler.RemoveHandler;
 import com.dynious.versionchecker.handler.UpdateHandler;
 import com.dynious.versionchecker.lib.Reference;
 import com.dynious.versionchecker.proxy.CommonProxy;
+
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.CONFIG_GUI_FACTORY)
 public class VersionChecker

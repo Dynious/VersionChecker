@@ -23,7 +23,7 @@ public class GuiUpdateList extends GuiScroll
 
     public GuiUpdateList(GuiUpdates parent, int width, int height, int top, int bottom, int left)
     {
-        super(Minecraft.getMinecraft(), width, height, top, bottom, left, 35);
+        super(Minecraft.getMinecraft(), width, height, top, bottom, left, 45);
         this.parent = parent;
         setPadding(4, 4);
         makeList();
@@ -75,10 +75,18 @@ public class GuiUpdateList extends GuiScroll
     protected void drawSlot(int slotIndex, int minX, int maxX, int minY, int maxY, Tessellator tesselator)
     {
         Update update = updateList.get(slotIndex);
-        if (update != null)
+        if (update != null && !update.oldVersion.matches(update.newVersion))
         {
             this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(update.displayName, listWidth - 10), minX + 5, minY + 4, 0xFFFFFF);
-            this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(update.oldVersion + " -> " + update.newVersion, listWidth - 10), minX + 5, minY + 15, 0xCCCCCC);
+            if (this.parent.getFontRenderer().getStringWidth(update.newVersion) >= (listWidth - 125)){
+            	this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(update.oldVersion + " -> ", listWidth - 10), minX + 5, minY + 15, 0xCCCCCC);
+            	this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth("  " + update.newVersion, listWidth - 10), minX + 5, minY + 25, 0xCCCCCC);
+            }
+            else
+            {
+            	this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(update.oldVersion + " -> " + update.newVersion, listWidth - 10), minX + 5, minY + 15, 0xCCCCCC);
+            }
+            
             String info;
 
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -135,7 +143,7 @@ public class GuiUpdateList extends GuiScroll
                 Gui.drawModalRectWithCustomSizedTexture(maxX - 30, minY + 8, 48, 0, 16, 16, 64, 32);
             }
 
-            this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(info, listWidth - 10), minX + 5, minY + 24, 0xCCCCCC);
+            this.parent.getFontRenderer().drawString(this.parent.getFontRenderer().trimStringToWidth(info, listWidth - 10), minX + 5, minY + 35, 0xCCCCCC);
         }
     }
 
