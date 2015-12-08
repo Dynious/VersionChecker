@@ -126,7 +126,7 @@ public class IMCHandler
         if (tag.hasKey(IMCOperations.CURSE_PROJECT_NAME) && tag.hasKey(IMCOperations.CURSE_FILENAME_PARSER))
         {
             String curseProjectName = tag.getString(IMCOperations.CURSE_PROJECT_NAME);
-            String latestFilename = WebHelper.getLatestFilenameFromCurse("http://minecraft.curseforge.com/mc-mods/" + curseProjectName + "/files/latest");
+            String latestFilename = WebHelper.getLatestFilenameFromCurse("http://minecraft.curseforge.com/projects/" + curseProjectName + "/files/latest");
             if (latestFilename != null)
             {
                 String fileNameParser = tag.getString(IMCOperations.CURSE_FILENAME_PARSER);

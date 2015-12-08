@@ -43,7 +43,6 @@ public class GuiUpdates extends GuiScreen
     private byte tempDisableButtonPress = 0;
 
     @Override
-    @SuppressWarnings("unchecked")
     public void initGui()
     {
         IMCHandler.processMessages(FMLInterModComms.fetchRuntimeMessages(Reference.MOD_ID));
