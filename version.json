@@ -13,12 +13,21 @@
 		},
 		{
 			"mcVersion":"Minecraft 1.8",
-			"modVersion":"1.2.3",
+			"modVersion":"1.2.4",
 			"changeLog": [
-                "Fixed VersionChecker occasionally showing duplicate updates.",
-                "Fixed new version name being drawn outside of the VersionChecker update GUI."
+                "Fixed CurseForge project link format."
 			],
-			"updateURL":"http://minecraft.curseforge.com/mc-mods/221140-version-checker/files/2242815/download",
+			"updateURL":"http://minecraft.curseforge.com/projects/version-checker/files/2269959/download",
+			"isDirectLink":"true",
+			"newFileName":""
+		},
+        {
+			"mcVersion":"Minecraft 1.8.8",
+			"modVersion":"1.2.5",
+			"changeLog": [
+                "Fixed CurseForge project link format."
+			],
+			"updateURL":"http://minecraft.curseforge.com/projects/version-checker/files/2269961/download",
 			"isDirectLink":"true",
 			"newFileName":""
 		}

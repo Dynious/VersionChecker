@@ -142,7 +142,7 @@ public class IMCHandler
                     Update update = new Update(sender);
 
                     update.newVersion = version;
-                    update.updateURL = "http://minecraft.curseforge.com/mc-mods/" + curseProjectName + "/files/latest";
+                    update.updateURL = "http://minecraft.curseforge.com/projects/" + curseProjectName + "/files/latest";
                     update.isDirectLink = true;
                     update.newFileName = latestFilename;
                     update.changeLog = StatCollector.translateToLocal(Strings.CURSE_UPDATE);
