@@ -27,7 +27,8 @@ public class NEMChecker implements Runnable
         return Loader.MC_VERSION;
     }
 
-    @Override
+    @SuppressWarnings("resource")
+	@Override
     public void run()
     {
         InputStream inputStream = null;
