@@ -30,6 +30,16 @@
 			"updateURL":"http://minecraft.curseforge.com/projects/version-checker/files/2269961/download",
 			"isDirectLink":"true",
 			"newFileName":""
+		},
+        {
+			"mcVersion":"Minecraft 1.8.9",
+			"modVersion":"1.2.6",
+			"changeLog": [
+                "Port to 1.8.9"
+			],
+			"updateURL":"http://minecraft.curseforge.com/projects/version-checker/files/PLEASECHANGELATER",
+			"isDirectLink":"true",
+			"newFileName":""
 		}
 	]
 }

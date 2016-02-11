@@ -11,4 +11,15 @@
 /out/
 /run/
 
+# Eclipse #
 /mappings/
+*.classpath
+.project
+*.prefs
+*.launch
+
+# Minecraft #
+/bin/
+/mods/
+/logs/
+/config/
