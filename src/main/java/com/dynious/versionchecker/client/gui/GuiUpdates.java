@@ -8,6 +8,7 @@ import com.dynious.versionchecker.helper.WebHelper;
 import com.dynious.versionchecker.lib.Reference;
 import com.dynious.versionchecker.lib.Resources;
 import com.dynious.versionchecker.lib.Strings;
+
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -16,7 +17,8 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
+
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
@@ -53,13 +55,13 @@ public class GuiUpdates extends GuiScreen
         windowEndX = width / 2 + 110 + listShift;
         windowEndY = height / 2 + 70;
 
-        buttonList.add(new GuiButton(0, width / 2 - 75 + listShift, height - 30, 150, 20, StatCollector.translateToLocal("gui.done")));
+        buttonList.add(new GuiButton(0, width / 2 - 75 + listShift, height - 30, 150, 20, I18n.translateToLocal("gui.done")));
 
-        buttonList.add(updateButton = new GuiButton(1, width / 2 - 100 + listShift, height / 2 + 40, 96, 20, StatCollector.translateToLocal(Strings.UPDATE)));
+        buttonList.add(updateButton = new GuiButton(1, width / 2 - 100 + listShift, height / 2 + 40, 96, 20, I18n.translateToLocal(Strings.UPDATE)));
 
-        buttonList.add(closeButton = new GuiButton(2, width / 2 + 4 + listShift, height / 2 + 40, 96, 20, StatCollector.translateToLocal("gui.done")));
+        buttonList.add(closeButton = new GuiButton(2, width / 2 + 4 + listShift, height / 2 + 40, 96, 20, I18n.translateToLocal("gui.done")));
 
-        buttonList.add(new GuiButton(3, 10, height - 30, 150, 20, StatCollector.translateToLocal(Strings.MOD_FOLDER)));
+        buttonList.add(new GuiButton(3, 10, height - 30, 150, 20, I18n.translateToLocal(Strings.MOD_FOLDER)));
 
         buttonList.add(buttonDownloaded = new GuiButtonDownloaded(4, width / 2 - 100 + listShift, height / 2 + 15));
 
@@ -89,7 +91,7 @@ public class GuiUpdates extends GuiScreen
             changeLogList.drawScreen(mouseX, mouseY, par3);
         }
 
-        this.fontRendererObj.drawSplitString(StatCollector.translateToLocal(Strings.INFO).replace(";", "\n"), 10, height / 2 - 60, width / 2 - 150 + listShift - 20, 0xCCCCCC);
+        this.fontRendererObj.drawSplitString(I18n.translateToLocal(Strings.INFO).replace(";", "\n"), 10, height / 2 - 60, width / 2 - 150 + listShift - 20, 0xCCCCCC);
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GUI_LOGO);
@@ -102,7 +104,7 @@ public class GuiUpdates extends GuiScreen
             drawCenteredString(fontRendererObj, openUpdate.displayName, width / 2 + listShift, height / 2 - 80, 0xFFFFFF);
             if (openUpdate.changeLog == null)
             {
-                drawCenteredString(fontRendererObj, StatCollector.translateToLocal(Strings.NO_CHANGE_LOG), width / 2 + listShift, height / 2 - 60, 0xCCCCCC);
+                drawCenteredString(fontRendererObj, I18n.translateToLocal(Strings.NO_CHANGE_LOG), width / 2 + listShift, height / 2 - 60, 0xCCCCCC);
             }
         }
         if (DownloadThread.isUpdating())
@@ -155,15 +157,15 @@ public class GuiUpdates extends GuiScreen
         }
         else if (buttonDownloaded.mousePressed(mc, mouseX, mouseY))
         {
-            this.drawHoveringText(Arrays.asList(StatCollector.translateToLocal(Strings.DL_MARKED_INFO).split(";")), mouseX, mouseY, fontRendererObj);
+            this.drawHoveringText(Arrays.asList(I18n.translateToLocal(Strings.DL_MARKED_INFO).split(";")), mouseX, mouseY, fontRendererObj);
         }
         else if (NEMButton.mousePressed(mc, mouseX, mouseY))
         {
-            this.drawHoveringText(Arrays.asList(StatCollector.translateToLocal(Strings.TOGGLE_NEM_UPDATE).split(";")), mouseX, mouseY, fontRendererObj);
+            this.drawHoveringText(Arrays.asList(I18n.translateToLocal(Strings.TOGGLE_NEM_UPDATE).split(";")), mouseX, mouseY, fontRendererObj);
         }
         else if (curseButton.mousePressed(mc, mouseX, mouseY))
         {
-            this.drawHoveringText(Arrays.asList(StatCollector.translateToLocal(Strings.TOGGLE_CURSE_UPDATE).split(";")), mouseX, mouseY, fontRendererObj);
+            this.drawHoveringText(Arrays.asList(I18n.translateToLocal(Strings.TOGGLE_CURSE_UPDATE).split(";")), mouseX, mouseY, fontRendererObj);
         }
     }
 
@@ -244,12 +246,12 @@ public class GuiUpdates extends GuiScreen
         Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
         if (update.isDirectLink)
         {
-            updateButton.displayString = StatCollector.translateToLocal(Strings.UPDATE);
+            updateButton.displayString = I18n.translateToLocal(Strings.UPDATE);
             updateButton.enabled = update.updateURL != null && !update.isDownloaded();
         }
         else
         {
-            updateButton.displayString = StatCollector.translateToLocal(Strings.OPEN_WEBPAGE);
+            updateButton.displayString = I18n.translateToLocal(Strings.OPEN_WEBPAGE);
             updateButton.enabled = update.updateURL != null;
         }
         if (openUpdate.changeLog != null)
