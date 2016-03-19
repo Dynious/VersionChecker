@@ -243,7 +243,7 @@ public class GuiUpdates extends GuiScreen
         changeLogList.disableInput = false;
         updateList.disableInput = true;
         buttonDownloaded.setUpdate(update);
-        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
+        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.ui_button_click, 1.0F));
         if (update.isDirectLink)
         {
             updateButton.displayString = I18n.translateToLocal(Strings.UPDATE);
