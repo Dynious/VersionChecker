@@ -8,7 +8,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.VertexBuffer; // Used to be WorldRenderer
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
 import org.lwjgl.input.Mouse;
@@ -246,7 +246,7 @@ public abstract class GuiScroll
 
         this.applyScrollLimits();
         Tessellator tess = Tessellator.getInstance();
-        WorldRenderer worldr = tess.getWorldRenderer();
+        VertexBuffer  worldr = tess.getBuffer(); // Used to be  WorldRenderer worldr = tess.getWorldRenderer();
         if (this.client.theWorld != null)
         {
             this.drawGradientRect(this.left, this.top, this.right, this.bottom, -1072689136, -804253680);
@@ -389,7 +389,7 @@ public abstract class GuiScroll
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glShadeModel(GL11.GL_SMOOTH);
         Tessellator tessellator = Tessellator.getInstance();
-        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        VertexBuffer  worldrenderer = tessellator.getBuffer();
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
         worldrenderer.pos((double)par3, (double)par2, 0.0D).color(f1, f2, f3, f).endVertex();
         worldrenderer.pos((double)par1, (double)par2, 0.0D).color(f1, f2, f3, f).endVertex();
