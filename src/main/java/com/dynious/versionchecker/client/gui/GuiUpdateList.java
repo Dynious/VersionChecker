@@ -6,10 +6,12 @@ import com.dynious.versionchecker.handler.UpdateHandler;
 import com.dynious.versionchecker.lib.Reference;
 import com.dynious.versionchecker.lib.Resources;
 import com.dynious.versionchecker.lib.Strings;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
+
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -96,7 +98,7 @@ public class GuiUpdateList extends GuiScroll
             {
                 Gui.drawModalRectWithCustomSizedTexture(maxX - 30, minY + 8, 0, 0, 16, 16, 64, 32);
 
-                info = StatCollector.translateToLocal(Strings.UPDATING);
+                info = I18n.translateToLocal(Strings.UPDATING);
             }
             else if (update.isDownloaded())
             {
@@ -104,34 +106,34 @@ public class GuiUpdateList extends GuiScroll
 
                 if (!update.MOD_ID.equalsIgnoreCase(Reference.MOD_ID))
                 {
-                    info = StatCollector.translateToLocal(Strings.IS_DOWNLOADED);
+                    info = I18n.translateToLocal(Strings.IS_DOWNLOADED);
                 }
                 else
                 {
-                    info = StatCollector.translateToLocal(Strings.UNABLE_TO_REMOVE_SELF);
+                    info = I18n.translateToLocal(Strings.UNABLE_TO_REMOVE_SELF);
                 }
             }
             else if (update.isErrored())
             {
                 Gui.drawModalRectWithCustomSizedTexture(maxX - 30, minY + 8, 32, 0, 16, 16, 64, 32);
 
-                info = StatCollector.translateToLocal(Strings.ERRORED);
+                info = I18n.translateToLocal(Strings.ERRORED);
             }
             else if (update.isDirectLink)
             {
                 Gui.drawModalRectWithCustomSizedTexture(maxX - 30, minY + 8, 16, 16, 16, 16, 64, 32);
 
-                info = StatCollector.translateToLocal(Strings.DL_AVAILABLE);
+                info = I18n.translateToLocal(Strings.DL_AVAILABLE);
             }
             else if (update.updateURL != null)
             {
                 Gui.drawModalRectWithCustomSizedTexture(maxX - 30, minY + 8, 0, 16, 16, 16, 64, 32);
 
-                info = StatCollector.translateToLocal(Strings.LINK_TO_DL);
+                info = I18n.translateToLocal(Strings.LINK_TO_DL);
             }
             else
             {
-                info = StatCollector.translateToLocal(Strings.CANNOT_UPDATE);
+                info = I18n.translateToLocal(Strings.CANNOT_UPDATE);
             }
 
             if (update.updateType == Update.UpdateType.NOT_ENOUGH_MODS)
