@@ -18,10 +18,10 @@ public class EventHandler
     @SubscribeEvent
     public void onGuiInit(GuiScreenEvent.InitGuiEvent evt)
     {
-        if (evt.gui instanceof GuiMainMenu)
+        if (evt.getGui() instanceof GuiMainMenu)
         {
             IMCHandler.processMessages(FMLInterModComms.fetchRuntimeMessages(Reference.MOD_ID));
-            GuiMainMenuHandler.initGui(evt.gui, evt.buttonList);
+            GuiMainMenuHandler.initGui(evt.getGui(), evt.getButtonList());
         }
     }
 
@@ -29,9 +29,9 @@ public class EventHandler
     @SubscribeEvent
     public void onActionPerformed(GuiScreenEvent.ActionPerformedEvent evt)
     {
-        if (evt.gui instanceof GuiMainMenu)
+        if (evt.getGui() instanceof GuiMainMenu)
         {
-            GuiMainMenuHandler.onActionPerformed(evt.button);
+            GuiMainMenuHandler.onActionPerformed(evt.getButton());
         }
     }
 }
