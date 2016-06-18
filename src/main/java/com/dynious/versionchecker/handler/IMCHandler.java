@@ -6,9 +6,10 @@ import com.dynious.versionchecker.helper.ModHelper;
 import com.dynious.versionchecker.helper.WebHelper;
 import com.dynious.versionchecker.lib.IMCOperations;
 import com.dynious.versionchecker.lib.Strings;
+
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 
 import java.util.List;
 
@@ -145,7 +146,7 @@ public class IMCHandler
                     update.updateURL = "http://minecraft.curseforge.com/projects/" + curseProjectName + "/files/latest";
                     update.isDirectLink = true;
                     update.newFileName = latestFilename;
-                    update.changeLog = StatCollector.translateToLocal(Strings.CURSE_UPDATE);
+                    update.changeLog = I18n.translateToLocal(Strings.CURSE_UPDATE);
 
                     if (tag.hasKey(IMCOperations.MOD_DISPLAY_NAME))
                     {

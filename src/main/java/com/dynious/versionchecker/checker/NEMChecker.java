@@ -5,9 +5,10 @@ import com.dynious.versionchecker.handler.UpdateHandler;
 import com.dynious.versionchecker.helper.ModHelper;
 import com.dynious.versionchecker.lib.Strings;
 import com.google.gson.Gson;
+
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ModContainer;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,7 +54,7 @@ public class NEMChecker implements Runnable
                         update.displayName = container.getName();
                         update.oldVersion = mod.getActualModVersion() != null ? mod.getActualModVersion() : NEMUtils.patchVersion(mod.getVersion());
                         update.newVersion = mod.getVersion();
-                        update.changeLog = StatCollector.translateToLocal(Strings.NEM_UPDATE);
+                        update.changeLog = I18n.translateToLocal(Strings.NEM_UPDATE);
 
                         update.isDirectLink = false;
                         if (mod.getLongurl() != null && !mod.getLongurl().isEmpty())

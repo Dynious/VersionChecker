@@ -8,7 +8,7 @@ import com.dynious.versionchecker.lib.Strings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.text.translation.I18n;
 import org.lwjgl.opengl.GL11;
 
 import java.io.File;
@@ -64,7 +64,7 @@ public class GuiButtonDownloaded extends GuiButton
                 j += this.width;
             }
             Gui.drawModalRectWithCustomSizedTexture(this.xPosition, this.yPosition, j, k, this.width, this.height, 40, 40);
-            this.drawString(Minecraft.getMinecraft().fontRendererObj, StatCollector.translateToLocal(Strings.MARK_DL), this.xPosition + this.width + 5, this.yPosition + this.height / 2 - 4, 0xFFFFFF);
+            this.drawString(Minecraft.getMinecraft().fontRendererObj, I18n.translateToLocal(Strings.MARK_DL), this.xPosition + this.width + 5, this.yPosition + this.height / 2 - 4, 0xFFFFFF);
         }
     }
 }
