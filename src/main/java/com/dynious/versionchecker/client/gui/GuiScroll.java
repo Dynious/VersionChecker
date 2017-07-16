@@ -246,7 +246,7 @@ public abstract class GuiScroll
         this.applyScrollLimits();
         Tessellator tess = Tessellator.getInstance();
         VertexBuffer  worldr = tess.getBuffer(); // Used to be  WorldRenderer worldr = tess.getWorldRenderer();
-        if (this.client.theWorld != null)
+        if (this.client.world != null)
         {
             this.drawGradientRect(this.left, this.top, this.right, this.bottom, -1072689136, -804253680);
         }
@@ -307,7 +307,7 @@ public abstract class GuiScroll
 
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         byte fadeGradientHeight = 4;
-        if (this.client.theWorld == null)
+        if (this.client.world == null)
         {
             this.overlayBackground();
         }

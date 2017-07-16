@@ -1,6 +1,6 @@
 [
 {
-  "modid": "VersionChecker",
+  "modid": "versionchecker",
   "name": "Version Checker",
   "description": "Easily find updates for your installed mods!",
   "version": "${version}",

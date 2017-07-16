@@ -11,7 +11,7 @@ public class Resources
     public static final ResourceLocation GUI_BUTTON_UPDATE = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "notify.png");
     public static final ResourceLocation GUI_LOGO = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "logo.png");
     public static final ResourceLocation GUI_WINDOW = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "window.png");
-    public static final ResourceLocation GUI_BUTTON_TICK = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "tickButton.png");
-    public static final ResourceLocation GUI_BUTTON_NEM = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "NEMButton.png");
-    public static final ResourceLocation GUI_BUTTON_CURSE = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "curseButton.png");
+    public static final ResourceLocation GUI_BUTTON_TICK = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "tick_button.png");
+    public static final ResourceLocation GUI_BUTTON_NEM = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "nem_button.png");
+    public static final ResourceLocation GUI_BUTTON_CURSE = new ResourceLocation(MOD_ID, GUI_SHEET_LOCATION + "curse_button.png");
 }
