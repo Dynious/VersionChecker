@@ -55,7 +55,7 @@ public class VersionChecker
 
         FMLInterModComms.sendRuntimeMessage(Reference.MOD_ID, "VersionChecker", "addCurseCheck", compound);
         */
-
+        
         //sendABunchOfDerpyMessages();
     }
 

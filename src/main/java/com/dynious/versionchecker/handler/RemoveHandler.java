@@ -1,11 +1,5 @@
 package com.dynious.versionchecker.handler;
 
-import com.dynious.versionchecker.helper.DesktopHelper;
-import com.dynious.versionchecker.helper.ModHelper;
-import com.dynious.versionchecker.lib.Reference;
-import sun.misc.URLClassPath;
-import sun.net.util.URLUtil;
-
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileWriter;
@@ -16,6 +10,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import com.dynious.versionchecker.helper.DesktopHelper;
+import com.dynious.versionchecker.helper.ModHelper;
+import com.dynious.versionchecker.lib.Reference;
+
+import sun.misc.URLClassPath;
+import sun.net.util.URLUtil;
 
 public class RemoveHandler
 {

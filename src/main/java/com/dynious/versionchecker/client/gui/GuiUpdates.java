@@ -1,5 +1,12 @@
 package com.dynious.versionchecker.client.gui;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.lwjgl.opengl.GL11;
+
 import com.dynious.versionchecker.api.Update;
 import com.dynious.versionchecker.handler.DownloadThread;
 import com.dynious.versionchecker.handler.IMCHandler;
@@ -9,22 +16,15 @@ import com.dynious.versionchecker.lib.Reference;
 import com.dynious.versionchecker.lib.Resources;
 import com.dynious.versionchecker.lib.Strings;
 
-import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.text.translation.I18n;
-
-import org.lwjgl.opengl.GL11;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 
 public class GuiUpdates extends GuiScreen
 {
@@ -243,7 +243,7 @@ public class GuiUpdates extends GuiScreen
         changeLogList.disableInput = false;
         updateList.disableInput = true;
         buttonDownloaded.setUpdate(update);
-        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.ui_button_click, 1.0F));
+        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0F));
         if (update.isDirectLink)
         {
             updateButton.displayString = I18n.translateToLocal(Strings.UPDATE);

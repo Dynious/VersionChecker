@@ -1,5 +1,10 @@
 package com.dynious.versionchecker.client.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.lwjgl.opengl.GL11;
+
 import com.dynious.versionchecker.api.Update;
 import com.dynious.versionchecker.handler.DownloadThread;
 import com.dynious.versionchecker.handler.UpdateHandler;
@@ -11,11 +16,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.text.translation.I18n;
-
-import org.lwjgl.opengl.GL11;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class GuiUpdateList extends GuiScroll
 {
@@ -152,7 +152,7 @@ public class GuiUpdateList extends GuiScroll
     @Override
     public void overlayBackground()
     {
-        this.client.renderEngine.bindTexture(Gui.optionsBackground);
+        this.client.renderEngine.bindTexture(Gui.OPTIONS_BACKGROUND);
         GL11.glColor4f(0.25F, 0.25F, 0.25F, 1.0F);
         Gui.drawModalRectWithCustomSizedTexture(left - 10, top - slotHeight, 0, 0, listWidth + 20, slotHeight, 32, 32);
         Gui.drawModalRectWithCustomSizedTexture(left - 10, top + listHeight, 0, listHeight + slotHeight, listWidth + 20, slotHeight, 32, 32);

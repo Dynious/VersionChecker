@@ -1,20 +1,19 @@
 package com.dynious.versionchecker.client.gui;
 
+import java.util.List;
+
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
+
 import com.dynious.versionchecker.lib.Resources;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer; // Used to be WorldRenderer
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
-
-import java.util.List;
 
 public abstract class GuiScroll
 {
@@ -255,7 +254,7 @@ public abstract class GuiScroll
         {
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_FOG);
-            this.client.renderEngine.bindTexture(Gui.optionsBackground);
+            this.client.renderEngine.bindTexture(Gui.OPTIONS_BACKGROUND);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             float var17 = 32.0F;
             worldr.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);

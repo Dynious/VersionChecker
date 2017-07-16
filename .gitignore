@@ -1,25 +1,22 @@
-# IntelliJ Project files #
-*.iml
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
 *.ipr
 *.iws
+*.iml
+.idea
 
-# Gradle #
-/.gradle/
-/eclipse/
-/run/
-/build/
-/out/
-/run/
+# gradle
+build
+.gradle
 
-# Eclipse #
-/mappings/
-*.classpath
-.project
-*.prefs
-*.launch
-
-# Minecraft #
-/bin/
-/mods/
-/logs/
-/config/
+# other
+eclipse
+run
