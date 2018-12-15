@@ -91,7 +91,7 @@ public class GuiUpdates extends GuiScreen
             changeLogList.drawScreen(mouseX, mouseY, par3);
         }
 
-        this.fontRendererObj.drawSplitString(I18n.translateToLocal(Strings.INFO).replace(";", "\n"), 10, height / 2 - 60, width / 2 - 150 + listShift - 20, 0xCCCCCC);
+        this.fontRenderer.drawSplitString(I18n.translateToLocal(Strings.INFO).replace(";", "\n"), 10, height / 2 - 60, width / 2 - 150 + listShift - 20, 0xCCCCCC);
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         Minecraft.getMinecraft().renderEngine.bindTexture(Resources.GUI_LOGO);
@@ -101,10 +101,10 @@ public class GuiUpdates extends GuiScreen
 
         if (openUpdate != null)
         {
-            drawCenteredString(fontRendererObj, openUpdate.displayName, width / 2 + listShift, height / 2 - 80, 0xFFFFFF);
+            drawCenteredString(fontRenderer, openUpdate.displayName, width / 2 + listShift, height / 2 - 80, 0xFFFFFF);
             if (openUpdate.changeLog == null)
             {
-                drawCenteredString(fontRendererObj, I18n.translateToLocal(Strings.NO_CHANGE_LOG), width / 2 + listShift, height / 2 - 60, 0xCCCCCC);
+                drawCenteredString(fontRenderer, I18n.translateToLocal(Strings.NO_CHANGE_LOG), width / 2 + listShift, height / 2 - 60, 0xCCCCCC);
             }
         }
         if (DownloadThread.isUpdating())
@@ -142,7 +142,7 @@ public class GuiUpdates extends GuiScreen
             String left = openUpdate.updateURL;
             while(left != null)
             {
-                String s = fontRendererObj.trimStringToWidth(left, 200);
+                String s = fontRenderer.trimStringToWidth(left, 200);
                 list.add(s);
                 if (s.length() == left.length())
                 {
@@ -153,19 +153,19 @@ public class GuiUpdates extends GuiScreen
                     left = left.substring(s.length());
                 }
             }
-            this.drawHoveringText(list, mouseX, mouseY, fontRendererObj);
+            this.drawHoveringText(list, mouseX, mouseY, fontRenderer);
         }
         else if (buttonDownloaded.mousePressed(mc, mouseX, mouseY))
         {
-            this.drawHoveringText(Arrays.asList(I18n.translateToLocal(Strings.DL_MARKED_INFO).split(";")), mouseX, mouseY, fontRendererObj);
+            this.drawHoveringText(Arrays.asList(I18n.translateToLocal(Strings.DL_MARKED_INFO).split(";")), mouseX, mouseY, fontRenderer);
         }
         else if (NEMButton.mousePressed(mc, mouseX, mouseY))
         {
-            this.drawHoveringText(Arrays.asList(I18n.translateToLocal(Strings.TOGGLE_NEM_UPDATE).split(";")), mouseX, mouseY, fontRendererObj);
+            this.drawHoveringText(Arrays.asList(I18n.translateToLocal(Strings.TOGGLE_NEM_UPDATE).split(";")), mouseX, mouseY, fontRenderer);
         }
         else if (curseButton.mousePressed(mc, mouseX, mouseY))
         {
-            this.drawHoveringText(Arrays.asList(I18n.translateToLocal(Strings.TOGGLE_CURSE_UPDATE).split(";")), mouseX, mouseY, fontRendererObj);
+            this.drawHoveringText(Arrays.asList(I18n.translateToLocal(Strings.TOGGLE_CURSE_UPDATE).split(";")), mouseX, mouseY, fontRenderer);
         }
     }
 
@@ -232,7 +232,7 @@ public class GuiUpdates extends GuiScreen
 
     public FontRenderer getFontRenderer()
     {
-        return fontRendererObj;
+        return fontRenderer;
     }
 
     public void openInfoScreen(Update update)

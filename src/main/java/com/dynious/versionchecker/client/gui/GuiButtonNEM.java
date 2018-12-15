@@ -25,13 +25,13 @@ public class GuiButtonNEM extends GuiButton
     }
 
     @Override
-    public void drawButton(Minecraft minecraft, int x, int y)
+    public void drawButton(Minecraft minecraft, int x, int y, float partialTicks)
     {
         if (this.visible)
         {
             Minecraft.getMinecraft().getTextureManager().bindTexture(Resources.GUI_BUTTON_NEM);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            boolean flag = x >= this.xPosition && y >= this.yPosition && x < this.xPosition + this.width && y < this.yPosition + this.height;
+            boolean flag = x >= this.x && y >= this.y && x < this.x + this.width && y < this.y + this.height;
             int k = 0;
             int j = 0;
             if (flag)
@@ -42,7 +42,7 @@ public class GuiButtonNEM extends GuiButton
             {
                 j += this.width;
             }
-            Gui.drawModalRectWithCustomSizedTexture(this.xPosition, this.yPosition, j, k, this.width, this.height, 40, 40);
+            Gui.drawModalRectWithCustomSizedTexture(this.x, this.y, j, k, this.width, this.height, 40, 40);
         }
     }
 }

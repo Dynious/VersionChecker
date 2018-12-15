@@ -5,10 +5,9 @@ import com.dynious.versionchecker.lib.Resources;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer; // Used to be WorldRenderer
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 
 import org.lwjgl.input.Mouse;
@@ -246,8 +245,8 @@ public abstract class GuiScroll
 
         this.applyScrollLimits();
         Tessellator tess = Tessellator.getInstance();
-        VertexBuffer  worldr = tess.getBuffer(); // Used to be  WorldRenderer worldr = tess.getWorldRenderer();
-        if (this.client.theWorld != null)
+        BufferBuilder  worldr = tess.getBuffer(); // Used to be  WorldRenderer worldr = tess.getWorldRenderer();
+        if (this.client.world != null)
         {
             this.drawGradientRect(this.left, this.top, this.right, this.bottom, -1072689136, -804253680);
         }
@@ -255,7 +254,7 @@ public abstract class GuiScroll
         {
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_FOG);
-            this.client.renderEngine.bindTexture(Gui.optionsBackground);
+            this.client.renderEngine.bindTexture(Gui.OPTIONS_BACKGROUND);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             float var17 = 32.0F;
             worldr.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
@@ -308,7 +307,7 @@ public abstract class GuiScroll
 
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         byte fadeGradientHeight = 4;
-        if (this.client.theWorld == null)
+        if (this.client.world == null)
         {
             this.overlayBackground();
         }
@@ -389,12 +388,12 @@ public abstract class GuiScroll
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glShadeModel(GL11.GL_SMOOTH);
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer  worldrenderer = tessellator.getBuffer();
-        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-        worldrenderer.pos((double)par3, (double)par2, 0.0D).color(f1, f2, f3, f).endVertex();
-        worldrenderer.pos((double)par1, (double)par2, 0.0D).color(f1, f2, f3, f).endVertex();
-        worldrenderer.pos((double)par1, (double)par4, 0.0D).color(f5, f6, f7, f4).endVertex();
-        worldrenderer.pos((double)par3, (double)par4, 0.0D).color(f5, f6, f7, f4).endVertex();
+        BufferBuilder buffer = tessellator.getBuffer();
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR); //POSITION_TEX_COLOR?
+        buffer.pos((double)par3, (double)par2, 0.0D).color(f1, f2, f3, f).endVertex();
+        buffer.pos((double)par1, (double)par2, 0.0D).color(f1, f2, f3, f).endVertex();
+        buffer.pos((double)par1, (double)par4, 0.0D).color(f5, f6, f7, f4).endVertex();
+        buffer.pos((double)par3, (double)par4, 0.0D).color(f5, f6, f7, f4).endVertex();
         tessellator.draw();
         GL11.glShadeModel(GL11.GL_FLAT);
         GL11.glDisable(GL11.GL_BLEND);
